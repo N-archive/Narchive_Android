@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Narchive</string>
+
+    <string name="bottom_nav_calendar">캘린더</string>
+    <string name="bottom_nav_todo">일정</string>
+    <string name="bottom_nav_feed">피드</string>
+    <string name="bottom_nav_group">모아보기</string>
+    <string name="bottom_nav_settings">설정</string>
+
+
+
 </resources>

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Narchive"
         tools:targetApi="31">
-        <activity android:name=".presentation.ui.splash.SplashActivity"
+        <activity android:name=".presentation.ui.presentation.ui.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.ui.main.MainActivity"
+            android:name=".presentation.ui.presentation.ui.main.MainActivity"
             android:exported="true">
 
         </activity>
