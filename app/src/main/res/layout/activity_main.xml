@@ -6,5 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.main.MainActivity">
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/main_bottom_navigation"
+        app:labelVisibilityMode="labeled"
+        app:itemRippleColor="@android:color/transparent"
+        app:itemTextColor="@color/selector_bottom_navigation"
+        app:itemIconTint="@color/selector_bottom_navigation" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
