@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             }
             false
         }
-        binding.mainBottomNav.selectedItemId = R.id.main_bottom_nav_calendar
+        binding.mainBottomNav.selectedItemId = R.id.main_bottom_nav_feed
     }
 
     private fun changeFragment(fragment : Fragment) {
