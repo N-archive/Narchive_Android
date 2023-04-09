@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="feedData"
+            type="com.chunbae.narchive.data.data.FeedData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_feed_item_ffffff_10">
+
+        <ImageView
+            android:id="@+id/item_feed_simple_diary_iv_user_profile"
+            Common_Circle_Image="@{feedData.user.userProfileImage}"
+            android:layout_width="@dimen/feed_diary_profile_image_size"
+            android:layout_height="@dimen/feed_diary_profile_image_size"
+            android:layout_margin="@dimen/margin_15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_feed_simple_diary_tv_user_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_5"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:text="@{feedData.user.userNickName}"
+            android:textColor="@color/text_black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@id/item_feed_simple_diary_iv_user_profile"
+            app:layout_constraintTop_toTopOf="@id/item_feed_simple_diary_iv_user_profile"
+            tools:text="춘배" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:text="@{feedData.uploadTime}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/item_feed_simple_diary_iv_user_profile"
+            app:layout_constraintStart_toStartOf="@id/item_feed_simple_diary_tv_user_nickname"
+            app:layout_constraintTop_toBottomOf="@id/item_feed_simple_diary_tv_user_nickname"
+            tools:text="3일 전" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/item_feed_simple_diary_rv_keywords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/maragin_20"
+            android:layout_marginHorizontal="@dimen/margin_15"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:orientation="vertical"
+            app:spanCount="5"
+            app:layout_constraintTop_toBottomOf="@id/item_feed_simple_diary_iv_user_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_feed_simple_diary_rv_keywords"/>
+
+        <ImageView
+            android:id="@+id/item_feed_simple_diary_iv_thumbnail"
+            Common_iv_radius_5="@{feedData.thumbNail}"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="@dimen/maragin_20"
+            app:layout_constraintStart_toStartOf="@id/item_feed_simple_diary_rv_keywords"
+            app:layout_constraintTop_toBottomOf="@id/item_feed_simple_diary_rv_keywords" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:text="@{@string/diary_thumbnail_count(feedData.imageCount)}"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/item_feed_simple_diary_iv_thumbnail"
+            app:layout_constraintEnd_toEndOf="@id/item_feed_simple_diary_iv_thumbnail"
+            app:layout_constraintStart_toStartOf="@id/item_feed_simple_diary_iv_thumbnail"
+            app:layout_constraintTop_toTopOf="@id/item_feed_simple_diary_iv_thumbnail"
+            tools:text="+5" />
+
+        <ImageView
+            android:id="@+id/item_feed_simple_diary_iv_marker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_15"
+            android:src="@drawable/ic_common_marker"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/item_feed_simple_diary_iv_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/item_feed_simple_diary_iv_thumbnail" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_5"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:text="@{feedData.locationAddress}"
+            android:textColor="@color/color_a4a4a4"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/item_feed_simple_diary_iv_marker"
+            app:layout_constraintStart_toEndOf="@id/item_feed_simple_diary_iv_marker"
+            app:layout_constraintTop_toTopOf="@id/item_feed_simple_diary_iv_marker"
+            tools:text="동대문 스파렉스" />
+
+
+        <TextView
+            android:id="@+id/item_feed_simple_diary_tv_comment_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:text="@{feedData.commentCount}"
+            android:textColor="@color/color_a4a4a4"
+            android:textSize="12sp"
+            android:layout_marginEnd="@dimen/margin_15"
+            app:layout_constraintBottom_toBottomOf="@id/item_feed_simple_diary_iv_marker"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_feed_simple_diary_iv_marker"
+            tools:text="3" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_common_comment"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintTop_toTopOf="@id/item_feed_simple_diary_tv_comment_count"
+            app:layout_constraintBottom_toBottomOf="@id/item_feed_simple_diary_tv_comment_count"
+            app:layout_constraintEnd_toStartOf="@id/item_feed_simple_diary_tv_comment_count" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,4 +1,4 @@
-package com.chunbae.narchive.presentation.ui.presentation.ui.main.calendar
+package com.chunbae.narchive.presentation.ui.main.calendar
 
 import android.os.Bundle
 import android.view.LayoutInflater

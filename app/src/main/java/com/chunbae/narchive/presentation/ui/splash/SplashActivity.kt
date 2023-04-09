@@ -1,9 +1,9 @@
-package com.chunbae.narchive.presentation.ui.presentation.ui.splash
+package com.chunbae.narchive.presentation.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.chunbae.narchive.presentation.ui.presentation.ui.main.MainActivity
+import com.chunbae.narchive.presentation.ui.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
 
