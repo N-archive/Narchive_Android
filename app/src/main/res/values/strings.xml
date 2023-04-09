@@ -7,6 +7,6 @@
     <string name="bottom_nav_group">모아보기</string>
     <string name="bottom_nav_settings">설정</string>
 
-
+    <string name="diary_thumbnail_count">+%d</string>
 
 </resources>
