@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.chunbae.narchive.R
 import com.chunbae.narchive.databinding.ActivityMainBinding
 import com.chunbae.narchive.presentation.ui.main.calendar.CalendarFragment
-import com.chunbae.narchive.presentation.ui.main.feed.FeedFragment
+import com.chunbae.narchive.presentation.ui.main.feed.view.FeedFragment
 import com.chunbae.narchive.presentation.ui.main.group.GroupFragment
 import com.chunbae.narchive.presentation.ui.main.settings.SettingsFragment
 import com.chunbae.narchive.presentation.ui.main.todo.TodoFragment

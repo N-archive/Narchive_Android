@@ -7,6 +7,7 @@ data class FeedData(
     val thumbNail : Int, //TODO: 추후 서버 연결시 String으로 변경할 것
     val imageCount : Int,
     val locationAddress : String,
-    val commentCount : Int,
-    val keywords : List<String>? /** 간단 일기 작성시 사용됨 */
+    val commentCount : String,
+    val keywords : List<String>?, /** 간단 일기 작성시 사용됨 */
+    val isSimple : String /** T / F */
 )
