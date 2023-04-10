@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="feedData"
-            type="com.chunbae.narchive.data.data.FeedData" />
+            name="diaryData"
+            type="com.chunbae.narchive.data.data.DiaryData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pretendard_semibold"
                 android:includeFontPadding="false"
-                android:text="@{feedData.uploadedAt}"
+                android:text="@{diaryData.uploadedAt}"
                 android:textColor="@color/text_black"
                 android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -82,7 +82,7 @@
 
                 <ImageView
                     android:id="@+id/detail_diary_iv_user_profile"
-                    Common_Circle_Image="@{feedData.user.userProfileImage}"
+                    Common_Circle_Image="@{diaryData.user.userProfileImage}"
                     android:layout_width="@dimen/feed_diary_profile_image_size"
                     android:layout_height="@dimen/feed_diary_profile_image_size"
                     android:layout_margin="@dimen/margin_15"
@@ -96,7 +96,7 @@
                     android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/pretendard_medium"
                     android:includeFontPadding="false"
-                    android:text="@{feedData.user.userNickName}"
+                    android:text="@{diaryData.user.userNickName}"
                     android:textColor="@color/text_black"
                     android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@id/detail_diary_iv_user_profile"
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_medium"
                     android:includeFontPadding="false"
-                    android:text="@{feedData.uploadTime}"
+                    android:text="@{diaryData.uploadTime}"
                     android:textColor="@color/color_a4a4a4"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@id/detail_diary_iv_user_profile"
@@ -124,7 +124,7 @@
                     android:layout_marginTop="@dimen/maragin_20"
                     android:fontFamily="@font/pretendard_medium"
                     android:includeFontPadding="false"
-                    android:text="@{feedData.content}"
+                    android:text="@{diaryData.content}"
                     android:textColor="@color/text_black"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -150,7 +150,7 @@
                     android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/pretendard_medium"
                     android:includeFontPadding="false"
-                    android:text="@{feedData.locationAddress}"
+                    android:text="@{diaryData.locationAddress}"
                     android:textColor="@color/color_a4a4a4"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@id/detail_diary_iv_marker"
