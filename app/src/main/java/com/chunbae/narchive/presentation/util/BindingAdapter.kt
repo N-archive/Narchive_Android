@@ -14,5 +14,5 @@ fun ImageView.setCircleImage(path : Any) {
 
 @BindingAdapter("Common_iv_radius_5")
 fun ImageView.setRadius5Image(path : Any) {
-    Glide.with(this).load(path).transform(CenterCrop(), RoundedCorners(5)).into(this)
+    Glide.with(this).load(path).transform(CenterCrop(), RoundedCorners(20)).into(this)
 }
