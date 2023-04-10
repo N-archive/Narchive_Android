@@ -19,6 +19,7 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class SimpleDiaryViewHolder(private val binding : ItemFeedSimpleDiaryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : FeedData) {
             binding.feedData = item
+            binding.itemFeedSimpleDiaryRvKeywords.adapter = item.keywords?.let { SimpleDiaryKeywordAdapter(it) }
         }
     }
 
