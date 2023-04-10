@@ -1,6 +1,7 @@
 package com.chunbae.narchive.data.data
 
 data class FeedData(
+    val feedId : Int,
     val user : UserData,
     val uploadTime : String,
     val uploadedAt : String,

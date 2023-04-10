@@ -77,10 +77,10 @@ class FeedFragment : Fragment() {
 
     private fun getFeedDummy() : MutableList<FeedData> =
         mutableListOf<FeedData>().apply {
-            add(FeedData(UserData(0, R.drawable.ic_launcher_background, "테스트1"), "1일전", "2023.03.1", "본문내용입니다!", R.drawable.ic_launcher_background, 1, "양천구 신정중앙로 1", "1", null, "F"))
-            add(FeedData(UserData(1, R.drawable.ic_launcher_background, "테스트2"), "2일전", "2023.03.2", null, R.drawable.ic_launcher_background, 2, "양천구 신정중앙로 2", "2", getKeywordDummy(), "T"))
-            add(FeedData(UserData(2, R.drawable.ic_launcher_background, "테스트3"), "3일전", "2023.03.3","본문내용입니다!", R.drawable.ic_launcher_background, 3, "양천구 신정중앙로 3", "3", null, "F"))
-            add(FeedData(UserData(3, R.drawable.ic_launcher_background, "테스트4"), "4일전", "2023.03.4","본문내용입니다!", R.drawable.ic_launcher_background, 4, "양천구 신정중앙로 4", "4", getKeywordDummy(), "T"))
+            add(FeedData(0, UserData(0, R.drawable.ic_launcher_background, "테스트1"), "1일전", "2023.03.1", "본문내용입니다!", R.drawable.ic_launcher_background, 1, "양천구 신정중앙로 1", "1", null, "F"))
+            add(FeedData(1, UserData(1, R.drawable.ic_launcher_background, "테스트2"), "2일전", "2023.03.2", null, R.drawable.ic_launcher_background, 2, "양천구 신정중앙로 2", "2", getKeywordDummy(), "T"))
+            add(FeedData(2, UserData(2, R.drawable.ic_launcher_background, "테스트3"), "3일전", "2023.03.3","본문내용입니다!", R.drawable.ic_launcher_background, 3, "양천구 신정중앙로 3", "3", null, "F"))
+            add(FeedData(3, UserData(3, R.drawable.ic_launcher_background, "테스트4"), "4일전", "2023.03.4","본문내용입니다!", R.drawable.ic_launcher_background, 4, "양천구 신정중앙로 4", "4", getKeywordDummy(), "T"))
         }
 
     private fun getKeywordDummy() : List<String> = listOf("1","2","3","4","5")
