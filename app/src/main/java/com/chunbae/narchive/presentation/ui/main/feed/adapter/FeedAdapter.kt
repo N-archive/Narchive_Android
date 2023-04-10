@@ -7,12 +7,13 @@ import com.chunbae.narchive.data.data.FeedData
 import com.chunbae.narchive.databinding.ItemFeedNormalDiaryBinding
 import com.chunbae.narchive.databinding.ItemFeedSimpleDiaryBinding
 
-class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FeedAdapter (private val onClicked : (Int) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var feedDatas = mutableListOf<FeedData>()
 
     inner class NormalDiaryViewHolder(private val binding : ItemFeedNormalDiaryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : FeedData) {
             binding.feedData = item
+            binding.root.setOnClickListener { onClicked.invoke(item.feedId) }
         }
     }
 
@@ -20,6 +21,7 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(item : FeedData) {
             binding.feedData = item
             binding.itemFeedSimpleDiaryRvKeywords.adapter = item.keywords?.let { SimpleDiaryKeywordAdapter(it) }
+            binding.root.setOnClickListener { onClicked.invoke(item.feedId) }
         }
     }
 
