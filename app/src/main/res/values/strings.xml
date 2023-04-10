@@ -11,4 +11,6 @@
 
     <string name="diary_thumbnail_count">+%d</string>
 
+    <string name="detail_diary_add_comment">댓글을 입력해 주세요.</string>
+
 </resources>

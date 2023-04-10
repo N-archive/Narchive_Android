@@ -7,7 +7,7 @@ import com.chunbae.narchive.data.data.FeedData
 import com.chunbae.narchive.databinding.ItemFeedNormalDiaryBinding
 import com.chunbae.narchive.databinding.ItemFeedSimpleDiaryBinding
 
-class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FeedAdapter () : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var feedDatas = mutableListOf<FeedData>()
 
     inner class NormalDiaryViewHolder(private val binding : ItemFeedNormalDiaryBinding) : RecyclerView.ViewHolder(binding.root) {
