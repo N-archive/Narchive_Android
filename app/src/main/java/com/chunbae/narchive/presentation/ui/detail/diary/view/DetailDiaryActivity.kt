@@ -45,7 +45,12 @@ class DetailDiaryActivity : AppCompatActivity() {
         })
     }
 
-
+    fun onCommentClick() {
+        val intent = Intent(this, DiaryCommentActivity::class.java)
+        //:TODO 수정하기
+        intent.putExtra("contentIdx", 0)
+        startActivity(intent)
+    }
 
     /** Dummy */
 
