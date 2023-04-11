@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="commentData"
+            type="com.chunbae.narchive.data.data.CommentData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/diary_comment_layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/toolbar_comment"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/pretendard_semibold"
+                android:includeFontPadding="false"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/diary_comment_layout_toolbar"
+            app:layout_constraintBottom_toTopOf="@id/diary_comment_layout_comment" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/diary_comment_iv_user_profile"
+                    android:layout_width="@dimen/feed_diary_profile_image_size"
+                    android:layout_height="@dimen/feed_diary_profile_image_size"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_margin="@dimen/margin_15"
+                    Common_Circle_Image="@{commentData.user.userProfileImage}" />
+
+                <TextView
+                    android:id="@+id/diary_comment_tv_user_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{commentData.user.userNickName}"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_black"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:includeFontPadding="false"
+                    android:layout_marginStart="@dimen/margin_5"
+                    app:layout_constraintTop_toTopOf="@id/diary_comment_iv_user_profile"
+                    app:layout_constraintStart_toEndOf="@id/diary_comment_iv_user_profile"
+                    tools:text="춘배" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{commentData.uploadTime}"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_a4a4a4"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:includeFontPadding="false"
+                    app:layout_constraintStart_toStartOf="@id/diary_comment_tv_user_nickname"
+                    app:layout_constraintTop_toBottomOf="@id/diary_comment_tv_user_nickname"
+                    app:layout_constraintBottom_toBottomOf="@id/diary_comment_iv_user_profile"
+                    tools:text="3일 전"/>
+
+                <TextView
+                    android:id="@+id/diary_comment_tv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{commentData.content}"
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:includeFontPadding="false"
+                    android:layout_marginHorizontal="@dimen/margin_15"
+                    app:layout_constraintTop_toBottomOf="@id/diary_comment_iv_user_profile"
+                    android:layout_marginTop="@dimen/maragin_20"
+                    tools:text="어제는 지연이와 함께 찜질방에 다녀왔다!\n요근래 찜질방에 갔던적이 없었는데 역시 따뜻한 물에 들어가있으니까
+피로가 쫙 풀리는 기분이었다!\n근데 음식값이 생각보다 비싸서 그건 좀 아쉬웠다..
+계란이 개당 천원꼴에 치킨이 3만원이라니..
+그나마 식혜가 제일 합리적이었다\n그래도 음식 가격만 제외하면 정말 잘 놀다 왔다!\n대만족!" />
+
+                <View
+                    android:id="@+id/diary_comment_layout_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/color_f4f4f4"
+                    android:layout_marginTop="@dimen/margin_10"
+                    app:layout_constraintTop_toBottomOf="@id/diary_comment_tv_content"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/diary_comment_layout_comment"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/detail_diary_add_comment"
+                android:textColorHint="@color/color_a4a4a4"
+                android:textColor="@color/text_black"
+                android:textSize="15sp"
+                android:fontFamily="@font/pretendard_medium"
+                android:includeFontPadding="false"
+                android:layout_marginStart="@dimen/maragin_20"
+                android:background="@android:color/transparent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_common_plane"
+                android:layout_marginEnd="@dimen/margin_15"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
