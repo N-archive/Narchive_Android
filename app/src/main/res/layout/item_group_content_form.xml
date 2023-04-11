@@ -44,7 +44,7 @@
             android:includeFontPadding="false"
             android:text='@{type == "Book" ? bookData.title : movieData.title}'
             android:textColor="@color/text_black"
-            android:textSize="11sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
