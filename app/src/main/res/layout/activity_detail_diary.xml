@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="activity"
+            type="com.chunbae.narchive.presentation.ui.detail.diary.view.DetailDiaryActivity" />
         <variable
             name="diaryData"
             type="com.chunbae.narchive.data.data.DiaryData" />

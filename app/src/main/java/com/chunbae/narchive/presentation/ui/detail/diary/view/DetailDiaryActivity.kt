@@ -1,5 +1,6 @@
 package com.chunbae.narchive.presentation.ui.detail.diary.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -9,6 +10,7 @@ import com.chunbae.narchive.data.data.DiaryData
 import com.chunbae.narchive.data.data.FeedData
 import com.chunbae.narchive.data.data.UserData
 import com.chunbae.narchive.databinding.ActivityDetailDiaryBinding
+import com.chunbae.narchive.presentation.ui.comment.view.DiaryCommentActivity
 import com.chunbae.narchive.presentation.ui.detail.diary.adapter.DetailDiaryImageAdapter
 
 class DetailDiaryActivity : AppCompatActivity() {
@@ -18,8 +20,13 @@ class DetailDiaryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_diary)
 
+        initBinding()
         setUiDummy()
         initImages()
+    }
+
+    private fun initBinding() {
+        binding.activity = this
     }
 
     override fun onStart() {
@@ -37,6 +44,8 @@ class DetailDiaryActivity : AppCompatActivity() {
             }
         })
     }
+
+
 
     /** Dummy */
 
