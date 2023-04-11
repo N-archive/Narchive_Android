@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.main_bottom_nav_group -> changeFragment(GroupFragment())
                 R.id.main_bottom_nav_settings -> changeFragment(SettingsFragment())
             }
-            false
+            true
         }
         binding.mainBottomNav.selectedItemId = R.id.main_bottom_nav_feed
     }
