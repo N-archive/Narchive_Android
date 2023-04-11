@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
 
-    private val _isBookOrMovie = MutableLiveData<String>().apply { "Book" } //Book / Movie
+    private val _isBookOrMovie = MutableLiveData<String>().apply { value = "Book" } //Book / Movie
     val isBookOrMovie: LiveData<String> = _isBookOrMovie
 
 
