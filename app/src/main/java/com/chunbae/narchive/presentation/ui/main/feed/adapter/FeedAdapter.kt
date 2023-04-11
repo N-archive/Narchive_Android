@@ -13,7 +13,7 @@ class FeedAdapter (private val onClicked : (Int) -> Unit) : RecyclerView.Adapter
     inner class NormalDiaryViewHolder(private val binding : ItemFeedNormalDiaryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : FeedData) {
             binding.feedData = item
-            binding.root.setOnClickListener { onClicked.invoke(item.feedId) }
+            binding.root.setOnClickListener { onClicked.invoke(item.feedIdx) }
         }
     }
 
@@ -21,7 +21,7 @@ class FeedAdapter (private val onClicked : (Int) -> Unit) : RecyclerView.Adapter
         fun bind(item : FeedData) {
             binding.feedData = item
             binding.itemFeedSimpleDiaryRvKeywords.adapter = item.keywords?.let { SimpleDiaryKeywordAdapter(it) }
-            binding.root.setOnClickListener { onClicked.invoke(item.feedId) }
+            binding.root.setOnClickListener { onClicked.invoke(item.feedIdx) }
         }
     }
 
