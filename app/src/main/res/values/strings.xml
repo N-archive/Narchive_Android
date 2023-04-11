@@ -8,6 +8,7 @@
     <string name="bottom_nav_settings">설정</string>
 
     <string name="toolbar_feed">일기장</string>
+    <string name="toolbar_group">모아보기</string>
     <string name="toolbar_comment">댓글 작성하기</string>
 
     <string name="diary_thumbnail_count">+%d</string>

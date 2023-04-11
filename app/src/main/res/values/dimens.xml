@@ -2,9 +2,11 @@
 <resources>
     <dimen name="feed_diary_profile_image_size">36dp</dimen>
     <dimen name="feed_diary_comment_profile_image_size">20dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
     <dimen name="margin_5">5dp</dimen>
     <dimen name="margin_7">7dp</dimen>
     <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
     <dimen name="margin_15">15dp</dimen>
     <dimen name="maragin_20">20dp</dimen>
 </resources>
