@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="activity"
+            type="com.chunbae.narchive.presentation.ui.detail.diary.view.DetailDiaryActivity" />
         <variable
             name="diaryData"
             type="com.chunbae.narchive.data.data.DiaryData" />
@@ -166,6 +168,7 @@
             android:id="@+id/detail_diary_layout_comment"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
+            android:onClick="@{() -> activity.onCommentClick()}"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
