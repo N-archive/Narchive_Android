@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="type"
+            type="String" />
+
+        <variable
+            name="bookData"
+            type="com.chunbae.narchive.data.data.BookData" />
+
+        <variable
+            name="movieData"
+            type="com.chunbae.narchive.data.data.MovieData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/margin_10">
+
+        <ImageView
+            android:id="@+id/item_search_thumbnail"
+            Common_Fill_Image='@{type == "Book" ? bookData.thumbnail : movieData.thumbnail}'
+            android:layout_width="85dp"
+            android:layout_height="120dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@tools:sample/backgrounds/scenic" />
+
+
+        <TextView
+            android:id="@+id/item_search_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_20"
+            android:fontFamily="@font/pretendard_bold"
+            android:includeFontPadding="false"
+            android:text='@{type == "Book" ? bookData.title : movieData.title}'
+            android:textColor="@color/text_black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/item_search_thumbnail"
+            app:layout_constraintStart_toEndOf="@id/item_search_thumbnail"
+            app:layout_constraintTop_toTopOf="@id/item_search_thumbnail"
+            app:layout_constraintVertical_bias="0.2"
+            tools:text="GO" />
+
+        <TextView
+            android:id="@+id/item_search_author_director"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:text='@{type == "Book" ? @string/book_author(bookData.author) : @string/movie_director(movieData.director)}'
+            android:textColor="@color/text_black"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@id/item_search_publisher_actor"
+            app:layout_constraintStart_toStartOf="@id/item_search_title"
+            app:layout_constraintTop_toBottomOf="@id/item_search_title"
+            tools:text="작가   가네시로 가즈키" />
+
+        <TextView
+            android:id="@+id/item_search_publisher_actor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:text='@{type == "Book" ? @string/book_publisher(bookData.publisher) : @string/movie_actor(movieData.actors)}'
+            android:textColor="@color/text_black"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@id/item_search_published_release"
+            app:layout_constraintStart_toStartOf="@id/item_search_author_director"
+            app:layout_constraintTop_toBottomOf="@id/item_search_author_director"
+            tools:text="출판   북폴리오" />
+
+        <TextView
+            android:id="@+id/item_search_published_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:text='@{type == "Book" ? @string/book_publishedAt(bookData.publishedAt) : @string/movie_release(movieData.releaseAt)}'
+            android:textColor="@color/text_black"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/item_search_thumbnail"
+            app:layout_constraintStart_toStartOf="@id/item_search_publisher_actor"
+            app:layout_constraintTop_toBottomOf="@id/item_search_publisher_actor"
+            tools:text="출판   2006.01.29" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

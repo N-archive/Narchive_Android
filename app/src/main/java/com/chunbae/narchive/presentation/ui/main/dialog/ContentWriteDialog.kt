@@ -16,7 +16,7 @@ class ContentWriteDialog : BottomSheetDialogFragment() {
     private lateinit var binding : DialogContentWriteBinding
     private val viewModel : MainViewModel by activityViewModels()
     private val writeAdapter by lazy {
-        ContentWriteAdapter(returnWriteDialogDataList())
+        ContentWriteAdapter(::onItemClick ,returnWriteDialogDataList())
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +32,11 @@ class ContentWriteDialog : BottomSheetDialogFragment() {
 
     private fun initItems() {
         binding.dialogContentWriteRvSelector.adapter = writeAdapter
+    }
 
+    private fun onItemClick(position : Int) {
+        viewModel.setWriteType(position)
+        dismiss()
     }
 
     override fun onDismiss(dialog: DialogInterface) {

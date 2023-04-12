@@ -29,6 +29,10 @@
             android:exported="false" />
         <activity android:name=".presentation.ui.comment.view.DiaryCommentActivity"
             android:exported="false" />
+        <activity android:name=".presentation.ui.search.book.view.SearchBookActivity"
+            android:exported="false" />
+        <activity android:name=".presentation.ui.search.movie.SearchMovieActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

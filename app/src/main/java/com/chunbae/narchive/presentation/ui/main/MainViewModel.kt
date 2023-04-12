@@ -13,6 +13,9 @@ class MainViewModel : ViewModel() {
     private val _isWriteDialogOpened = MutableLiveData<Boolean>().apply { value = false }
     val isWriteDialogOpened : LiveData<Boolean> = _isWriteDialogOpened
 
+    private val _writeType = MutableLiveData<Int>()
+    val writeType : LiveData<Int> = _writeType
+
 
     fun setChangeBookOrMovie() {
         _isBookOrMovie.value = if (_isBookOrMovie.value == "Book") "Movie" else "Book"
@@ -20,5 +23,13 @@ class MainViewModel : ViewModel() {
 
     fun changeDialogOpenedState() {
         _isWriteDialogOpened.value = _isWriteDialogOpened.value?.not()
+    }
+
+    fun setWriteType(position : Int) {
+        _writeType.value = position
+    }
+
+    fun initWriteType() {
+        _writeType.value = 100 //절대 나올 수 없는 값으로 초기화를 대신했다.
     }
 }

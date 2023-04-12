@@ -47,6 +47,7 @@ class FeedFragment : Fragment() {
 
     private fun initFeed() {
         binding.fgFeedRvFeed.adapter = feedAdapter
+        binding.fgFeedRvFeed.itemAnimator = null
         binding.fgFeedRvFeed.addItemDecoration(FeedRVDecorUtil(requireActivity()))
 
         feedAdapter.feedDatas = getFeedDummy()

@@ -1,6 +1,6 @@
 package com.chunbae.narchive.presentation.ui.main
 
-import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -14,6 +14,8 @@ import com.chunbae.narchive.presentation.ui.main.feed.view.FeedFragment
 import com.chunbae.narchive.presentation.ui.main.group.view.GroupFragment
 import com.chunbae.narchive.presentation.ui.main.settings.SettingsFragment
 import com.chunbae.narchive.presentation.ui.main.todo.TodoFragment
+import com.chunbae.narchive.presentation.ui.search.book.view.SearchBookActivity
+import com.chunbae.narchive.presentation.ui.search.movie.SearchMovieActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -49,6 +51,17 @@ class MainActivity : AppCompatActivity() {
         viewModel.isWriteDialogOpened.observe(this) {
             if(it) ContentWriteDialog().show(supportFragmentManager, "BottomSheet")
         }
+
+        viewModel.writeType.observe(this) {
+            if(it != 100) {
+                if(it in 2..3) openSearchActivity(it)
+            }
+        }
+    }
+
+    private fun openSearchActivity(type : Int) {
+        if(type == 2) startActivity(Intent(this, SearchBookActivity::class.java))
+        else startActivity(Intent(this, SearchMovieActivity::class.java))
     }
 
     private fun changeFragment(fragment : Fragment) {
