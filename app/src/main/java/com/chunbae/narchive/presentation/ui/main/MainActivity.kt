@@ -1,5 +1,6 @@
 package com.chunbae.narchive.presentation.ui.main
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -44,4 +45,5 @@ class MainActivity : AppCompatActivity() {
     private fun changeFragment(fragment : Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.main_layout_container, fragment).commit()
     }
+
 }

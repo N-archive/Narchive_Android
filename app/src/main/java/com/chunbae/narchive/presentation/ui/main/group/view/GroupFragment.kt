@@ -12,6 +12,7 @@ import com.chunbae.narchive.R
 import com.chunbae.narchive.data.data.BookData
 import com.chunbae.narchive.data.data.MovieData
 import com.chunbae.narchive.databinding.FragmentGroupBinding
+import com.chunbae.narchive.presentation.ui.main.MainActivity
 import com.chunbae.narchive.presentation.ui.main.MainViewModel
 import com.chunbae.narchive.presentation.ui.main.group.adapter.BookAdapter
 import com.chunbae.narchive.presentation.ui.main.group.adapter.MovieAdapter
