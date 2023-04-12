@@ -29,13 +29,13 @@
     <string name="hint_search_book">책 제목을 입력해주세요.</string>
     <string name="hint_search_movie">영화 제목을 입력해주세요.</string>
 
-    <string name="book_author">작가   %s</string>
-    <string name="book_publisher">출판사   %s</string>
-    <string name="book_publishedAt">발매   %s</string>
+    <string name="book_author">작가   :   %s</string>
+    <string name="book_publisher">출판사   :   %s</string>
+    <string name="book_publishedAt">발매   :   %s</string>
 
-    <string name="movie_director">감독   %s</string>
-    <string name="movie_actor">출연   %s</string>
-    <string name="movie_release">개봉   %s</string>
+    <string name="movie_director">감독   :   %s</string>
+    <string name="movie_actor">출연   :   %s</string>
+    <string name="movie_release">개봉   :   %s</string>
 
 
 

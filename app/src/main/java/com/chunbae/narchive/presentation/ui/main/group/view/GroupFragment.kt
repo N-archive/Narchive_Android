@@ -58,7 +58,7 @@ class GroupFragment : Fragment() {
     private fun returnBookData() : MutableList<BookData> =
         mutableListOf<BookData>().apply {
             for(i in 0 until 10) {
-                add(BookData(i, R.drawable.ic_launcher_background, R.drawable.ic_launcher_foreground, "$i 번째 책", i.toString(), i.toString(), i.toString(), 1.0F, null, null))
+                add(BookData(i, "123", R.drawable.ic_launcher_foreground, "$i 번째 책", i.toString(), i.toString(), i.toString(), 1.0F, null, null))
             }
         }
 

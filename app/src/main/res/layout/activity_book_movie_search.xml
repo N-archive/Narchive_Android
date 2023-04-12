@@ -8,6 +8,23 @@
         <variable
             name="type"
             type="String" />
+
+        <variable
+            name="bookActivity"
+            type="com.chunbae.narchive.presentation.ui.search.book.view.SearchBookActivity" />
+
+        <variable
+            name="bookViewModel"
+            type="com.chunbae.narchive.presentation.ui.search.book.viewmodel.SearchBookViewModel" />
+
+        <variable
+            name="movieActivity"
+            type="com.chunbae.narchive.presentation.ui.search.movie.SearchMovieActivity" />
+
+        <variable
+            name="movieViewModel"
+            type="com.chunbae.narchive.presentation.ui.search.movie.viewmodel.SearchMovieViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,6 +63,7 @@
             app:layout_constraintTop_toBottomOf="@id/search_layout_toolbar">
 
             <EditText
+                android:id="@+id/search_edt_user_keyword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_15"
@@ -67,6 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_15"
+                android:onClick='@{() -> type == "Book" ? bookActivity.searchBook() : movieActivity.click()}'
                 android:src="@drawable/ic_common_search"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

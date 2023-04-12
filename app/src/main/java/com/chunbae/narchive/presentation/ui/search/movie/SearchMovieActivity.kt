@@ -1,6 +1,7 @@
 package com.chunbae.narchive.presentation.ui.search.movie
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.chunbae.narchive.R
@@ -20,5 +21,10 @@ class SearchMovieActivity : AppCompatActivity() {
 
     private fun initBinding() {
         binding.type = "Movie"
+        binding.movieActivity = this
+    }
+
+    fun click() {
+        Toast.makeText(this, "MOVIE", Toast.LENGTH_SHORT).show()
     }
 }
