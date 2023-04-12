@@ -123,7 +123,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:layout_marginTop="@dimen/maragin_20"
+                    android:layout_marginTop="@dimen/margin_20"
                     android:fontFamily="@font/pretendard_medium"
                     android:includeFontPadding="false"
                     android:text="@{diaryData.content}"
@@ -179,7 +179,7 @@
                 android:textSize="15sp"
                 android:fontFamily="@font/pretendard_medium"
                 android:includeFontPadding="false"
-                android:layout_marginStart="@dimen/maragin_20"
+                android:layout_marginStart="@dimen/margin_20"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

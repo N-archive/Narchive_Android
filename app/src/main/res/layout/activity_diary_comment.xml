@@ -92,7 +92,7 @@
                     android:includeFontPadding="false"
                     android:layout_marginHorizontal="@dimen/margin_15"
                     app:layout_constraintTop_toBottomOf="@id/diary_comment_iv_user_profile"
-                    android:layout_marginTop="@dimen/maragin_20"
+                    android:layout_marginTop="@dimen/margin_20"
                     tools:text="어제는 지연이와 함께 찜질방에 다녀왔다!\n요근래 찜질방에 갔던적이 없었는데 역시 따뜻한 물에 들어가있으니까
 피로가 쫙 풀리는 기분이었다!\n근데 음식값이 생각보다 비싸서 그건 좀 아쉬웠다..
 계란이 개당 천원꼴에 치킨이 3만원이라니..
@@ -135,7 +135,7 @@
                 android:textSize="15sp"
                 android:fontFamily="@font/pretendard_medium"
                 android:includeFontPadding="false"
-                android:layout_marginStart="@dimen/maragin_20"
+                android:layout_marginStart="@dimen/margin_20"
                 android:background="@android:color/transparent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

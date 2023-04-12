@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.chunbae.narchive.R
 import com.chunbae.narchive.databinding.ActivityMainBinding
 import com.chunbae.narchive.presentation.ui.main.calendar.CalendarFragment
+import com.chunbae.narchive.presentation.ui.main.dialog.ContentWriteDialog
 import com.chunbae.narchive.presentation.ui.main.feed.view.FeedFragment
 import com.chunbae.narchive.presentation.ui.main.group.view.GroupFragment
 import com.chunbae.narchive.presentation.ui.main.settings.SettingsFragment
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         initBottomNav()
+
+        observeBottomSheet()
     }
 
     private fun initBottomNav() {
@@ -40,6 +43,12 @@ class MainActivity : AppCompatActivity() {
             true
         }
         binding.mainBottomNav.selectedItemId = R.id.main_bottom_nav_feed
+    }
+
+    private fun observeBottomSheet() {
+        viewModel.isWriteDialogOpened.observe(this) {
+            if(it) ContentWriteDialog().show(supportFragmentManager, "BottomSheet")
+        }
     }
 
     private fun changeFragment(fragment : Fragment) {

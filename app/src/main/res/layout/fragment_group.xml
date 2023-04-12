@@ -41,7 +41,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/maragin_20"
+                android:layout_marginEnd="@dimen/margin_20"
                 android:onClick="@{() -> viewModel.setChangeBookOrMovie()}"
                 android:src="@drawable/ic_common_search"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_12"
-            android:layout_marginTop="@dimen/maragin_20"
+            android:layout_marginTop="@dimen/margin_20"
             android:fontFamily="@font/pretendard_semibold"
             android:includeFontPadding="false"
             android:text="책"
@@ -90,7 +90,7 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/maragin_20"
+            android:layout_marginEnd="@dimen/margin_20"
             android:layout_marginBottom="@dimen/margin_40"
             android:alpha="0.9"
             android:backgroundTint="@color/color_B2F0F4"

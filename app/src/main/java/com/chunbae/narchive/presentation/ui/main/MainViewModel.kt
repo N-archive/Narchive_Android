@@ -20,6 +20,5 @@ class MainViewModel : ViewModel() {
 
     fun changeDialogOpenedState() {
         _isWriteDialogOpened.value = _isWriteDialogOpened.value?.not()
-        Log.d("----", "changeDialogOpenedState: ${isWriteDialogOpened.value}")
     }
 }

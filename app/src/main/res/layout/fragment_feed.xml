@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="fragment"
             type="com.chunbae.narchive.presentation.ui.main.feed.view.FeedFragment" />
+
+        <variable
+            name="viewModel"
+            type="com.chunbae.narchive.presentation.ui.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +41,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/maragin_20"
+                android:layout_marginEnd="@dimen/margin_20"
                 android:onClick="@{() -> fragment.onSearchClicked()}"
                 android:src="@drawable/ic_common_search"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -60,6 +63,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fg_feed_layout_toolbar"
             tools:listitem="@layout/item_feed_simple_diary" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:layout_marginBottom="@dimen/margin_40"
+            android:alpha="0.9"
+            android:backgroundTint="@color/color_B2F0F4"
+            android:src="@drawable/ic_fab_plus"
+            android:onClick="@{() -> viewModel.changeDialogOpenedState()}"
+            app:backgroundTint="@color/color_B2F0F4"
+            app:elevation="1dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

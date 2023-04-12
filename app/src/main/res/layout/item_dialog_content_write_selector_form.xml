@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="writeDialogData"
+            type="com.chunbae.narchive.data.data.WriteDialogData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_15">
+
+        <TextView
+            android:id="@+id/item_dialog_content_write_selector_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{writeDialogData.title}"
+            android:textColor="@color/text_black"
+            android:textSize="16sp"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="간단일기 등록하기"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{writeDialogData.script}"
+            android:textColor="@color/color_a4a4a4"
+            android:textSize="13sp"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:layout_marginTop="@dimen/margin_5"
+            app:layout_constraintTop_toBottomOf="@id/item_dialog_content_write_selector_tv_title"
+            app:layout_constraintStart_toStartOf="@id/item_dialog_content_write_selector_tv_title"
+            tools:text="간단일기를 등록할 수 있어요!"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

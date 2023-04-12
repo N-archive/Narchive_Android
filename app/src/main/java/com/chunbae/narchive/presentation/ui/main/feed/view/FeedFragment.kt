@@ -9,17 +9,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.chunbae.narchive.R
 import com.chunbae.narchive.data.data.FeedData
 import com.chunbae.narchive.data.data.UserData
 import com.chunbae.narchive.databinding.FragmentFeedBinding
 import com.chunbae.narchive.presentation.ui.detail.diary.view.DetailDiaryActivity
+import com.chunbae.narchive.presentation.ui.main.MainViewModel
 import com.chunbae.narchive.presentation.ui.main.feed.adapter.FeedAdapter
 import com.chunbae.narchive.presentation.util.ConvertUtil
 
 class FeedFragment : Fragment() {
     private lateinit var binding : FragmentFeedBinding
+    private val viewModel : MainViewModel by activityViewModels()
     private val feedAdapter by lazy {
         FeedAdapter(::onFeedItemClicked)
     }
@@ -39,6 +42,7 @@ class FeedFragment : Fragment() {
 
     private fun initBinding() {
         binding.fragment = this
+        binding.viewModel = viewModel
     }
 
     private fun initFeed() {
