@@ -14,4 +14,9 @@ annotation class KakaoRetrofit
 @Retention(AnnotationRetention.BINARY)
 annotation class KakaoAuthRetrofit
 
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class TmdbRetrofit
+
+
 

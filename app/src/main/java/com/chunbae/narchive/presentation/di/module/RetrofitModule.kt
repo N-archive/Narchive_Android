@@ -3,6 +3,7 @@ package com.chunbae.narchive.presentation.di.module
 import com.chunbae.narchive.presentation.di.annotation.KakaoAuthRetrofit
 import com.chunbae.narchive.presentation.di.annotation.KakaoRetrofit
 import com.chunbae.narchive.presentation.di.annotation.NarchiveRetrofit
+import com.chunbae.narchive.presentation.di.annotation.TmdbRetrofit
 import com.chunbae.narchive.presentation.util.XAccessTokenInterceptor
 import dagger.Module
 import dagger.Provides
@@ -22,6 +23,7 @@ class RetrofitModule {
         val BASE_URL = "http://narchive.shop/"
         val KAKAO_URL = "https://dapi.kakao.com/"
         val KAKAO_AUTH_URL = "https://kapi.kakao.com/"
+        val TMDB_URL = "https://api.themoviedb.org/3/"
     }
 
     @Provides
@@ -73,6 +75,18 @@ class RetrofitModule {
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(KAKAO_AUTH_URL)
+            .addConverterFactory(gsonConverterFactory)
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    @TmdbRetrofit
+    fun provideTmdbRetrofit(
+        gsonConverterFactory: GsonConverterFactory
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(TMDB_URL)
             .addConverterFactory(gsonConverterFactory)
             .build()
     }
