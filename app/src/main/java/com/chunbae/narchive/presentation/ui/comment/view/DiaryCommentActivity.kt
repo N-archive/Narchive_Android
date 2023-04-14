@@ -10,6 +10,8 @@ import com.chunbae.narchive.R
 import com.chunbae.narchive.data.data.Comment
 import com.chunbae.narchive.data.data.CommentData
 import com.chunbae.narchive.data.data.UserData
+import com.chunbae.narchive.data.data.WriteDialogData
+import com.chunbae.narchive.data.data.returnWriteDialogDataList
 import com.chunbae.narchive.databinding.ActivityDiaryCommentBinding
 import com.chunbae.narchive.presentation.ui.comment.adapter.CommentAdapter
 
@@ -36,7 +38,9 @@ class DiaryCommentActivity : AppCompatActivity() {
         val dividerItemDecoration = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
         binding.diaryCommentRvComments.addItemDecoration(dividerItemDecoration)
         binding.diaryCommentRvComments.adapter = commentAdapter
+
     }
+
 
     /** Dummy */
 

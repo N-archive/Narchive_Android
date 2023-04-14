@@ -1,5 +1,6 @@
 package com.chunbae.narchive.presentation.ui.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -8,10 +9,13 @@ import androidx.fragment.app.Fragment
 import com.chunbae.narchive.R
 import com.chunbae.narchive.databinding.ActivityMainBinding
 import com.chunbae.narchive.presentation.ui.main.calendar.CalendarFragment
+import com.chunbae.narchive.presentation.ui.main.dialog.ContentWriteDialog
 import com.chunbae.narchive.presentation.ui.main.feed.view.FeedFragment
 import com.chunbae.narchive.presentation.ui.main.group.view.GroupFragment
 import com.chunbae.narchive.presentation.ui.main.settings.SettingsFragment
 import com.chunbae.narchive.presentation.ui.main.todo.TodoFragment
+import com.chunbae.narchive.presentation.ui.search.book.view.SearchBookActivity
+import com.chunbae.narchive.presentation.ui.search.movie.SearchMovieActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -25,6 +29,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         initBottomNav()
+
+        observeBottomSheet()
     }
 
     private fun initBottomNav() {
@@ -41,7 +47,25 @@ class MainActivity : AppCompatActivity() {
         binding.mainBottomNav.selectedItemId = R.id.main_bottom_nav_feed
     }
 
+    private fun observeBottomSheet() {
+        viewModel.isWriteDialogOpened.observe(this) {
+            if(it) ContentWriteDialog().show(supportFragmentManager, "BottomSheet")
+        }
+
+        viewModel.writeType.observe(this) {
+            if(it != 100) {
+                if(it in 2..3) openSearchActivity(it)
+            }
+        }
+    }
+
+    private fun openSearchActivity(type : Int) {
+        if(type == 2) startActivity(Intent(this, SearchBookActivity::class.java))
+        else startActivity(Intent(this, SearchMovieActivity::class.java))
+    }
+
     private fun changeFragment(fragment : Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.main_layout_container, fragment).commit()
     }
+
 }

@@ -11,6 +11,11 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 fun ImageView.setImage(path : Any?) {
     Glide.with(this).load(path).into(this)
 }
+
+@BindingAdapter("Common_Fill_Image")
+fun ImageView.setFillImage(path : Any?) {
+    Glide.with(this).load(path).centerCrop().into(this)
+}
 @BindingAdapter("Common_Circle_Image")
 fun ImageView.setCircleImage(path : Any) {
     Glide.with(this).load(path).circleCrop().into(this)

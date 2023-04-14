@@ -10,9 +10,34 @@
     <string name="toolbar_feed">일기장</string>
     <string name="toolbar_group">모아보기</string>
     <string name="toolbar_comment">댓글 작성하기</string>
+    <string name="toolbar_search_book">책 검색하기</string>
+    <string name="toolbar_search_movie">영화 검색하기</string>
 
     <string name="diary_thumbnail_count">+%d</string>
 
     <string name="detail_diary_add_comment">댓글을 입력해 주세요.</string>
+
+    <string name="dialog_write_simple_diary_title">간단일기 등록하기</string>
+    <string name="dialog_write_simple_diary_script">키워드 / 사진 / 위치 를 등록할 수 있어요!</string>
+    <string name="dialog_write_normal_diary_title">일기 등록하기</string>
+    <string name="dialog_write_normal_diary_script">글 / 사진 / 위치 를 등록할 수 있어요!</string>
+    <string name="dialog_write_book_review_title">책 등록하기</string>
+    <string name="dialog_write_book_review_script">인상깊게 읽었던 책을 감상과 함께 등록할 수 있어요!</string>
+    <string name="dialog_write_movie_review_title">영화 등록하기</string>
+    <string name="dialog_write_movie_review_script">감명깊게 봤던 영화를 감상과 함께 등록할 수 있어요!</string>
+
+    <string name="hint_search_book">책 제목을 입력해주세요.</string>
+    <string name="hint_search_movie">영화 제목을 입력해주세요.</string>
+
+    <string name="book_author">작가   :   %s</string>
+    <string name="book_publisher">출판사   :   %s</string>
+    <string name="book_publishedAt">발매   :   %s</string>
+
+    <string name="movie_director">감독   :   %s</string>
+    <string name="movie_actor">출연   :   %s</string>
+    <string name="movie_release">개봉   :   %s</string>
+
+
+
 
 </resources>
