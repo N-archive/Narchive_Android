@@ -6,12 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chunbae.narchive.data.data.BookData
 import com.chunbae.narchive.databinding.ItemGroupContentFormBinding
 
-class BookAdapter : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
+class BookAdapter(private val onClick : (String, Int) -> Unit) : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
     var bookData = mutableListOf<BookData>()
     inner class BookViewHolder(private val binding : ItemGroupContentFormBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : BookData) {
             binding.type = "Book"
             binding.bookData = item
+            binding.root.setOnClickListener { onClick.invoke("Book", item.bookId!!) }
         }
     }
 

@@ -37,7 +37,11 @@
     <string name="movie_actor">출연   :   %s</string>
     <string name="movie_release">개봉   :   %s</string>
 
+    <string name="detail_book_published">%s 발매</string>
+    <string name="detail_movie_released">%s 개봉</string>
 
+    <string name="detail_book_movie_keyword">내가 등록한 키워드</string>
+    <string name="detail_book_movie_review">내가 등록한 감상평</string>
 
 
 </resources>
