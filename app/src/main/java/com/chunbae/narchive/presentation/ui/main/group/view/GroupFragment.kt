@@ -1,5 +1,6 @@
 package com.chunbae.narchive.presentation.ui.main.group.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,8 @@ import com.chunbae.narchive.R
 import com.chunbae.narchive.data.data.BookData
 import com.chunbae.narchive.data.data.MovieData
 import com.chunbae.narchive.databinding.FragmentGroupBinding
+import com.chunbae.narchive.presentation.ui.detail.book.DetailBookActivity
+import com.chunbae.narchive.presentation.ui.detail.movie.DetailMovieActivity
 import com.chunbae.narchive.presentation.ui.main.MainActivity
 import com.chunbae.narchive.presentation.ui.main.MainViewModel
 import com.chunbae.narchive.presentation.ui.main.group.adapter.BookAdapter
@@ -47,10 +50,19 @@ class GroupFragment : Fragment() {
             }
 
             binding.fgGroupRvContents.adapter = when(it) {
-                "Book" -> BookAdapter().also { it.bookData = returnBookData() }
-                else -> MovieAdapter().also { it.movieData = returnMovieData() }
+                "Book" -> BookAdapter(::onGroupItemClick).also { it.bookData = returnBookData() }
+                else -> MovieAdapter(::onGroupItemClick).also { it.movieData = returnMovieData() }
             }
         }
+    }
+
+    private fun onGroupItemClick(type : String, itemId : Int) {
+        val activity = if(type == "Book") DetailBookActivity::class.java else DetailMovieActivity::class.java
+
+        val intent = Intent(requireContext(), activity)
+        intent.putExtra("itemId", itemId)
+        startActivity(intent)
+
     }
 
     /** Dummy */

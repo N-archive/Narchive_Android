@@ -5,6 +5,8 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
+import jp.wasabeef.glide.transformations.BlurTransformation
 
 
 @BindingAdapter("Common_Image")
@@ -24,4 +26,13 @@ fun ImageView.setCircleImage(path : Any) {
 @BindingAdapter("Common_iv_radius_5")
 fun ImageView.setRadius5Image(path : Any) {
     Glide.with(this).load(path).transform(CenterCrop(), RoundedCorners(20)).into(this)
+}
+
+@BindingAdapter("Detail_Blur_Background")
+fun ImageView.setBlur(path : Any?) {
+    Glide.with(this)
+        .load(path)
+        .centerCrop()
+        .apply(RequestOptions.bitmapTransform(BlurTransformation(30, 3)))
+        .into(this)
 }

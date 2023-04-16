@@ -36,6 +36,10 @@
             android:exported="false" />
         <activity android:name=".presentation.ui.search.movie.SearchMovieActivity"
             android:exported="false" />
+        <activity android:name=".presentation.ui.detail.book.DetailBookActivity"
+            android:exported="false" />
+        <activity android:name=".presentation.ui.detail.movie.DetailMovieActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
