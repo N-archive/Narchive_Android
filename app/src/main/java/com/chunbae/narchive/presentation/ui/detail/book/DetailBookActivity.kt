@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import com.chunbae.narchive.R
 import com.chunbae.narchive.data.data.BookData
 import com.chunbae.narchive.databinding.ActivityBookMovieDetailBinding
+import com.chunbae.narchive.presentation.ui.detail.book.adapter.DetailBookKeywordAdapter
 
 class DetailBookActivity : AppCompatActivity() {
     private lateinit var binding : ActivityBookMovieDetailBinding
@@ -20,12 +21,17 @@ class DetailBookActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_book_movie_detail)
 
         initBinding()
+        initView()
     }
 
     private fun initBinding() {
         binding.bookActivity = this
         binding.type = "Book"
         binding.bookData = returnBookData()
+    }
+
+    private fun initView() {
+        binding.detailBookMovieRvKeyword.adapter = DetailBookKeywordAdapter(returnBookData().keywords)
     }
 
     fun bookCard() : View = binding.detailBookMovieLayoutThumbnail
