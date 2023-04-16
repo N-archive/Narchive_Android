@@ -40,6 +40,8 @@
             android:exported="false" />
         <activity android:name=".presentation.ui.detail.movie.DetailMovieActivity"
             android:exported="false" />
+        <activity android:name=".presentation.ui.write.book.view.WriteBookReviewActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.chunbae.narchive.presentation.ui.search.book.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.chunbae.narchive.data.data.BookData
 import com.chunbae.narchive.databinding.ActivityBookMovieSearchBinding
 import com.chunbae.narchive.presentation.ui.search.book.adapter.SearchBookAdapter
 import com.chunbae.narchive.presentation.ui.search.book.viewmodel.SearchBookViewModel
+import com.chunbae.narchive.presentation.ui.write.book.view.WriteBookReviewActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,6 +60,9 @@ class SearchBookActivity : AppCompatActivity() {
     }
 
     private fun onBookSelected(item: BookData) {
-
+        val intent = Intent(this, WriteBookReviewActivity::class.java)
+        intent.putExtra("Book", item)
+        startActivity(intent)
+        finish()
     }
 }
