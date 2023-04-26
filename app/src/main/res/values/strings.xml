@@ -49,5 +49,6 @@
     <string name="write_add_photo_book_notice">이 책과 관련된 사진을 촬영해서 등록해주세요!\n책 표지나 인상깊었던 페이지도 좋아요\n사진은 1장만 등록 가능해요!</string>
     <string name="write_add_photo_movie_notice">이 영화 관련된 사진을 촬영해서 등록해주세요!\n영화 티켓이나 포스터도 좋아요\n사진은 1장만 등록 가능해요!</string>
 
+    <string name="write_review_here">이곳에 입력해주세요.</string>
 
 </resources>

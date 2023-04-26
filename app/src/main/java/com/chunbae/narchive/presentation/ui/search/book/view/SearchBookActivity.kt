@@ -39,6 +39,7 @@ class SearchBookActivity : AppCompatActivity() {
         binding.type = "Book"
         binding.bookActivity = this
         binding.bookViewModel = viewModel
+        binding.lifecycleOwner = this
     }
 
     private fun initBookList() {
