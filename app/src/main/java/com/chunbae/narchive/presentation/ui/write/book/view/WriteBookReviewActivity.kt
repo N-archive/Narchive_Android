@@ -43,6 +43,9 @@ class WriteBookReviewActivity : AppCompatActivity() {
     fun keywordLayoutVisibility() {
        binding.writeBookMovieReviewRvKeywords.visibility = if (binding.writeBookMovieReviewRvKeywords.visibility == View.VISIBLE) View.GONE else View.VISIBLE
     }
+    fun reviewLayoutVisibility() {
+        binding.writeBookMovieReviewEdtReview.visibility = if(binding.writeBookMovieReviewEdtReview.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+    }
 
     private fun initBinding() {
         binding.bookActivity = this

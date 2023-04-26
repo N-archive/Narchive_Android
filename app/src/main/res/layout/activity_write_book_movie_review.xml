@@ -12,6 +12,10 @@
             type="String" />
 
         <variable
+            name="bookViewModel"
+            type="com.chunbae.narchive.presentation.ui.write.book.viewmodel.WriteBookViewModel" />
+
+        <variable
             name="bookActivity"
             type="com.chunbae.narchive.presentation.ui.write.book.view.WriteBookReviewActivity" />
 
@@ -65,12 +69,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:fillViewport="true"
+            android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/write_book_movie_review_layout_toolbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="20dp">
 
                 <include
                     android:id="@+id/write_book_movie_review_layout_book_movie"
@@ -202,7 +209,8 @@
                     android:layout_margin="@dimen/margin_15"
                     android:fontFamily="@font/pretendard_semibold"
                     android:includeFontPadding="false"
-                    android:text="@string/write_add_keyword"
+                    android:onClick='@{() -> type == "Book" ? bookActivity.reviewLayoutVisibility() : bookActivity.reviewLayoutVisibility()}'
+                    android:text="@string/write_add_review"
                     android:textColor="@color/text_black"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -212,7 +220,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_20"
-                    android:onClick='@{() -> type == "Book" ? bookActivity.keywordLayoutVisibility() : bookActivity.keywordLayoutVisibility()}'
+                    android:onClick='@{() -> type == "Book" ? bookActivity.reviewLayoutVisibility() : bookActivity.reviewLayoutVisibility()}'
                     android:src="@drawable/ic_common_chervon_down"
                     app:layout_constraintBottom_toBottomOf="@id/write_book_movie_review_tv_add_review"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -227,10 +235,21 @@
                     app:layout_constraintTop_toBottomOf="@id/write_book_movie_review_tv_add_review">
 
                     <EditText
+                        android:id="@+id/write_book_movie_review_edt_review"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_15"
                         android:background="@drawable/bg_write_book_movie_upload_image"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:gravity="start"
+                        android:hint="@string/write_review_here"
+                        android:includeFontPadding="false"
                         android:minHeight="200dp"
+                        android:padding="10dp"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/color_a4a4a4"
+                        android:textSize="14sp"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
