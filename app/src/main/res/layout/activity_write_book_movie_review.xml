@@ -120,17 +120,26 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginTop="@dimen/margin_12"
+                    android:onClick='@{() -> type == "Book" ? bookViewModel.setDialogStateChange() : bookViewModel.setDialogStateChange()}'
                     android:background="@drawable/bg_write_book_movie_upload_image"
                     app:layout_constraintStart_toStartOf="@id/write_book_movie_review_tv_photo_notice"
                     app:layout_constraintTop_toBottomOf="@id/write_book_movie_review_tv_photo_notice">
 
                     <ImageView
-                        Common_Fill_Image=""
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:maxWidth="80dp"
-                        android:maxHeight="80dp"
                         android:src="@drawable/ic_write_book_movie_add_image"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <ImageView
+                        Common_iv_radius_10='@{type == "Book" ? bookViewModel.userSelectedImage : bookViewModel.userSelectedImage}'
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="79dp"
+                        android:maxHeight="79dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

@@ -53,4 +53,7 @@
 
     <string name="write_review_here">이곳에 입력해주세요.</string>
 
+    <string name="get_from_camera">카메라로 촬영하기</string>
+    <string name="get_from_gallery">갤러리에서 가져오기</string>
+
 </resources>

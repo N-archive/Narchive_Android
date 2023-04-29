@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="dialog"
+            type="com.chunbae.narchive.presentation.ui.write.dialog.GalleryCameraDialog" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/margin_20">
+
+        <ImageView
+            android:id="@+id/item_dialog_select_gallery_camera_iv_camera"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="@{() -> dialog.onItemClicked(0)}"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintEnd_toStartOf="@id/item_dialog_select_gallery_camera_view_divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> dialog.onItemClicked(0)}"
+            android:text="@string/get_from_camera"
+            android:textColor="@color/text_black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/item_dialog_select_gallery_camera_iv_camera"
+            app:layout_constraintStart_toStartOf="@id/item_dialog_select_gallery_camera_iv_camera"
+            app:layout_constraintTop_toBottomOf="@id/item_dialog_select_gallery_camera_iv_camera" />
+
+        <View
+            android:id="@+id/item_dialog_select_gallery_camera_view_divider"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/item_dialog_select_gallery_camera_iv_gallery"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="@{() -> dialog.onItemClicked(1)}"
+            android:src="@drawable/ic_gallery"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/item_dialog_select_gallery_camera_view_divider"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_15"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> dialog.onItemClicked(1)}"
+            android:text="@string/get_from_gallery"
+            android:textColor="@color/text_black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/item_dialog_select_gallery_camera_iv_gallery"
+            app:layout_constraintStart_toStartOf="@id/item_dialog_select_gallery_camera_iv_gallery"
+            app:layout_constraintTop_toBottomOf="@id/item_dialog_select_gallery_camera_iv_gallery" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

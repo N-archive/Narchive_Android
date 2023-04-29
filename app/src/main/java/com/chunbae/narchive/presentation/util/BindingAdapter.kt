@@ -19,13 +19,18 @@ fun ImageView.setFillImage(path : Any?) {
     Glide.with(this).load(path).centerCrop().into(this)
 }
 @BindingAdapter("Common_Circle_Image")
-fun ImageView.setCircleImage(path : Any) {
+fun ImageView.setCircleImage(path : Any?) {
     Glide.with(this).load(path).circleCrop().into(this)
 }
 
 @BindingAdapter("Common_iv_radius_5")
-fun ImageView.setRadius5Image(path : Any) {
+fun ImageView.setRadius5Image(path : Any?) {
     Glide.with(this).load(path).transform(CenterCrop(), RoundedCorners(20)).into(this)
+}
+
+@BindingAdapter("Common_iv_radius_10")
+fun ImageView.setRadius10Image(path : Any?) {
+    Glide.with(this).load(path).transform(CenterCrop(), RoundedCorners(30)).into(this)
 }
 
 @BindingAdapter("Detail_Blur_Background")
