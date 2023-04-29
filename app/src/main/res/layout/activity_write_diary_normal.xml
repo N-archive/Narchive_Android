@@ -4,9 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
+
         <variable
             name="activity"
             type="com.chunbae.narchive.presentation.ui.write.diary.normal.view.WriteNormalDiaryActivity" />
+
+        <variable
+            name="viewModel"
+            type="com.chunbae.narchive.presentation.ui.write.diary.normal.viewmodel.WriteNormalDiaryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,11 +52,11 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:overScrollMode="never"
             android:fillViewport="false"
-            app:layout_constraintVertical_bias="0"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/write_diary_normal_layout_toolbar"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintVertical_bias="0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -87,10 +93,10 @@
                     android:id="@+id/write_diary_normal_layout_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="@{() -> activity.getLocation()}"
                     android:layout_marginHorizontal="@dimen/margin_20"
                     android:layout_marginTop="@dimen/margin_12"
                     android:background="@drawable/bg_write_book_movie_upload_image"
+                    android:onClick="@{() -> activity.getLocation()}"
                     app:layout_constraintTop_toBottomOf="@id/write_diary_normal_tv_location_script">
 
                     <ImageView
@@ -98,7 +104,7 @@
                         android:layout_width="12dp"
                         android:layout_height="16dp"
                         android:layout_marginStart="@dimen/margin_10"
-                        android:layout_marginTop="@dimen/margin_7"
+                        android:layout_marginTop="@dimen/margin_10"
                         android:src="@drawable/ic_common_marker"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -110,7 +116,7 @@
                         android:layout_marginStart="@dimen/margin_7"
                         android:fontFamily="@font/pretendard_semibold"
                         android:includeFontPadding="false"
-                        android:text="@string/add_location_plz"
+                        android:text="@{viewModel.selectedLocation == null ? @string/add_location_plz : viewModel.selectedLocation.place_name}"
                         android:textColor="@color/text_black"
                         android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="@id/write_diary_normal_iv_location_marker"
@@ -123,6 +129,7 @@
                         android:layout_marginVertical="@dimen/margin_7"
                         android:fontFamily="@font/pretendard_medium"
                         android:includeFontPadding="false"
+                        android:text="@{viewModel.selectedLocation == null ? null : viewModel.selectedLocation.road_address_name}"
                         android:textColor="@color/color_a4a4a4"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -173,16 +180,36 @@
                     android:layout_marginTop="@dimen/margin_7"
                     android:fontFamily="@font/pretendard_medium"
                     android:includeFontPadding="false"
-                    android:text="@string/add_photo_count"
+                    android:text="@{@string/add_photo_count(viewModel.selectedImages.size)}"
                     android:textColor="@color/text_black"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/write_diary_normal_tv_image_script"
                     app:layout_constraintTop_toBottomOf="@id/write_diary_normal_tv_image_script" />
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/write_book_movie_review_btn_add_image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/bg_write_book_movie_upload_image"
+                    android:visibility="@{viewModel.selectedImages == null ? View.VISIBLE : View.GONE}"
+                    android:onClick="@{() -> activity.openGalleryActivity()}"
+                    app:layout_constraintStart_toStartOf="@id/write_diary_normal_rv_images"
+                    app:layout_constraintTop_toTopOf="@id/write_diary_normal_rv_images">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_write_book_movie_add_image"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/write_diary_normal_rv_images"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="80dp"
                     android:layout_marginTop="@dimen/margin_10"
                     android:maxHeight="80dp"
                     android:orientation="horizontal"
@@ -217,6 +244,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_15"
                     android:layout_marginTop="@dimen/margin_15"
+                    android:layout_marginBottom="@dimen/margin_20"
                     android:background="@drawable/bg_write_book_movie_upload_image"
                     android:fontFamily="@font/pretendard_medium"
                     android:gravity="start"
@@ -224,12 +252,11 @@
                     android:includeFontPadding="false"
                     android:minHeight="150dp"
                     android:padding="10dp"
-                    android:layout_marginBottom="@dimen/margin_20"
                     android:textColor="@color/text_black"
                     android:textColorHint="@color/color_a4a4a4"
                     android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@+id/write_diary_normal_tv_diary_title"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/write_diary_normal_tv_diary_title" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

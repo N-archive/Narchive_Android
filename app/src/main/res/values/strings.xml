@@ -68,5 +68,7 @@
 
     <string name="add_location_keyword_plz">장소명을 입력해주세요.</string>
 
+    <string name="limit_image_count">%d / 10</string>
+
 
 </resources>
