@@ -16,6 +16,7 @@ import com.chunbae.narchive.presentation.ui.main.settings.SettingsFragment
 import com.chunbae.narchive.presentation.ui.main.todo.TodoFragment
 import com.chunbae.narchive.presentation.ui.search.book.view.SearchBookActivity
 import com.chunbae.narchive.presentation.ui.search.movie.SearchMovieActivity
+import com.chunbae.narchive.presentation.ui.write.diary.normal.view.WriteNormalDiaryActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -54,11 +55,15 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.writeType.observe(this) {
             if(it != 100) {
-                if(it in 2..3) openSearchActivity(it)
+                if (it == 1) openNormalDiaryActivity()
+                else if(it in 2..3) openSearchActivity(it)
             }
         }
     }
 
+    private fun openNormalDiaryActivity() {
+        startActivity(Intent(this, WriteNormalDiaryActivity::class.java))
+    }
     private fun openSearchActivity(type : Int) {
         if(type == 2) startActivity(Intent(this, SearchBookActivity::class.java))
         else startActivity(Intent(this, SearchMovieActivity::class.java))

@@ -51,6 +51,9 @@
             android:exported="false" />
         <activity android:name=".presentation.ui.write.book.view.WriteBookReviewActivity"
             android:exported="false" />
+        <activity android:name=".presentation.ui.write.diary.normal.view.WriteNormalDiaryActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>
