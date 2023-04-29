@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="keywordItem"
+            type="com.chunbae.narchive.data.data.KeywordData.Keywords" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_5"
+        android:background="@{keywordItem.clicked ? @drawable/bg_item_review_keyword_clicked : @drawable/bg_item_review_keyword_unclicked}">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{keywordItem.itemTitle}"
+            android:textSize="12sp"
+            android:textColor="@{keywordItem.clicked ? @color/white : @color/black}"
+            android:fontFamily="@font/pretendard_semibold"
+            android:includeFontPadding="false"
+            android:layout_marginVertical="@dimen/margin_7"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="만족" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

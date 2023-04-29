@@ -1,5 +1,7 @@
 package com.chunbae.narchive.data.data
 
+import java.io.Serializable
+
 data class BookData (
     val bookId : Int?,
     val thumbnail : String?, //:TODO 추후 String으로 변경하기
@@ -11,4 +13,4 @@ data class BookData (
     val rating : Float?,
     val keywords : List<String>?,
     val review : String?
-)
+) : Serializable

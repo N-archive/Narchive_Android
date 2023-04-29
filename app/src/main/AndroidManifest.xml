@@ -3,6 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
 
     <application
         android:name=".Narchive"
@@ -15,6 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Narchive"
         tools:targetApi="31">
+
         <activity android:name=".presentation.ui.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
@@ -39,6 +48,8 @@
         <activity android:name=".presentation.ui.detail.book.DetailBookActivity"
             android:exported="false" />
         <activity android:name=".presentation.ui.detail.movie.DetailMovieActivity"
+            android:exported="false" />
+        <activity android:name=".presentation.ui.write.book.view.WriteBookReviewActivity"
             android:exported="false" />
     </application>
 
