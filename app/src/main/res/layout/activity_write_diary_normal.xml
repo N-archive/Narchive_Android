@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="activity"
+            type="com.chunbae.narchive.presentation.ui.write.diary.normal.view.WriteNormalDiaryActivity" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -81,6 +87,7 @@
                     android:id="@+id/write_diary_normal_layout_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{() -> activity.getLocation()}"
                     android:layout_marginHorizontal="@dimen/margin_20"
                     android:layout_marginTop="@dimen/margin_12"
                     android:background="@drawable/bg_write_book_movie_upload_image"

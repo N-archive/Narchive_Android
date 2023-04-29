@@ -13,6 +13,7 @@
     <string name="toolbar_search_book">책 검색하기</string>
     <string name="toolbar_search_movie">영화 검색하기</string>
     <string name="toolbar_normal_diary">일기 등록하기</string>
+    <string name="toolbar_add_location">장소 추가하기</string>
 
     <string name="diary_thumbnail_count">+%d</string>
 
@@ -64,4 +65,8 @@
     <string name="add_photo_script">사진은 최대 10장까지만 등록 가능해요!</string>
     <string name="add_photo_count">현재 %d장 등록되었어요!</string>
     <string name="add_diary_normal_title">일기 작성하기 *</string>
+
+    <string name="add_location_keyword_plz">장소명을 입력해주세요.</string>
+
+
 </resources>

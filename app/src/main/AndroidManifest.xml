@@ -43,7 +43,7 @@
             android:exported="false" />
         <activity android:name=".presentation.ui.search.book.view.SearchBookActivity"
             android:exported="false" />
-        <activity android:name=".presentation.ui.search.movie.SearchMovieActivity"
+        <activity android:name=".presentation.ui.search.movie.view.SearchMovieActivity"
             android:exported="false" />
         <activity android:name=".presentation.ui.detail.book.DetailBookActivity"
             android:exported="false" />
@@ -54,6 +54,8 @@
         <activity android:name=".presentation.ui.write.diary.normal.view.WriteNormalDiaryActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".presentation.ui.search.location.view.SearchLocationActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

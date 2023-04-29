@@ -15,7 +15,7 @@ import com.chunbae.narchive.presentation.ui.main.group.view.GroupFragment
 import com.chunbae.narchive.presentation.ui.main.settings.SettingsFragment
 import com.chunbae.narchive.presentation.ui.main.todo.TodoFragment
 import com.chunbae.narchive.presentation.ui.search.book.view.SearchBookActivity
-import com.chunbae.narchive.presentation.ui.search.movie.SearchMovieActivity
+import com.chunbae.narchive.presentation.ui.search.movie.view.SearchMovieActivity
 import com.chunbae.narchive.presentation.ui.write.diary.normal.view.WriteNormalDiaryActivity
 
 class MainActivity : AppCompatActivity() {

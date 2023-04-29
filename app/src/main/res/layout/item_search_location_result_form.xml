@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="locationData"
+            type="com.chunbae.narchive.data.data.LocationData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_10">
+
+        <TextView
+            android:id="@+id/item_search_location_result_form_tv_place_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@{locationData.place_name}"
+            android:textColor="@color/text_black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="스타벅스 목동역점" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:text="@{locationData.road_address_name}"
+            android:textColor="@color/color_a4a4a4"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/item_search_location_result_form_tv_place_name"
+            app:layout_constraintTop_toBottomOf="@id/item_search_location_result_form_tv_place_name"
+            tools:text="목동 목동 목동" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

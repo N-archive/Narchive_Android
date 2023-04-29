@@ -18,7 +18,7 @@ class ServiceModule {
 
     @Provides
     @Singleton
-    fun provideKakaoUserService(@KakaoRetrofit retrofit: Retrofit): KakaoService = retrofit.create(KakaoService::class.java)
+    fun provideKakaoService(@KakaoRetrofit retrofit: Retrofit): KakaoService = retrofit.create(KakaoService::class.java)
 
     @Provides
     @Singleton
