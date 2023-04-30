@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="dialog"
+            type="com.chunbae.narchive.presentation.ui.write.diary.normal.dialog.WriteNormalDiaryAIDialog" />
+        <variable
+            name="viewModel"
+            type="com.chunbae.narchive.presentation.ui.write.diary.normal.viewmodel.WriteNormalDiaryViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+
+        <TextView
+            android:id="@+id/dialog_ai_write_diary_tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_popup_ai_explain"
+            android:text="@{viewModel.aiGeneratedContent}"
+            android:textColor="@color/text_black"
+            android:textSize="15sp"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:gravity="start"
+            android:padding="@dimen/margin_10"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="사실 나는 이 스파렉스를 처음 들어봤는데, 친구가 여기서 생일파티도 하고, 남자친구랑도 가보고 했다고 해서 이번 기회에 가보기로 했다! ​ ​ ​ ​ 스파렉스 서울특별시 중구 을지로6가 17-2 ​ 위치: 서울 중구 을지로 264 시간: 매일 00:00 - 24:00 연중무휴 전화번호: 02-2277-5959 ​ ​ ​ ​ 스파렉스는 동대문역사문화공원역에서 내려서 5번 출구로 나오면 된다. ​ ​ ​ ​ 5번출구로 나와서 쭉 직진하다가 오른쪽으로 꺾으면 바로 보인다. ​ ​ ​ ​ 스파렉스 입구! ​ ​ ​ ​ 들어가자마자 보이는 카운터와 대기석. ​ ​ ​ ​ 카운터 옆에 있던 와인들과 술들. ​ ​ ​ ​ 그리고 그 뒤에 있던 다트기계. ​ ​ ​ ​ 그리고 카운터 앞에 있던 포토존! ​ ​ ​ ​ 우리는 예약을 미리 해놓아서 이름만 말하고 자리 안내 받았다. ​ ​ ​ ​ 우리가 앉은 테이블. ​ ​ ​ ​ 메뉴판! ​ ​ ​ ​ 메뉴가 생각보다 많았다. ​ ​ ​ ​ 우리는 스테이크 샐러드와 로제파스타, 그리고 콜라를 주문했다. ​ ​ ​ ​ 음식이 나올 동안 기다리면서 찍어본 내부 사진. ​ ​ ​ ​ 그리고 나온 식전빵! ​ ​ ​ ​ 빵은 따뜻해서 맛있었지만, 내 입맛엔 좀"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dialog_ai_write_diary_btn_accept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:onClick="@{() -> dialog.onAccept()}"
+            app:layout_constraintTop_toBottomOf="@id/dialog_ai_write_diary_tv_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/dialog_ai_write_diary_btn_dismiss">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accept_ai_diary"
+                android:textSize="15sp"
+                android:textColor="@color/text_black"
+                android:paddingVertical="@dimen/margin_15"
+                android:fontFamily="@font/pretendard_semibold"
+                android:includeFontPadding="false"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/color_f4f4f4"
+            app:layout_constraintTop_toTopOf="@id/dialog_ai_write_diary_btn_accept"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_ai_write_diary_btn_accept"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dialog_ai_write_diary_btn_dismiss"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:onClick="@{() -> dialog.onDismiss()}"
+            app:layout_constraintTop_toBottomOf="@id/dialog_ai_write_diary_tv_content"
+            app:layout_constraintStart_toEndOf="@id/dialog_ai_write_diary_btn_accept"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/common_dismiss"
+                android:textSize="15sp"
+                android:textColor="@color/text_black"
+                android:paddingVertical="@dimen/margin_15"
+                android:fontFamily="@font/pretendard_semibold"
+                android:includeFontPadding="false"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -11,16 +11,28 @@ import androidx.databinding.DataBindingUtil
 import com.chunbae.narchive.R
 import com.chunbae.narchive.data.data.LocationData
 import com.chunbae.narchive.databinding.ActivityWriteDiaryNormalBinding
+import com.chunbae.narchive.databinding.ItemPopupAiExplainBinding
 import com.chunbae.narchive.presentation.ui.gallery.view.CustomGalleryActivity
 import com.chunbae.narchive.presentation.ui.search.location.view.SearchLocationActivity
 import com.chunbae.narchive.presentation.ui.write.diary.normal.adapter.WriteNormalDiaryImageAdapter
+import com.chunbae.narchive.presentation.ui.write.diary.normal.dialog.WriteNormalDiaryAIDialog
 import com.chunbae.narchive.presentation.ui.write.diary.normal.viewmodel.WriteNormalDiaryViewModel
+import com.chunbae.narchive.presentation.util.LoadingDialog
+import com.chunbae.narchive.presentation.util.PopUpUtil
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteNormalDiaryActivity : AppCompatActivity() {
     private lateinit var binding : ActivityWriteDiaryNormalBinding
     private val viewModel : WriteNormalDiaryViewModel by viewModels()
     private val imageAdapter by lazy {
         WriteNormalDiaryImageAdapter()
+    }
+    private val loadingDialog by lazy {
+        LoadingDialog(this)
+    }
+    private val aiDialog by lazy {
+        WriteNormalDiaryAIDialog()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,4 +84,27 @@ class WriteNormalDiaryActivity : AppCompatActivity() {
                 viewModel.setImages(it.data?.extras?.getStringArrayList("Images") as MutableList<String>)
             }
         }
+
+
+    fun onAiInfoClicked() {
+        val popup = PopUpUtil(ItemPopupAiExplainBinding.inflate(layoutInflater)).invoke()
+        popup.showAsDropDown(binding.writeDiaryNormalBtnAiInfo, - popup.width, 0)
+    }
+
+    fun onAiClicked() {
+        loadingDialog.show()
+        viewModel.getAiDiarySample()
+
+        aiGenerateObserve()
+    }
+
+    private fun aiGenerateObserve() {
+        viewModel.aiGeneratedContent.observe(this) {
+            if(it != null && !viewModel.isDialogOpened.value!!) {
+                aiDialog.show(supportFragmentManager, "AiDialog")
+                viewModel.changeDialogOpenedState()
+                loadingDialog.dismiss()
+            }
+        }
+    }
 }

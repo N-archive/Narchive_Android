@@ -1,7 +1,9 @@
 package com.chunbae.narchive.presentation.di.module
 
+import com.chunbae.narchive.data.remote.api.KakaoAiService
 import com.chunbae.narchive.data.remote.api.KakaoService
 import com.chunbae.narchive.data.remote.api.TmdbService
+import com.chunbae.narchive.presentation.di.annotation.KakaoAIRetrofit
 import com.chunbae.narchive.presentation.di.annotation.KakaoRetrofit
 import com.chunbae.narchive.presentation.di.annotation.TmdbRetrofit
 import dagger.Module
@@ -19,6 +21,10 @@ class ServiceModule {
     @Provides
     @Singleton
     fun provideKakaoService(@KakaoRetrofit retrofit: Retrofit): KakaoService = retrofit.create(KakaoService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideKakaoAiService(@KakaoAIRetrofit retrofit : Retrofit) : KakaoAiService = retrofit.create(KakaoAiService::class.java)
 
     @Provides
     @Singleton

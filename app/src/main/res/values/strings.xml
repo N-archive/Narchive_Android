@@ -70,5 +70,8 @@
 
     <string name="limit_image_count">%d / 10</string>
 
+    <string name="what_if_ai_explain">What if? AI가 내 일기를 이어 쓴다면?\n(최대 300자까지 작성되며, 횟수에 제한이 있어 사용이 중단될 수 있습니다.)</string>
+    <string name="accept_ai_diary">적용하기</string>
+    <string name="common_dismiss">닫기</string>
 
 </resources>
