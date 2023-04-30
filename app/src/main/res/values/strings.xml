@@ -12,6 +12,8 @@
     <string name="toolbar_comment">댓글 작성하기</string>
     <string name="toolbar_search_book">책 검색하기</string>
     <string name="toolbar_search_movie">영화 검색하기</string>
+    <string name="toolbar_normal_diary">일기 등록하기</string>
+    <string name="toolbar_add_location">장소 추가하기</string>
 
     <string name="diary_thumbnail_count">+%d</string>
 
@@ -55,5 +57,21 @@
 
     <string name="get_from_camera">카메라로 촬영하기</string>
     <string name="get_from_gallery">갤러리에서 가져오기</string>
+
+    <string name="add_location_title">위치를 추가해주세요!</string>
+    <string name="add_location_script">오늘 가장 기억에 남는 장소가 있었나요?</string>
+    <string name="add_location_plz">아직 등록된 장소가 없어요!</string>
+    <string name="add_photo">사진 등록하기</string>
+    <string name="add_photo_script">사진은 최대 10장까지만 등록 가능해요!</string>
+    <string name="add_photo_count">현재 %d장 등록되었어요!</string>
+    <string name="add_diary_normal_title">일기 작성하기 *</string>
+
+    <string name="add_location_keyword_plz">장소명을 입력해주세요.</string>
+
+    <string name="limit_image_count">%d / 10</string>
+
+    <string name="what_if_ai_explain">What if? AI가 내 일기를 이어 쓴다면?\n(최대 300자까지 작성되며, 횟수에 제한이 있어 사용이 중단될 수 있습니다.)</string>
+    <string name="accept_ai_diary">적용하기</string>
+    <string name="common_dismiss">닫기</string>
 
 </resources>
