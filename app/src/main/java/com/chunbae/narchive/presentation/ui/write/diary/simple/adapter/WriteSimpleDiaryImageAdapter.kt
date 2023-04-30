@@ -1,4 +1,4 @@
-package com.chunbae.narchive.presentation.ui.write.diary.normal.adapter
+package com.chunbae.narchive.presentation.ui.write.diary.simple.adapter
 
 import android.net.Uri
 import android.util.Log
@@ -8,7 +8,7 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.chunbae.narchive.databinding.ItemWriteDiaryImageFormBinding
 
-class WriteNormalDiaryImageAdapter : RecyclerView.Adapter<WriteNormalDiaryImageAdapter.WriteNormalDiaryImageViewHolder>() {
+class WriteSimpleDiaryImageAdapter : RecyclerView.Adapter<WriteSimpleDiaryImageAdapter.WriteNormalDiaryImageViewHolder>() {
     var imageList = mutableListOf<String>()
 
     inner class WriteNormalDiaryImageViewHolder(private val binding : ItemWriteDiaryImageFormBinding) : RecyclerView.ViewHolder(binding.root) {

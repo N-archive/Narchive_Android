@@ -17,6 +17,7 @@ import com.chunbae.narchive.presentation.ui.main.todo.TodoFragment
 import com.chunbae.narchive.presentation.ui.search.book.view.SearchBookActivity
 import com.chunbae.narchive.presentation.ui.search.movie.view.SearchMovieActivity
 import com.chunbae.narchive.presentation.ui.write.diary.normal.view.WriteNormalDiaryActivity
+import com.chunbae.narchive.presentation.ui.write.diary.simple.view.WriteSimpleDiaryActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -55,12 +56,18 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.writeType.observe(this) {
             if(it != 100) {
-                if (it == 1) openNormalDiaryActivity()
-                else if(it in 2..3) openSearchActivity(it)
+                when(it) {
+                    0 -> openSimpleDiaryActivity()
+                    1 -> openNormalDiaryActivity()
+                    else -> openSearchActivity(it)
+                }
             }
         }
     }
 
+    private fun openSimpleDiaryActivity() {
+        startActivity(Intent(this, WriteSimpleDiaryActivity::class.java))
+    }
     private fun openNormalDiaryActivity() {
         startActivity(Intent(this, WriteNormalDiaryActivity::class.java))
     }
