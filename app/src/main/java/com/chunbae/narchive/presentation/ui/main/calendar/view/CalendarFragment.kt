@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.chunbae.narchive.R
 import com.chunbae.narchive.data.data.CalendarData
 import com.chunbae.narchive.data.data.TodoData
 import com.chunbae.narchive.databinding.FragmentCalendarBinding
 import com.chunbae.narchive.databinding.ItemCalendarDayBinding
+import com.chunbae.narchive.presentation.ui.main.MainViewModel
 import com.chunbae.narchive.presentation.ui.main.calendar.adapter.CalendarTodoAdapter
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.DayPosition
@@ -24,6 +26,7 @@ import java.time.format.DateTimeFormatter
 
 class CalendarFragment : Fragment() {
     private lateinit var binding: FragmentCalendarBinding
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,6 +61,10 @@ class CalendarFragment : Fragment() {
     inner class DayViewContainer(view: View) : ViewContainer(view) {
         lateinit var day: CalendarDay
         val textView = ItemCalendarDayBinding.bind(view).itemCalendarDayTvDate
+
+        init {
+            view.setOnClickListener { moveToTodo() }
+        }
     }
 
     private fun setupMonthCalendar(
@@ -118,15 +125,21 @@ class CalendarFragment : Fragment() {
 
     private fun bindCalendarData(date: LocalDate, calBinding: ItemCalendarDayBinding) {
         calBinding.calendarData = calendarDummy().find { it.date.convertStringToDate() == date }
-        calBinding.itemCalendarDayRvTodo.adapter = CalendarTodoAdapter().also {calendarDummy().find { it.date.convertStringToDate() == date }?.todoList.let {it2 ->
-            if (it2 != null) {
-                it.todoItems = it2
+        calBinding.itemCalendarDayRvTodo.adapter = CalendarTodoAdapter(::moveToTodo).also {
+            calendarDummy().find { it.date.convertStringToDate() == date }?.todoList.let { it2 ->
+                if (it2 != null) {
+                    it.todoItems = it2
+                }
             }
-        }  }
+        }
     }
 
     private fun String.convertStringToDate(): LocalDate =
         LocalDate.parse(this, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+
+    private fun moveToTodo() {
+        viewModel.setCalClickedTrue()
+    }
 
     /** Dummy */
     private fun calendarDummy(): List<CalendarData> = mutableListOf(

@@ -1,8 +1,10 @@
 package com.chunbae.narchive.presentation.ui.main
 
 import android.content.Intent
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         initBottomNav()
 
         observeBottomSheet()
+        observeCalClicked()
     }
 
     private fun initBottomNav() {
@@ -47,6 +50,8 @@ class MainActivity : AppCompatActivity() {
             true
         }
         binding.mainBottomNav.selectedItemId = R.id.main_bottom_nav_feed
+
+        binding.mainBottomNav.setOnItemReselectedListener {}
     }
 
     private fun observeBottomSheet() {
@@ -61,6 +66,18 @@ class MainActivity : AppCompatActivity() {
                     1 -> openNormalDiaryActivity()
                     else -> openSearchActivity(it)
                 }
+                viewModel.initWriteType()
+            }
+        }
+    }
+
+    private fun observeCalClicked() {
+        viewModel.isCalClicked.observe(this) {
+            if(it) {
+                addFragment(TodoFragment())
+            } else {
+                supportFragmentManager.clearBackStack("TODO")
+                supportFragmentManager.beginTransaction().commit()
             }
         }
     }
@@ -77,7 +94,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changeFragment(fragment : Fragment) {
+        supportFragmentManager.popBackStack()
         supportFragmentManager.beginTransaction().replace(R.id.main_layout_container, fragment).commit()
+    }
+
+    private fun addFragment(fragment : Fragment) {
+        supportFragmentManager.beginTransaction().addToBackStack("TODO").replace(R.id.main_layout_container, fragment).commit()
     }
 
 }
