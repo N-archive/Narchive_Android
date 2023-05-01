@@ -18,16 +18,6 @@ class WriteBookReviewKeywordAdapter() :
             binding.keywordData = item
             binding.itemWriteBookMovieReviewKeywordsChipSelector.hasFixedSize()
             binding.itemWriteBookMovieReviewKeywordsChipSelector.adapter = item.keywordItems?.let { WriteBookReviewKeywordSelectorAdapter(::notifyClick, adapterPosition, it) }
-
-            /*if (item.keywordItems != null) {
-                addChip.invoke(
-                    binding.itemWriteBookMovieReviewKeywordsChipSelector,
-                    item.keywordItems
-                )
-            }
-            binding.itemWriteBookMovieReviewKeywordsChipSelector.setOnCheckedStateChangeListener { group, checkedIds ->
-                Log.d("----", "bind: ${group.id} / ${group.checkedChipId}")
-            } */
         }
     }
 

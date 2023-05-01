@@ -79,4 +79,7 @@
     <string name="add_keyword_diary_script">, 로 구분되며 최대 10개까지 입력할 수 있어요!</string>
     <string name="over_keyword_limit">이미 10개의 키워드를 모두 입력했어요!</string>
 
+
+    <string name="calendar_year_month">%d년 %d월</string>
+
 </resources>

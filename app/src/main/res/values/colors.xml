@@ -9,7 +9,18 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="color_000000_50">#80000000</color>
+
     <color name="color_FF0000">#FF0000</color>
+    <color name="color_FF5722">#FF5722</color>
+    <color name="color_FFF000">#FFF000</color>
+    <color name="color_00FF00">#00FF00</color>
+    <color name="color_000FFF">#000FFF</color>
+    <color name="color_3F51B5">#3F51B5</color>
+    <color name="color_673AB7">#673AB7</color>
+    <color name="color_000000">#000000</color>
+    <color name="color_E91E63">#E91E63</color>
+    <color name="color_888888">#888888</color>
+
 
     <color name="text_black">#282732</color>
     

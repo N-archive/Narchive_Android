@@ -57,7 +57,10 @@ class WriteBookReviewActivity : AppCompatActivity() {
 
     private fun initKeyword() {
         viewModel.setItem()
-        binding.writeBookMovieReviewRvKeywords.adapter = keywordAdapter
+        binding.writeBookMovieReviewRvKeywords.apply {
+            adapter = keywordAdapter
+            itemAnimator = null
+        }
     }
 
     private fun observe() {

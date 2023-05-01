@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.chunbae.narchive.R
 import com.chunbae.narchive.databinding.ActivityMainBinding
-import com.chunbae.narchive.presentation.ui.main.calendar.CalendarFragment
+import com.chunbae.narchive.presentation.ui.main.calendar.view.CalendarFragment
 import com.chunbae.narchive.presentation.ui.main.dialog.ContentWriteDialog
 import com.chunbae.narchive.presentation.ui.main.feed.view.FeedFragment
 import com.chunbae.narchive.presentation.ui.main.group.view.GroupFragment
