@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="calendarData"
+            type="com.chunbae.narchive.data.data.CalendarData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/item_calendar_day_tv_date"
+            android:layout_width="@{0, default = @dimen/margin_20}"
+            android:layout_height="@{0, default = @dimen/margin_20}"
+            android:gravity="center"
+            android:layout_margin="@dimen/margin_4"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/text_black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="20" />
+
+
+        <ImageView
+            android:id="@+id/item_calendar_day_iv_isDiary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_7"
+            android:src="@drawable/ic_calendar_cloud"
+            android:visibility="@{calendarData.diary ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/item_calendar_day_tv_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_calendar_day_tv_date" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/item_calendar_day_rv_todo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_2"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/item_calendar_day_tv_date"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
