@@ -81,5 +81,9 @@
 
 
     <string name="calendar_year_month">%d년 %d월</string>
+    <string name="todo_month_date">%s의 일정</string>
+    <string name="todo_current_day">오늘의 일정</string>
+    <string name="todo_group_todo_title">[%s] %s</string>
+    <string name="todo_start_end_time">%s ~ %s</string>
 
 </resources>

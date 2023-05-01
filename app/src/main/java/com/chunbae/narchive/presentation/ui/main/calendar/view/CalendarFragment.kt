@@ -128,7 +128,7 @@ class CalendarFragment : Fragment() {
         calBinding.itemCalendarDayRvTodo.adapter = CalendarTodoAdapter(::moveToTodo).also {
             calendarDummy().find { it.date.convertStringToDate() == date }?.todoList.let { it2 ->
                 if (it2 != null) {
-                    it.todoItems = it2
+                    it.todoItems = it2.todoList.toMutableList()
                 }
             }
         }
@@ -151,10 +151,5 @@ class CalendarFragment : Fragment() {
 
     )
 
-    private fun todoDummy(): MutableList<TodoData?> = mutableListOf(
-        TodoData("", "", "", "", "", "RED"),
-        TodoData("", "", "", "", "", "BLUE"),
-        TodoData("", "", "", "", "", "YELLOW"),
-        TodoData("", "", "", "", "", "PINK")
-    )
+    private fun todoDummy(): TodoData = TodoData("", listOf())
 }
