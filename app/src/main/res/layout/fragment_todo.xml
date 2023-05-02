@@ -5,6 +5,10 @@
 
     <data>
         <variable
+            name="fragment"
+            type="com.chunbae.narchive.presentation.ui.main.todo.TodoFragment" />
+
+        <variable
             name="isTargetDate"
             type="Boolean" />
 
@@ -52,6 +56,16 @@
             app:layout_constraintTop_toBottomOf="@id/fg_todo_layout_toolbar"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="오늘의 일정"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_todo"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:onClick="@{() -> fragment.openAddTodo()}"
+            app:layout_constraintTop_toTopOf="@id/fg_todo_tv_month_date"
+            app:layout_constraintBottom_toBottomOf="@id/fg_todo_tv_month_date"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fg_todo_rv_todoList"

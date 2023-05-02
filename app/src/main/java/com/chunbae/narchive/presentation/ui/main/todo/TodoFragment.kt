@@ -13,6 +13,7 @@ import com.chunbae.narchive.data.data.TodoData
 import com.chunbae.narchive.databinding.FragmentTodoBinding
 import com.chunbae.narchive.presentation.ui.main.MainViewModel
 import com.chunbae.narchive.presentation.ui.main.todo.adapter.TodoListAdapter
+import com.google.android.material.snackbar.Snackbar
 
 class TodoFragment : Fragment() {
     private lateinit var binding : FragmentTodoBinding
@@ -34,6 +35,7 @@ class TodoFragment : Fragment() {
     }
 
     private fun initBinding() {
+        binding.fragment = this
         binding.lifecycleOwner = requireActivity()
         binding.isTargetDate = viewModel.isCalClicked.value
         binding.todoData = todoData()
@@ -54,6 +56,10 @@ class TodoFragment : Fragment() {
 
     private fun onTodoChecked(position : Int) {
 
+    }
+
+    fun openAddTodo() {
+        Snackbar.make(binding.root, "일정 추가하기?", Snackbar.LENGTH_SHORT).show()
     }
 
     /** Dummy */
