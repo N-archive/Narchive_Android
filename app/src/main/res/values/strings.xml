@@ -89,6 +89,7 @@
 
     <string name="write_todo_todo_title">일정명 *</string>
     <string name="write_todo_todo_time">시간 *</string>
+    <string name="dialog_todo_group_title">내 일정 그룹</string>
     <string name="write_todo_todo_group">그룹 *</string>
 
     <string name="write_todo_todo_tv_start">시작</string>

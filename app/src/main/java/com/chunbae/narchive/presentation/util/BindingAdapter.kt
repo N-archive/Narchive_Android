@@ -65,6 +65,6 @@ fun TextView.setViewWidthSize(int : Int) {
 }
 
 @BindingAdapter("TodoBackGround")
-fun ConstraintLayout.setBackground(color : String) {
-    this.setBackgroundResource(ReturnColorCode(color))
+fun ConstraintLayout.setBackground(color : String?) {
+    color?.let { this.setBackgroundResource(ReturnColorCode(it)) }
 }

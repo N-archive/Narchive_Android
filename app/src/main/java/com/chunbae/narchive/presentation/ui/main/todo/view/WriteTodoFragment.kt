@@ -5,14 +5,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.Group
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.chunbae.narchive.R
+import com.chunbae.narchive.data.data.GroupData
 import com.chunbae.narchive.databinding.FragmentWriteTodoBinding
 import com.chunbae.narchive.databinding.ItemTodoCalendarDayBinding
 import com.chunbae.narchive.databinding.ItemWriteTodoCaldendarBinding
+import com.chunbae.narchive.presentation.ui.main.dialog.WriteTodoGroupDialog
+import com.google.android.material.snackbar.Snackbar
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.DayPosition
 import com.kizitonwose.calendar.core.daysOfWeek
@@ -25,7 +30,7 @@ import java.time.YearMonth
 class WriteTodoFragment : Fragment() {
     private lateinit var binding: FragmentWriteTodoBinding
 
-    private val todoViewModel: WriteTodoViewModel by viewModels()
+    private val todoViewModel: WriteTodoViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +43,7 @@ class WriteTodoFragment : Fragment() {
         initCalendar()
         initPicker()
         observeCalendarState()
+        openGroupSelectDialog()
 
         return binding.root
     }
@@ -46,6 +52,10 @@ class WriteTodoFragment : Fragment() {
         binding.fragment = this
         binding.todoViewModel = todoViewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        todoViewModel.selectedGroup.observe(viewLifecycleOwner) {
+            Snackbar.make(binding.root, it.toString(), Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     private fun initCalendar() {
@@ -208,4 +218,9 @@ class WriteTodoFragment : Fragment() {
         }.toTypedArray()
     }
 
+    fun openGroupSelectDialog() {
+        todoViewModel.isGroupDialogOpened.observe(viewLifecycleOwner) {
+            if(it) WriteTodoGroupDialog().show(requireActivity().supportFragmentManager, "GROUP")
+        }
+    }
 }

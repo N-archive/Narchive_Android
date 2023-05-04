@@ -69,6 +69,8 @@ class MainActivity : AppCompatActivity() {
                 viewModel.initWriteType()
             }
         }
+
+
     }
 
     private fun observeCalClicked() {
