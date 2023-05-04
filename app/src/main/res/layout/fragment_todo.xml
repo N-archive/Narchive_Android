@@ -6,7 +6,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.chunbae.narchive.presentation.ui.main.todo.TodoFragment" />
+            type="com.chunbae.narchive.presentation.ui.main.todo.view.TodoFragment" />
 
         <variable
             name="isTargetDate"
@@ -72,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_10"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/fg_todo_tv_month_date"

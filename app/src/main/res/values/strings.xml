@@ -15,6 +15,7 @@
     <string name="toolbar_normal_diary">일기 등록하기</string>
     <string name="toolbar_simple_diary">간단일기 등록하기</string>
     <string name="toolbar_add_location">장소 추가하기</string>
+    <string name="toolbar_add_todo">일정 등록하기</string>
 
     <string name="diary_thumbnail_count">+%d</string>
 
@@ -85,5 +86,13 @@
     <string name="todo_current_day">오늘의 일정</string>
     <string name="todo_group_todo_title">[%s] %s</string>
     <string name="todo_start_end_time">%s ~ %s</string>
+
+    <string name="write_todo_todo_title">일정명 *</string>
+    <string name="write_todo_todo_time">시간 *</string>
+    <string name="write_todo_todo_group">그룹 *</string>
+
+    <string name="write_todo_todo_tv_start">시작</string>
+    <string name="write_todo_todo_tv_end">종료</string>
+    <string name="write_todo_todo_tv_all_day">하루 종일</string>
 
 </resources>

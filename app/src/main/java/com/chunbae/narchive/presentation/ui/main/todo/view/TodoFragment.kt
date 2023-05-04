@@ -1,4 +1,4 @@
-package com.chunbae.narchive.presentation.ui.main.todo
+package com.chunbae.narchive.presentation.ui.main.todo.view
 
 import android.os.Bundle
 import android.util.Log
@@ -19,7 +19,7 @@ class TodoFragment : Fragment() {
     private lateinit var binding : FragmentTodoBinding
     private val viewModel : MainViewModel by activityViewModels()
     private val todoListAdapter by lazy {
-        TodoListAdapter(::onTodoChecked)
+        TodoListAdapter(::onTodoChecked, ::onTodoLongClicked)
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,21 +30,28 @@ class TodoFragment : Fragment() {
 
         initBinding()
         initRV()
+        observe()
 
         return binding.root
     }
 
     private fun initBinding() {
         binding.fragment = this
-        binding.lifecycleOwner = requireActivity()
         binding.isTargetDate = viewModel.isCalClicked.value
         binding.todoData = todoData()
     }
 
     private fun initRV() {
         binding.fgTodoRvTodoList.adapter = todoListAdapter
+        //binding.fgTodoRvTodoList.itemAnimator = null
+    }
 
-        todoListAdapter.todoList = todoList() as MutableList
+    private fun observe() {
+        viewModel.todoList.observe(requireActivity()) {
+            Log.d("----", "observe: ${it.size}")
+            todoListAdapter.todoList = it
+            todoListAdapter.notifyDataSetChanged()
+        }
     }
 
 
@@ -58,8 +65,12 @@ class TodoFragment : Fragment() {
 
     }
 
+    private fun onTodoLongClicked(position : Int) {
+        viewModel.removeTodo(position)
+    }
+
     fun openAddTodo() {
-        Snackbar.make(binding.root, "일정 추가하기?", Snackbar.LENGTH_SHORT).show()
+        requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null).replace(R.id.main_layout_container, WriteTodoFragment()).commit()
     }
 
     /** Dummy */
