@@ -13,7 +13,7 @@
 
         <variable
             name="todoViewModel"
-            type="com.chunbae.narchive.presentation.ui.main.todo.view.WriteTodoViewModel" />
+            type="com.chunbae.narchive.presentation.ui.main.todo.viewmodel.WriteTodoViewModel" />
 
     </data>
 

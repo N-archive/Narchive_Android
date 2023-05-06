@@ -2,14 +2,16 @@ package com.chunbae.narchive.presentation.ui.main.todo.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.chunbae.narchive.data.data.TodoData
 import com.chunbae.narchive.databinding.ItemTodoRvTodoItemsFormBinding
 import com.chunbae.narchive.presentation.util.ReturnColorCode
 import kotlin.math.abs
 
-class TodoListAdapter (private val onCheckClicked : (Int) -> Unit, private val onLongClicked : (Int) -> Unit): RecyclerView.Adapter<TodoListAdapter.TodoListViewHolder>() {
-    var todoList = mutableListOf<TodoData.TodoList>()
+class TodoListAdapter (private val onCheckClicked : (Int) -> Unit, private val onLongClicked : (Int) -> Unit): ListAdapter<TodoData.TodoList, TodoListAdapter.TodoListViewHolder>(
+    diffCallback) {
     inner class TodoListViewHolder(private val binding : ItemTodoRvTodoItemsFormBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : TodoData.TodoList) {
             binding.todoData = item
@@ -26,9 +28,21 @@ class TodoListAdapter (private val onCheckClicked : (Int) -> Unit, private val o
         return TodoListViewHolder(ItemTodoRvTodoItemsFormBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    override fun getItemCount(): Int = todoList.size
 
     override fun onBindViewHolder(holder: TodoListViewHolder, position: Int) {
-        holder.bind(todoList[position])
+        holder.bind(getItem(position))
+    }
+
+    companion object {
+        private val diffCallback = object : DiffUtil.ItemCallback<TodoData.TodoList>() {
+
+            override fun areItemsTheSame(oldItem: TodoData.TodoList, newItem: TodoData.TodoList): Boolean {
+                return oldItem.todoIdx == newItem.todoIdx
+            }
+
+            override fun areContentsTheSame(oldItem: TodoData.TodoList, newItem: TodoData.TodoList): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 }

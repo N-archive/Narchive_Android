@@ -1,4 +1,4 @@
-package com.chunbae.narchive.presentation.ui.main.todo.view
+package com.chunbae.narchive.presentation.ui.main.todo.viewmodel
 
 import android.icu.text.SimpleDateFormat
 import androidx.lifecycle.LiveData

@@ -8,12 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.chunbae.narchive.R
 import com.chunbae.narchive.databinding.DialogWriteTodoGroupBinding
-import com.chunbae.narchive.databinding.ItemDialogWriteTodoGroupFormBinding
 import com.chunbae.narchive.presentation.ui.main.todo.adapter.TodoWriteGroupAdapter
-import com.chunbae.narchive.presentation.ui.main.todo.view.WriteTodoViewModel
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.chunbae.narchive.presentation.ui.main.todo.viewmodel.WriteTodoViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import okhttp3.internal.notify
 
 class WriteTodoGroupDialog : BottomSheetDialogFragment() {
     private lateinit var binding : DialogWriteTodoGroupBinding

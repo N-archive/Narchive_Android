@@ -151,5 +151,6 @@ class CalendarFragment : Fragment() {
 
     )
 
-    private fun todoDummy(): TodoData = TodoData("", listOf(TodoData.TodoList("13:00", "14:00", "일기 쓰기", "기본", "RED", false)))
+    private fun todoDummy(): TodoData =
+        TodoData("", listOf(TodoData.TodoList(0, "13:00", "14:00", "일기 쓰기", "기본", "RED", false)))
 }

@@ -1,22 +1,19 @@
 package com.chunbae.narchive.presentation.ui.main.todo.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.Group
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.chunbae.narchive.R
-import com.chunbae.narchive.data.data.GroupData
 import com.chunbae.narchive.databinding.FragmentWriteTodoBinding
 import com.chunbae.narchive.databinding.ItemTodoCalendarDayBinding
 import com.chunbae.narchive.databinding.ItemWriteTodoCaldendarBinding
 import com.chunbae.narchive.presentation.ui.main.dialog.WriteTodoGroupDialog
+import com.chunbae.narchive.presentation.ui.main.todo.viewmodel.WriteTodoViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.DayPosition

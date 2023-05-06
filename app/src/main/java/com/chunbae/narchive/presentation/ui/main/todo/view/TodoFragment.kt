@@ -8,16 +8,19 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.chunbae.narchive.R
 import com.chunbae.narchive.data.data.TodoData
 import com.chunbae.narchive.databinding.FragmentTodoBinding
 import com.chunbae.narchive.presentation.ui.main.MainViewModel
 import com.chunbae.narchive.presentation.ui.main.todo.adapter.TodoListAdapter
+import com.chunbae.narchive.presentation.ui.main.todo.viewmodel.TodoViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class TodoFragment : Fragment() {
     private lateinit var binding : FragmentTodoBinding
     private val viewModel : MainViewModel by activityViewModels()
+    private val todoViewModel : TodoViewModel by viewModels()
     private val todoListAdapter by lazy {
         TodoListAdapter(::onTodoChecked, ::onTodoLongClicked)
     }
@@ -39,18 +42,16 @@ class TodoFragment : Fragment() {
         binding.fragment = this
         binding.isTargetDate = viewModel.isCalClicked.value
         binding.todoData = todoData()
+        binding.lifecycleOwner = viewLifecycleOwner
     }
 
     private fun initRV() {
         binding.fgTodoRvTodoList.adapter = todoListAdapter
-        //binding.fgTodoRvTodoList.itemAnimator = null
     }
 
     private fun observe() {
-        viewModel.todoList.observe(requireActivity()) {
-            Log.d("----", "observe: ${it.size}")
-            todoListAdapter.todoList = it
-            todoListAdapter.notifyDataSetChanged()
+        todoViewModel.todoList.observe(viewLifecycleOwner) {
+            todoListAdapter.submitList(it)
         }
     }
 
@@ -66,7 +67,8 @@ class TodoFragment : Fragment() {
     }
 
     private fun onTodoLongClicked(position : Int) {
-        viewModel.removeTodo(position)
+        todoViewModel.removeTodo(position)
+        todoListAdapter.notifyItemRemoved(position)
     }
 
     fun openAddTodo() {
@@ -76,5 +78,5 @@ class TodoFragment : Fragment() {
     /** Dummy */
     fun todoData() : TodoData = TodoData("05월 01일", todoList())
 
-    fun todoList() : List<TodoData.TodoList> = listOf(TodoData.TodoList("13:00", "14:00", "일기 쓰기", "기본", "RED", false))
+    fun todoList() : List<TodoData.TodoList> = listOf(TodoData.TodoList(0, "13:00", "14:00", "일기 쓰기", "기본", "RED", false))
 }

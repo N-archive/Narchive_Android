@@ -5,6 +5,7 @@ data class TodoData(
     val todoList : List<TodoList>
 ) {
     data class TodoList (
+        val todoIdx : Int,
         val startTime : String,
         val endTime : String,
         val todoTitle : String,

@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         initView()
+        initBinding()
 
     }
 
@@ -36,6 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         observeBottomSheet()
         observeCalClicked()
+    }
+
+    private fun initBinding() {
+        binding.lifecycleOwner = this
     }
 
     private fun initBottomNav() {
