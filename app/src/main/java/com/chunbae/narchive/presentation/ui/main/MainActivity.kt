@@ -1,7 +1,6 @@
 package com.chunbae.narchive.presentation.ui.main
 
 import android.content.Intent
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +14,7 @@ import com.chunbae.narchive.presentation.ui.main.dialog.ContentWriteDialog
 import com.chunbae.narchive.presentation.ui.main.feed.view.FeedFragment
 import com.chunbae.narchive.presentation.ui.main.group.view.GroupFragment
 import com.chunbae.narchive.presentation.ui.main.settings.SettingsFragment
-import com.chunbae.narchive.presentation.ui.main.todo.TodoFragment
+import com.chunbae.narchive.presentation.ui.main.todo.view.TodoFragment
 import com.chunbae.narchive.presentation.ui.search.book.view.SearchBookActivity
 import com.chunbae.narchive.presentation.ui.search.movie.view.SearchMovieActivity
 import com.chunbae.narchive.presentation.ui.write.diary.normal.view.WriteNormalDiaryActivity
@@ -29,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         initView()
+        initBinding()
+
     }
 
     private fun initView() {
@@ -36,6 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         observeBottomSheet()
         observeCalClicked()
+    }
+
+    private fun initBinding() {
+        binding.lifecycleOwner = this
     }
 
     private fun initBottomNav() {
@@ -69,6 +74,8 @@ class MainActivity : AppCompatActivity() {
                 viewModel.initWriteType()
             }
         }
+
+
     }
 
     private fun observeCalClicked() {

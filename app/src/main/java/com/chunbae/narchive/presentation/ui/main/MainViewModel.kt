@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.chunbae.narchive.data.data.TodoData
 
 class MainViewModel : ViewModel() {
 
@@ -18,6 +19,7 @@ class MainViewModel : ViewModel() {
 
     private val _isCalClicked = MutableLiveData<Boolean>(false)
     val isCalClicked : LiveData<Boolean> = _isCalClicked
+
 
 
     fun setChangeBookOrMovie() {
@@ -43,4 +45,6 @@ class MainViewModel : ViewModel() {
     fun setCalClickedTrue() {
         _isCalClicked.value = true
     }
+
+
 }

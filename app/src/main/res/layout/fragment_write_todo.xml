@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="fragment"
+            type="com.chunbae.narchive.presentation.ui.main.todo.view.WriteTodoFragment" />
+
+        <variable
+            name="todoViewModel"
+            type="com.chunbae.narchive.presentation.ui.main.todo.viewmodel.WriteTodoViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fg_write_todo_layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_semibold"
+                android:includeFontPadding="false"
+                android:text="@string/toolbar_add_todo"
+                android:textColor="@color/text_black"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:src="@drawable/ic_common_plane"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/fg_write_todo_tv_todo_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_10"
+            android:fontFamily="@font/pretendard_semibold"
+            android:includeFontPadding="false"
+            android:text="@string/write_todo_todo_title"
+            android:textColor="@color/text_black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_write_todo_layout_toolbar" />
+
+        <EditText
+            android:id="@+id/fg_write_todo_edt_todo_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@android:color/transparent"
+            android:hint="@string/write_review_here"
+            android:textColor="@color/text_black"
+            android:textColorHint="@color/color_a4a4a4"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_write_todo_tv_todo_title" />
+
+        <View
+            android:id="@+id/fg_write_todo_view_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_7"
+            android:background="@color/color_d9d9d9"
+            app:layout_constraintEnd_toEndOf="@id/fg_write_todo_edt_todo_title"
+            app:layout_constraintStart_toStartOf="@id/fg_write_todo_edt_todo_title"
+            app:layout_constraintTop_toBottomOf="@id/fg_write_todo_edt_todo_title" />
+
+        <TextView
+            android:id="@+id/fg_write_todo_tv_todo_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_25"
+            android:fontFamily="@font/pretendard_semibold"
+            android:includeFontPadding="false"
+            android:text="@string/write_todo_todo_time"
+            android:textColor="@color/text_black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/fg_write_todo_tv_todo_title"
+            app:layout_constraintTop_toBottomOf="@id/fg_write_todo_view_divider" />
+
+        <TextView
+            android:id="@+id/fg_write_todo_tv_todo_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_15"
+            android:fontFamily="@font/pretendard_semibold"
+            android:includeFontPadding="false"
+            android:text="@string/write_todo_todo_tv_start"
+            android:textColor="@color/text_black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_write_todo_tv_todo_time" />
+
+        <TextView
+            android:id="@+id/fg_write_todo_btn_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_15"
+            android:background="@drawable/bg_write_todo_date_time"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> todoViewModel.manageCalendarState(3)}"
+            android:paddingHorizontal="@dimen/margin_10"
+            android:paddingVertical="@dimen/margin_6"
+            android:text="@{todoViewModel.startTime}"
+            android:textColor="@color/text_black"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/fg_write_todo_tv_todo_start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fg_write_todo_tv_todo_start"
+            tools:text="16:05" />
+
+        <TextView
+            android:id="@+id/fg_write_todo_btn_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_7"
+            android:background="@drawable/bg_write_todo_date_time"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> todoViewModel.manageCalendarState(1)}"
+            android:paddingHorizontal="@dimen/margin_10"
+            android:paddingVertical="@dimen/margin_6"
+            android:text="@{todoViewModel.startDate}"
+            android:textColor="@color/text_black"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/fg_write_todo_btn_start_time"
+            app:layout_constraintEnd_toStartOf="@id/fg_write_todo_btn_start_time"
+            app:layout_constraintTop_toTopOf="@id/fg_write_todo_btn_start_time"
+            tools:text="2023년 5월 3일" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fg_wrtie_todo_layout_start_calendar_shell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_50"
+            android:animateLayoutChanges="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_write_todo_btn_start_date">
+
+            <include
+                android:id="@+id/fg_write_todo_layout_start_calendar"
+                layout="@layout/item_write_todo_caldendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/fg_write_todo_layout_start_time"
+                layout="@layout/item_write_todo_timepicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/fg_write_todo_tv_todo_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_15"
+            android:fontFamily="@font/pretendard_semibold"
+            android:includeFontPadding="false"
+            android:text="@string/write_todo_todo_tv_end"
+            android:textColor="@color/text_black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_wrtie_todo_layout_start_calendar_shell" />
+
+        <TextView
+            android:id="@+id/fg_write_todo_btn_end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_15"
+            android:background="@drawable/bg_write_todo_date_time"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> todoViewModel.manageCalendarState(4)}"
+            android:paddingHorizontal="@dimen/margin_10"
+            android:paddingVertical="@dimen/margin_6"
+            android:text="@{todoViewModel.endTime}"
+            android:textColor="@color/text_black"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/fg_write_todo_tv_todo_end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fg_write_todo_tv_todo_end"
+            tools:text="16:05" />
+
+        <TextView
+            android:id="@+id/fg_write_todo_btn_end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_7"
+            android:background="@drawable/bg_write_todo_date_time"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> todoViewModel.manageCalendarState(2)}"
+            android:paddingHorizontal="@dimen/margin_10"
+            android:paddingVertical="@dimen/margin_6"
+            android:text="@{todoViewModel.endDate}"
+            android:textColor="@color/text_black"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/fg_write_todo_btn_end_time"
+            app:layout_constraintEnd_toStartOf="@id/fg_write_todo_btn_end_time"
+            app:layout_constraintTop_toTopOf="@id/fg_write_todo_btn_end_time"
+            tools:text="2023년 5월 3일" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fg_wrtie_todo_layout_end_calendar_shell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_50"
+            android:animateLayoutChanges="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_write_todo_btn_end_date">
+
+            <include
+                android:id="@+id/fg_write_todo_layout_end_calendar"
+                layout="@layout/item_write_todo_caldendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/fg_write_todo_layout_end_time"
+                layout="@layout/item_write_todo_timepicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <CheckBox
+            android:id="@+id/fg_wrtie_todo_check_is_all_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_5"
+            android:layout_marginTop="@dimen/margin_10"
+            android:buttonTint="@color/text_black"
+            android:checked="@{todoViewModel.isAllday()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_wrtie_todo_layout_end_calendar_shell" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semibold"
+            android:includeFontPadding="false"
+            android:text="@string/write_todo_todo_tv_all_day"
+            android:textColor="@color/text_black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/fg_wrtie_todo_check_is_all_day"
+            app:layout_constraintStart_toEndOf="@id/fg_wrtie_todo_check_is_all_day"
+            app:layout_constraintTop_toTopOf="@id/fg_wrtie_todo_check_is_all_day" />
+
+        <TextView
+            android:id="@+id/fg_write_todo_tv_todo_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:fontFamily="@font/pretendard_semibold"
+            android:includeFontPadding="false"
+            android:text="@string/write_todo_todo_group"
+            android:textColor="@color/text_black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/fg_write_todo_tv_todo_time"
+            app:layout_constraintTop_toBottomOf="@id/fg_wrtie_todo_check_is_all_day" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:onClick="@{() -> todoViewModel.groupDialogOpen()}"
+            app:layout_constraintBottom_toBottomOf="@+id/fg_write_todo_tv_todo_group"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fg_write_todo_tv_todo_group">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/fg_write_todo_card_group_color"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                app:cardCornerRadius="10000dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    TodoBackGround="@{todoViewModel.selectedGroup.groupColor}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/fg_write_todo_tv_group_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:fontFamily="@font/pretendard_semibold"
+                android:includeFontPadding="false"
+                android:text="@{todoViewModel.selectedGroup.groupTitle}"
+                android:textColor="@color/text_black"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@id/fg_write_todo_card_group_color"
+                app:layout_constraintEnd_toStartOf="@id/fg_write_todo_card_group_color"
+                app:layout_constraintTop_toTopOf="@id/fg_write_todo_card_group_color" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -11,10 +11,10 @@ import com.chunbae.narchive.presentation.util.TodoColor
 import com.chunbae.narchive.presentation.util.setBackground
 
 class CalendarTodoAdapter(val onClick : () -> Unit) : RecyclerView.Adapter<CalendarTodoAdapter.CalendarTodoViewHolder>() {
-    var todoItems = mutableListOf<TodoData?>()
+    var todoItems = mutableListOf<TodoData.TodoList?>()
 
     inner class CalendarTodoViewHolder(private val binding : ItemCalendarTodoFormBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : TodoData) {
+        fun bind(item : TodoData.TodoList) {
             binding.todoColor = item.groupColor
             binding.root.setOnClickListener { onClick.invoke() }
         }

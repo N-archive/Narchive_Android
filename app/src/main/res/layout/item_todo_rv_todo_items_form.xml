@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="todoData"
+            type="com.chunbae.narchive.data.data.TodoData.TodoList" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/item_todo_rv_todo_items_check_is_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/text_black"
+            android:layout_marginVertical="@dimen/margin_5"
+            android:checked="@{todoData.finished}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/item_todo_rv_todo_items_tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{@string/todo_group_todo_title(todoData.groupTitle, todoData.todoTitle)}"
+            android:textSize="13sp"
+            android:textColor="@color/text_black"
+            android:fontFamily="@font/pretendard_semibold"
+            android:ellipsize="end"
+            android:layout_marginEnd="@dimen/margin_20"
+            app:layout_constraintTop_toTopOf="@id/item_todo_rv_todo_items_check_is_done"
+            app:layout_constraintBottom_toTopOf="@id/item_todo_rv_todo_items_tv_time"
+            app:layout_constraintStart_toEndOf="@id/item_todo_rv_todo_items_check_is_done"
+            app:layout_constraintEnd_toStartOf="@id/item_todo_rv_todo_items_card_group"
+            tools:text="[나카이브] 와이어프레임 짜기"/>
+
+        <TextView
+            android:id="@+id/item_todo_rv_todo_items_tv_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{@string/todo_start_end_time(todoData.startTime, todoData.endTime)}"
+            android:textSize="11sp"
+            android:textColor="@color/color_a4a4a4"
+            android:fontFamily="@font/pretendard_semibold"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/item_todo_rv_todo_items_tv_title"
+            app:layout_constraintBottom_toBottomOf="@id/item_todo_rv_todo_items_check_is_done"
+            app:layout_constraintStart_toStartOf="@id/item_todo_rv_todo_items_tv_title"
+            app:layout_constraintEnd_toEndOf="@id/item_todo_rv_todo_items_tv_title"
+            tools:text="18:00 ~ 19:00" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/item_todo_rv_todo_items_card_group"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            app:cardCornerRadius="10000dp"
+            android:layout_marginEnd="@dimen/margin_20"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                TodoBackGround="@{todoData.groupColor}" />
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
