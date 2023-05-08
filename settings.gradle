@@ -4,6 +4,7 @@ pluginManagement {
         mavenCentral()
         jcenter()
         gradlePluginPortal()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/'}
     }
 }
 dependencyResolutionManagement {
@@ -12,6 +13,7 @@ dependencyResolutionManagement {
         google()
         jcenter()
         mavenCentral()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/'}
     }
 }
 rootProject.name = "Narchive"
