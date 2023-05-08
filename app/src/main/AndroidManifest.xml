@@ -75,6 +75,8 @@
             android:exported="false" />
         <activity android:name=".presentation.ui.signin.view.SignInActivity"
             android:exported="false" />
+        <activity android:name=".presentation.ui.profile.view.ProfileActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

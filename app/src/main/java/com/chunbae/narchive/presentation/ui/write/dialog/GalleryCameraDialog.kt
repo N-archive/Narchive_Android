@@ -12,12 +12,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import com.chunbae.narchive.R
 import com.chunbae.narchive.databinding.ItemDialogSelectGalleryCameraBinding
+import com.chunbae.narchive.presentation.ui.profile.viewmodel.ProfileViewModel
 import com.chunbae.narchive.presentation.ui.write.book.viewmodel.WriteBookViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class GalleryCameraDialog : BottomSheetDialogFragment() {
     private lateinit var binding : ItemDialogSelectGalleryCameraBinding
     private val bookViewModel : WriteBookViewModel by activityViewModels()
+    private val profileViewModel : ProfileViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -40,6 +42,7 @@ class GalleryCameraDialog : BottomSheetDialogFragment() {
     fun onItemClicked(position : Int) {
         when(tag) {
             "Book" -> bookViewModel.setGalleryOrCamera(position)
+            "Profile" -> profileViewModel.setGalleryOrCamera(position)
         }
 
         dismiss()
@@ -50,7 +53,7 @@ class GalleryCameraDialog : BottomSheetDialogFragment() {
         super.onDismiss(dialog)
         when(tag) {
             "Book" -> bookViewModel.setDialogStateChange()
-
+            "Profile" -> profileViewModel.setDialogStateChange()
         }
     }
 }

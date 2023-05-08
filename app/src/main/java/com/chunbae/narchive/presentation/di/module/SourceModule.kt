@@ -1,10 +1,12 @@
 package com.chunbae.narchive.presentation.di.module
 
 import com.chunbae.narchive.data.remote.source.AuthRemoteSource
+import com.chunbae.narchive.data.remote.source.FirebaseStorageRemoteSource
 import com.chunbae.narchive.data.remote.source.KakaoAiDiaryRemoteSource
 import com.chunbae.narchive.data.remote.source.KakaoBookSearchRemoteSource
 import com.chunbae.narchive.data.remote.source.KakaoLocationSearchRemoteSource
 import com.chunbae.narchive.domain.source.AuthSource
+import com.chunbae.narchive.domain.source.FirebaseStorageSource
 import com.chunbae.narchive.domain.source.KakaoAiDiarySource
 import com.chunbae.narchive.domain.source.KakaoBookSearchSource
 import com.chunbae.narchive.domain.source.KakaoLocationSearchSource
@@ -28,4 +30,7 @@ abstract class SourceModule {
 
     @Binds
     abstract fun bindAuthRemoteSource(authRemoteSource: AuthRemoteSource) : AuthSource
+
+    @Binds
+    abstract fun bindFirebaseStorageRemoteSource(firebaseStorageRemoteSource: FirebaseStorageRemoteSource) : FirebaseStorageSource
 }
