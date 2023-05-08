@@ -14,7 +14,9 @@ import com.chunbae.narchive.presentation.ui.signin.viewmodel.SignInViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySignInBinding
     private val viewModel : SignInViewModel by viewModels()
@@ -73,6 +75,10 @@ class SignInActivity : AppCompatActivity() {
 
     private fun kakaoIdObserve() {
         viewModel.userKakaoId.observe(this) {
+            viewModel.postUserData()
+        }
+
+        viewModel.jwt.observe(this) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
