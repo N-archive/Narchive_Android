@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ import com.chunbae.narchive.presentation.ui.write.diary.normal.dialog.WriteNorma
 import com.chunbae.narchive.presentation.ui.write.diary.normal.viewmodel.WriteNormalDiaryViewModel
 import com.chunbae.narchive.presentation.util.LoadingDialog
 import com.chunbae.narchive.presentation.util.PopUpUtil
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,6 +60,11 @@ class WriteNormalDiaryActivity : AppCompatActivity() {
         viewModel.selectedImages.observe(this) {
             imageAdapter.imageList = it
             imageAdapter.notifyDataSetChanged()
+        }
+
+        viewModel.diaryState.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
 

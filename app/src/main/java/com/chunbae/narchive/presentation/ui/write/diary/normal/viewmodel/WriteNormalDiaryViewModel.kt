@@ -8,12 +8,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chunbae.narchive.data.data.LocationData
 import com.chunbae.narchive.domain.repository.KakaoAiDiaryRepository
+import com.chunbae.narchive.domain.usecase.NormalDiaryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WriteNormalDiaryViewModel @Inject constructor(private val aiRepo : KakaoAiDiaryRepository): ViewModel() {
+class WriteNormalDiaryViewModel @Inject constructor(private val aiRepo : KakaoAiDiaryRepository, private val normalUseCase : NormalDiaryUseCase): ViewModel() {
 
     private val _selectedLocation = MutableLiveData<LocationData>()
     val selectedLocation : LiveData<LocationData> = _selectedLocation
@@ -26,6 +27,9 @@ class WriteNormalDiaryViewModel @Inject constructor(private val aiRepo : KakaoAi
     var aiGeneratedContent = MutableLiveData<String?>()
 
     var isDialogOpened = MutableLiveData<Boolean>(false)
+
+    private val _diaryState = MutableLiveData<String>()
+    val diaryState : LiveData<String> = _diaryState
 
     fun setLocation(data : LocationData) {
         _selectedLocation.value = data
@@ -51,5 +55,13 @@ class WriteNormalDiaryViewModel @Inject constructor(private val aiRepo : KakaoAi
 
     fun changeDialogOpenedState() {
         isDialogOpened.value = isDialogOpened.value?.not()
+    }
+
+    fun postNormalDiary() {
+        viewModelScope.launch {
+            userInputContent.value?.let { normalUseCase.invoke(it,selectedLocation.value) }
+                ?.onSuccess { _diaryState.value = it }
+                ?.onFailure { _diaryState.value = "등록에 실패했습니다." }
+        }
     }
 }

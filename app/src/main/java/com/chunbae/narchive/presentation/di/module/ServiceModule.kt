@@ -3,6 +3,7 @@ package com.chunbae.narchive.presentation.di.module
 import com.chunbae.narchive.data.remote.api.AuthService
 import com.chunbae.narchive.data.remote.api.KakaoAiService
 import com.chunbae.narchive.data.remote.api.KakaoService
+import com.chunbae.narchive.data.remote.api.NormalDiaryService
 import com.chunbae.narchive.data.remote.api.TmdbService
 import com.chunbae.narchive.presentation.di.annotation.KakaoAIRetrofit
 import com.chunbae.narchive.presentation.di.annotation.KakaoRetrofit
@@ -22,11 +23,7 @@ class ServiceModule {
 
     @Provides
     @Singleton
-    fun provideKakaoService(@KakaoRetrofit retrofit: Retrofit): KakaoService = retrofit.create(KakaoService::class.java)
-
-    @Provides
-    @Singleton
-    fun provideKakaoAiService(@KakaoAIRetrofit retrofit : Retrofit) : KakaoAiService = retrofit.create(KakaoAiService::class.java)
+    fun provideKakaoUserService(@KakaoRetrofit retrofit: Retrofit): KakaoService = retrofit.create(KakaoService::class.java)
 
     @Provides
     @Singleton
@@ -34,6 +31,14 @@ class ServiceModule {
 
     @Provides
     @Singleton
+    fun provideKakaoAiService(@KakaoAIRetrofit retrofit: Retrofit) : KakaoAiService = retrofit.create(KakaoAiService::class.java)
+
+    @Provides
+    @Singleton
     fun provideAuthService(@NarchiveRetrofit retrofit: Retrofit) : AuthService = retrofit.create(AuthService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideNormalDiaryService(@NarchiveRetrofit retrofit: Retrofit) : NormalDiaryService = retrofit.create(NormalDiaryService::class.java)
 
 }
