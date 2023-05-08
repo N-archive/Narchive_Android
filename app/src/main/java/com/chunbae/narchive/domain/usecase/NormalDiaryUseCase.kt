@@ -1,6 +1,8 @@
 package com.chunbae.narchive.domain.usecase
 
-import javax.inject.Inject
+import com.chunbae.narchive.data.data.LocationData
 
-class NormalDiaryUseCase @Inject constructor(){
+interface NormalDiaryUseCase {
+
+    suspend fun invoke(content : String, locationData: LocationData?) : Result<String>
 }

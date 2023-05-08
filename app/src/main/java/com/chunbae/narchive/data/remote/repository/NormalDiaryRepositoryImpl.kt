@@ -2,9 +2,11 @@ package com.chunbae.narchive.data.remote.repository
 
 import com.chunbae.narchive.data.remote.request.RequestNormalDiaryData
 import com.chunbae.narchive.domain.repository.NormalDiaryRepository
+import com.chunbae.narchive.domain.source.NormalDiarySource
+import javax.inject.Inject
 
-class NormalDiaryRepositoryImpl : NormalDiaryRepository {
+class NormalDiaryRepositoryImpl @Inject constructor(private val normalDiarySource: NormalDiarySource): NormalDiaryRepository {
     override suspend fun postNormalDiary(body: RequestNormalDiaryData): Result<String> {
-        TODO("Not yet implemented")
+        return normalDiarySource.postNormalDiary(body)
     }
 }
