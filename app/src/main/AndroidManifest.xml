@@ -24,6 +24,19 @@
         android:theme="@style/Theme.Narchive"
         tools:targetApi="31">
 
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:host="oauth"
+                    android:scheme="kakaoa8b73ee6826d48109d06c1924f7ba3cb" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".presentation.ui.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
@@ -59,6 +72,8 @@
         <activity android:name=".presentation.ui.search.location.view.SearchLocationActivity"
             android:exported="false" />
         <activity android:name=".presentation.ui.gallery.view.CustomGalleryActivity"
+            android:exported="false" />
+        <activity android:name=".presentation.ui.signin.view.SignInActivity"
             android:exported="false" />
     </application>
 

@@ -76,4 +76,8 @@ dependencies {
     /** CalendarView */
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
     implementation 'com.kizitonwose.calendar:view:2.3.0'
+
+    /** Kakao SignIn */
+    implementation "com.kakao.sdk:v2-all:2.13.0"
+    implementation "com.kakao.sdk:v2-user:2.13.0"
 }
