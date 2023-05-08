@@ -1,20 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="fragment"
+            type="com.chunbae.narchive.presentation.ui.main.todo.view.TodoFragment" />
+
+        <variable
+            name="isTargetDate"
+            type="Boolean" />
+
+        <variable
+            name="todoData"
+            type="com.chunbae.narchive.data.data.TodoData" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fg_todo_layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bottom_nav_todo"
+                android:textSize="17sp"
+                android:textColor="@color/text_black"
+                android:fontFamily="@font/pretendard_semibold"
+                android:includeFontPadding="false"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
+            android:id="@+id/fg_todo_tv_month_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Todo"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text='@{isTargetDate ? @string/todo_month_date(todoData.date) : @string/todo_current_day}'
+            android:textColor="@color/text_black"
+            android:textSize="17sp"
+            android:fontFamily="@font/pretendard_semibold"
+            android:includeFontPadding="false"
+            android:layout_marginStart="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_20"
+            app:layout_constraintTop_toBottomOf="@id/fg_todo_layout_toolbar"
             app:layout_constraintStart_toStartOf="parent"
+            tools:text="오늘의 일정"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_todo"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:onClick="@{() -> fragment.openAddTodo()}"
+            app:layout_constraintTop_toTopOf="@id/fg_todo_tv_month_date"
+            app:layout_constraintBottom_toBottomOf="@id/fg_todo_tv_month_date"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fg_todo_rv_todoList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_10"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/fg_todo_tv_month_date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:listitem="@layout/item_todo_rv_todo_items_form"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

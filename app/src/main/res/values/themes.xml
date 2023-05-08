@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.Narchive" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -19,6 +19,12 @@
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowBackground">@drawable/bg_narchive_splash</item>
+    </style>
+
+    <style name="NumberPicker">
+        <item name="android:textSize">22sp</item>
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:editTextColor">@color/color_B2F0F4</item>
     </style>
 
 </resources>

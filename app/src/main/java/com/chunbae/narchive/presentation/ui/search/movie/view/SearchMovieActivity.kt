@@ -1,4 +1,4 @@
-package com.chunbae.narchive.presentation.ui.search.movie
+package com.chunbae.narchive.presentation.ui.search.movie.view
 
 import android.os.Bundle
 import android.widget.Toast

@@ -7,11 +7,16 @@
     <string name="bottom_nav_group">모아보기</string>
     <string name="bottom_nav_settings">설정</string>
 
+    <string name="toolbar_profile">프로필 설정하기</string>
     <string name="toolbar_feed">일기장</string>
     <string name="toolbar_group">모아보기</string>
     <string name="toolbar_comment">댓글 작성하기</string>
     <string name="toolbar_search_book">책 검색하기</string>
     <string name="toolbar_search_movie">영화 검색하기</string>
+    <string name="toolbar_normal_diary">일기 등록하기</string>
+    <string name="toolbar_simple_diary">간단일기 등록하기</string>
+    <string name="toolbar_add_location">장소 추가하기</string>
+    <string name="toolbar_add_todo">일정 등록하기</string>
 
     <string name="diary_thumbnail_count">+%d</string>
 
@@ -43,5 +48,57 @@
     <string name="detail_book_movie_keyword">내가 등록한 키워드</string>
     <string name="detail_book_movie_review">내가 등록한 감상평</string>
 
+    <string name="write_add_photo">사진 등록하기 *</string>
+    <string name="write_add_keyword">키워드 등록하기</string>
+    <string name="write_add_review">감상평 등록하기</string>
+
+
+    <string name="write_add_photo_book_notice">이 책과 관련된 사진을 촬영해서 등록해주세요!\n책 표지나 인상깊었던 페이지도 좋아요\n사진은 1장만 등록 가능해요!</string>
+    <string name="write_add_photo_movie_notice">이 영화 관련된 사진을 촬영해서 등록해주세요!\n영화 티켓이나 포스터도 좋아요\n사진은 1장만 등록 가능해요!</string>
+
+    <string name="write_review_here">이곳에 입력해주세요.</string>
+
+    <string name="get_from_camera">카메라로 촬영하기</string>
+    <string name="get_from_gallery">갤러리에서 가져오기</string>
+
+    <string name="add_location_title">위치를 추가해주세요!</string>
+    <string name="add_location_script">오늘 가장 기억에 남는 장소가 있었나요?</string>
+    <string name="add_location_plz">아직 등록된 장소가 없어요!</string>
+    <string name="add_photo">사진 등록하기</string>
+    <string name="add_photo_script">사진은 최대 10장까지만 등록 가능해요!</string>
+    <string name="add_photo_count">현재 %d장 등록되었어요!</string>
+    <string name="add_diary_normal_title">일기 작성하기 *</string>
+
+    <string name="add_location_keyword_plz">장소명을 입력해주세요.</string>
+
+    <string name="limit_image_count">%d / 10</string>
+
+    <string name="what_if_ai_explain">What if? AI가 내 일기를 이어 쓴다면?\n(최대 300자까지 작성되며, 횟수에 제한이 있어 사용이 중단될 수 있습니다.)</string>
+    <string name="accept_ai_diary">적용하기</string>
+
+    <string name="common_correct">확인</string>
+    <string name="common_dismiss">닫기</string>
+
+    <string name="add_keyword_diary_title">등록하실 키워드를 추가해주세요! *</string>
+    <string name="add_keyword_diary_script">, 로 구분되며 최대 10개까지 입력할 수 있어요!</string>
+    <string name="over_keyword_limit">이미 10개의 키워드를 모두 입력했어요!</string>
+
+
+    <string name="calendar_year_month">%d년 %d월</string>
+    <string name="todo_month_date">%s의 일정</string>
+    <string name="todo_current_day">오늘의 일정</string>
+    <string name="todo_group_todo_title">[%s] %s</string>
+    <string name="todo_start_end_time">%s ~ %s</string>
+
+    <string name="write_todo_todo_title">일정명 *</string>
+    <string name="write_todo_todo_time">시간 *</string>
+    <string name="dialog_todo_group_title">내 일정 그룹</string>
+    <string name="write_todo_todo_group">그룹 *</string>
+
+    <string name="write_todo_todo_tv_start">시작</string>
+    <string name="write_todo_todo_tv_end">종료</string>
+    <string name="write_todo_todo_tv_all_day">하루 종일</string>
+
+    <string name="set_profile_nickname_notion">* 띄어쓰기 없이 1~13자 이내로 입력해주세요.</string>
 
 </resources>

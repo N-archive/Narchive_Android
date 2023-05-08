@@ -19,7 +19,7 @@
 
         <variable
             name="movieActivity"
-            type="com.chunbae.narchive.presentation.ui.search.movie.SearchMovieActivity" />
+            type="com.chunbae.narchive.presentation.ui.search.movie.view.SearchMovieActivity" />
 
         <variable
             name="movieViewModel"
