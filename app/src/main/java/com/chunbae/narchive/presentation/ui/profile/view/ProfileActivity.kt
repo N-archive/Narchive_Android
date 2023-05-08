@@ -1,4 +1,4 @@
-package com.chunbae.narchive.presentation.ui.write.book.view
+package com.chunbae.narchive.presentation.ui.profile.view
 
 import android.app.Activity
 import android.content.Intent
@@ -6,79 +6,55 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.chunbae.narchive.R
-import com.chunbae.narchive.data.data.BookData
-import com.chunbae.narchive.databinding.ActivityWriteBookMovieReviewBinding
-import com.chunbae.narchive.presentation.ui.write.book.adapter.WriteBookReviewKeywordAdapter
-import com.chunbae.narchive.presentation.ui.write.book.viewmodel.WriteBookViewModel
+import com.chunbae.narchive.databinding.ActivitySetProfileBinding
+import com.chunbae.narchive.presentation.ui.profile.viewmodel.ProfileViewModel
 import com.chunbae.narchive.presentation.ui.write.dialog.GalleryCameraDialog
+import dagger.hilt.android.AndroidEntryPoint
 
-class WriteBookReviewActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityWriteBookMovieReviewBinding
-    private val viewModel : WriteBookViewModel by viewModels()
-    private val keywordAdapter by lazy {
-        WriteBookReviewKeywordAdapter()
-    }
-
+@AndroidEntryPoint
+class ProfileActivity : AppCompatActivity() {
+    private lateinit var binding : ActivitySetProfileBinding
+    private val viewModel : ProfileViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_write_book_movie_review)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_set_profile)
 
-        getBookData()
         initBinding()
-        initKeyword()
-        observe()
         observeBottomSheet()
-
-    }
-
-    private fun getBookData() = intent.getSerializableExtra("Book")
-
-    fun keywordLayoutVisibility() {
-       binding.writeBookMovieReviewRvKeywords.visibility = if (binding.writeBookMovieReviewRvKeywords.visibility == View.VISIBLE) View.GONE else View.VISIBLE
-    }
-    fun reviewLayoutVisibility() {
-        binding.writeBookMovieReviewEdtReview.visibility = if(binding.writeBookMovieReviewEdtReview.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        observeProfileFinished()
     }
 
     private fun initBinding() {
-        binding.bookActivity = this
-        binding.bookViewModel = viewModel
+        binding.activity = this
+        binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        binding.type = "Book"
-        binding.writeBookMovieReviewLayoutBookMovie.type = "Book"
-        binding.writeBookMovieReviewLayoutBookMovie.bookData = getBookData() as BookData
     }
 
-    private fun initKeyword() {
-        viewModel.setItem()
-        binding.writeBookMovieReviewRvKeywords.apply {
-            adapter = keywordAdapter
-            itemAnimator = null
+    private fun observeProfileFinished() {
+        viewModel.userNickName.observe(this) {
+            viewModel.setProfileFinished()
         }
-    }
-
-    private fun observe() {
-        viewModel.keywordItems.observe(this) {
-            keywordAdapter.bookKeywordData = it
+        viewModel.userSelectedImage.observe(this) {
+            viewModel.setProfileFinished()
         }
-    }
 
-    fun onSaveReview() {
-        Log.d("----", "onSaveReview: ${keywordAdapter.bookKeywordData}")
+        viewModel.profileURL.observe(this) {
+            viewModel.uploadToServer()
+        }
     }
 
     private fun observeBottomSheet() {
         viewModel.isGalleryCameraDialogOpened.observe(this) {
-            if(it) GalleryCameraDialog().show(supportFragmentManager, "Book")
+            if(it) GalleryCameraDialog().show(supportFragmentManager, "Profile")
         }
 
         viewModel.isGalleryOrCamera.observe(this) {
+            Log.d("----", "observeBottomSheet: $it")
             when(it) {
                 0 -> onCameraOpen()
                 1 -> onGalleryOpen()
@@ -107,7 +83,6 @@ class WriteBookReviewActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
                 val imageBitmap = it.data!!.extras?.get("data") as Bitmap
-                Log.d("----", "$imageBitmap: ")
                 viewModel.setUserSelectedImage(imageBitmap)
             }
         }
@@ -122,7 +97,4 @@ class WriteBookReviewActivity : AppCompatActivity() {
                 }
             }
         }
-
-    /** Dummy */
-
 }

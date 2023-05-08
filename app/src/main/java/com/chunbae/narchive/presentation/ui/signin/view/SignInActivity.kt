@@ -7,9 +7,12 @@ import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.chunbae.narchive.Narchive
+import com.chunbae.narchive.Narchive.Companion.mSharedPreferences
 import com.chunbae.narchive.R
 import com.chunbae.narchive.databinding.ActivitySignInBinding
 import com.chunbae.narchive.presentation.ui.main.MainActivity
+import com.chunbae.narchive.presentation.ui.profile.view.ProfileActivity
 import com.chunbae.narchive.presentation.ui.signin.viewmodel.SignInViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.kakao.sdk.auth.model.OAuthToken
@@ -79,7 +82,7 @@ class SignInActivity : AppCompatActivity() {
         }
 
         viewModel.jwt.observe(this) {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, ProfileActivity::class.java))
             finish()
         }
     }

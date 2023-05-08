@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.chunbae.narchive.Narchive
 import com.chunbae.narchive.data.remote.request.RequestSignInData
 import com.chunbae.narchive.domain.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,7 +26,10 @@ class SignInViewModel @Inject constructor(private val repo : AuthRepository) : V
     fun postUserData() {
         viewModelScope.launch {
             repo.postUserData(RequestSignInData(userKakaoId.value!!))
-                .onSuccess { _jwt.value = it.jwt }
+                .onSuccess {
+                    _jwt.value = it.jwt
+                    repo.saveUserInfoInLocal(it)
+                }
         }
     }
 
