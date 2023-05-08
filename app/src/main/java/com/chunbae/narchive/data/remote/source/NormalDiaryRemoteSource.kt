@@ -11,6 +11,6 @@ class NormalDiaryRemoteSource @Inject constructor(private val service : NormalDi
         if(res.isSuccessful) {
             return Result.success(res.body()!!.result)
         }
-        return Result.failure(IllegalArgumentException())
+        return Result.failure(IllegalArgumentException(res.body()?.message))
     }
 }

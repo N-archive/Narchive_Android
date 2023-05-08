@@ -28,6 +28,9 @@ class WriteNormalDiaryViewModel @Inject constructor(private val aiRepo : KakaoAi
 
     var isDialogOpened = MutableLiveData<Boolean>(false)
 
+    private val _diaryState = MutableLiveData<String>()
+    val diaryState : LiveData<String> = _diaryState
+
     fun setLocation(data : LocationData) {
         _selectedLocation.value = data
     }
@@ -57,7 +60,8 @@ class WriteNormalDiaryViewModel @Inject constructor(private val aiRepo : KakaoAi
     fun postNormalDiary() {
         viewModelScope.launch {
             userInputContent.value?.let { normalUseCase.invoke(it,selectedLocation.value) }
-                ?.onSuccess { Log.d("----", "postNormalDiary: $it") }
+                ?.onSuccess { _diaryState.value = it }
+                ?.onFailure { _diaryState.value = "등록에 실패했습니다." }
         }
     }
 }
