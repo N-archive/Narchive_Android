@@ -6,12 +6,14 @@ import com.chunbae.narchive.data.remote.repository.KakaoAiDiaryRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.KakaoBookSearchRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.KakaoLocationSearchRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.NormalDiaryRepositoryImpl
+import com.chunbae.narchive.data.remote.repository.ProfileRepositoryImpl
 import com.chunbae.narchive.domain.repository.AuthRepository
 import com.chunbae.narchive.domain.repository.FirebaseRepository
 import com.chunbae.narchive.domain.repository.KakaoAiDiaryRepository
 import com.chunbae.narchive.domain.repository.KakaoBookSearchRepository
 import com.chunbae.narchive.domain.repository.KakaoLocationSearchRepository
 import com.chunbae.narchive.domain.repository.NormalDiaryRepository
+import com.chunbae.narchive.domain.repository.ProfileRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -38,4 +40,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindNormalDiaryRepository(normalDiaryRepositoryImpl: NormalDiaryRepositoryImpl) : NormalDiaryRepository
+
+    @Binds
+    abstract fun bindProfileRepository(profileRepositoryImpl: ProfileRepositoryImpl) : ProfileRepository
 }

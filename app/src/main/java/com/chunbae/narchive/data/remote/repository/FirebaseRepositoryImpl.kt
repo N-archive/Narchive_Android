@@ -1,5 +1,6 @@
 package com.chunbae.narchive.data.remote.repository
 
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.chunbae.narchive.domain.repository.FirebaseRepository
@@ -10,6 +11,10 @@ class FirebaseRepositoryImpl @Inject constructor(private val firebaseSource: Fir
     FirebaseRepository {
     override suspend fun uploadProfileToFirebase(path: Uri) : Uri?{
         return firebaseSource.uploadProfileToFirebase(path)
+    }
+
+    override suspend fun uploadProfileBitmapToFirebase(path: Bitmap): Uri? {
+        return firebaseSource.uploadProfileBitmapToFirebase(path)
     }
 
     override suspend fun uploadWriteImageToFirebase(
