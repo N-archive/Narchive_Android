@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.chunbae.narchive.R
 import com.chunbae.narchive.databinding.ActivitySetProfileBinding
+import com.chunbae.narchive.presentation.ui.main.MainActivity
 import com.chunbae.narchive.presentation.ui.profile.viewmodel.ProfileViewModel
 import com.chunbae.narchive.presentation.ui.write.dialog.GalleryCameraDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,6 +46,12 @@ class ProfileActivity : AppCompatActivity() {
 
         viewModel.profileURL.observe(this) {
             viewModel.uploadToServer()
+        }
+        viewModel.uploadResultCode.observe(this) {
+            if(it == 200) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
         }
     }
 

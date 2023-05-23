@@ -101,4 +101,6 @@
 
     <string name="set_profile_nickname_notion">* 띄어쓰기 없이 1~13자 이내로 입력해주세요.</string>
 
+    <string name="convert_int_to_string">%d</string>
+
 </resources>

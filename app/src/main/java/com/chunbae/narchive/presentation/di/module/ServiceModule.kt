@@ -4,6 +4,7 @@ import com.chunbae.narchive.data.remote.api.AuthService
 import com.chunbae.narchive.data.remote.api.KakaoAiService
 import com.chunbae.narchive.data.remote.api.KakaoService
 import com.chunbae.narchive.data.remote.api.NormalDiaryService
+import com.chunbae.narchive.data.remote.api.ProfileService
 import com.chunbae.narchive.data.remote.api.TmdbService
 import com.chunbae.narchive.presentation.di.annotation.KakaoAIRetrofit
 import com.chunbae.narchive.presentation.di.annotation.KakaoRetrofit
@@ -40,5 +41,9 @@ class ServiceModule {
     @Provides
     @Singleton
     fun provideNormalDiaryService(@NarchiveRetrofit retrofit: Retrofit) : NormalDiaryService = retrofit.create(NormalDiaryService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideProfileService(@NarchiveRetrofit retrofit : Retrofit) : ProfileService = retrofit.create(ProfileService::class.java)
 
 }
