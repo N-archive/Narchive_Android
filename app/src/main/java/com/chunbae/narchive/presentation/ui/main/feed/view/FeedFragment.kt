@@ -19,14 +19,16 @@ import com.chunbae.narchive.presentation.ui.detail.diary.view.DetailDiaryActivit
 import com.chunbae.narchive.presentation.ui.main.MainViewModel
 import com.chunbae.narchive.presentation.ui.main.feed.adapter.FeedAdapter
 import com.chunbae.narchive.presentation.util.ConvertUtil
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FeedFragment : Fragment() {
     private lateinit var binding : FragmentFeedBinding
     private val viewModel : MainViewModel by activityViewModels()
     private val feedAdapter by lazy {
         FeedAdapter(::onFeedItemClicked)
     }
-
+    val DEFAULT_PAGE = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,8 +38,14 @@ class FeedFragment : Fragment() {
 
         initBinding()
         initFeed()
+        observeFeed()
 
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.getFeedData(DEFAULT_PAGE)
     }
 
     private fun initBinding() {
@@ -49,8 +57,13 @@ class FeedFragment : Fragment() {
         binding.fgFeedRvFeed.adapter = feedAdapter
         binding.fgFeedRvFeed.itemAnimator = null
         binding.fgFeedRvFeed.addItemDecoration(FeedRVDecorUtil(requireActivity()))
+    }
 
-        feedAdapter.feedDatas = getFeedDummy()
+    private fun observeFeed() {
+        viewModel.feedDiaryData.observe(viewLifecycleOwner) {
+            feedAdapter.feedDatas = it
+            feedAdapter.notifyItemRangeChanged(0, it.size)
+        }
     }
 
     fun onSearchClicked() {
@@ -76,17 +89,4 @@ class FeedFragment : Fragment() {
             outRect.bottom = ConvertUtil.dpToPx(context, 15)
         }
     }
-
-
-    /** Dummy */
-
-    private fun getFeedDummy() : MutableList<FeedData> =
-        mutableListOf<FeedData>().apply {
-            add(FeedData(0, UserData(0, R.drawable.ic_launcher_background, "테스트1"), "1일전",  "본문내용입니다!", "!", 1, "양천구 신정중앙로 1", 1, null, "F"))
-            add(FeedData(1, UserData(1, R.drawable.ic_launcher_background, "테스트2"), "2일전",  null, "!", 2, "양천구 신정중앙로 2", 2, getKeywordDummy(), "T"))
-            add(FeedData(2, UserData(2, R.drawable.ic_launcher_background, "테스트3"), "3일전", "본문내용입니다!", "!", 3, "양천구 신정중앙로 3", 3, null, "F"))
-            add(FeedData(3, UserData(3, R.drawable.ic_launcher_background, "테스트4"), "4일전", "본문내용입니다!", "!", 4, "양천구 신정중앙로 4", 4, getKeywordDummy(), "T"))
-        }
-
-    private fun getKeywordDummy() : List<String> = listOf("1","2","3","4","5")
 }

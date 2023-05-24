@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.chunbae.narchive.data.data.LocationData
 import com.chunbae.narchive.domain.repository.FirebaseRepository
 import com.chunbae.narchive.domain.repository.KakaoAiDiaryRepository
-import com.chunbae.narchive.domain.usecase.NormalDiaryUseCase
+import com.chunbae.narchive.domain.usecase.DiaryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class WriteNormalDiaryViewModel @Inject constructor(
     private val aiRepo: KakaoAiDiaryRepository,
-    private val normalUseCase: NormalDiaryUseCase,
+    private val normalUseCase: DiaryUseCase,
     private val firebaseRepo: FirebaseRepository
 ) : ViewModel() {
 
@@ -77,7 +77,7 @@ class WriteNormalDiaryViewModel @Inject constructor(
     fun postNormalDiary() {
         viewModelScope.launch {
             userInputContent.value?.let {
-                normalUseCase.invoke(
+                normalUseCase.postMapping(
                     it,
                     selectedLocation.value,
                     imageDownloadPath
