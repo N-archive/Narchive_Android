@@ -5,5 +5,6 @@ data class RequestNormalDiaryData(
     val locationName: String?,
     val locationAddr: String?,
     val locationX: Double?,
-    val locationY: Double?
+    val locationY: Double?,
+    val imagePath : MutableList<String>?
 )
