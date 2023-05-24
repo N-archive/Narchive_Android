@@ -37,7 +37,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.ui.splash.SplashActivity"
+        <activity android:name=".presentation.ui.splash.view.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>

@@ -14,4 +14,12 @@ class AuthRemoteSource @Inject constructor(private val authService: AuthService)
         }
         return Result.failure(IllegalArgumentException())
     }
+
+    override suspend fun getAutoSignIn(): Result<ResponseSignInData> {
+        val res = authService.getAuthSignIn()
+        if(res.isSuccessful) {
+            return Result.success(res.body()!!)
+        }
+        return Result.failure(IllegalArgumentException())
+    }
 }

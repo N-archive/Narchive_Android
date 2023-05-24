@@ -15,4 +15,8 @@ class AuthRepositoryImpl @Inject constructor(private val authSource: AuthSource,
     override suspend fun saveUserInfoInLocal(userInfo: ResponseSignInData): Result<String> {
         return sharedSource.saveUserInfo(userInfo)
     }
+
+    override suspend fun getAutoSignIn(): Result<ResponseSignInData> {
+        return authSource.getAutoSignIn()
+    }
 }
