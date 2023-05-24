@@ -9,4 +9,6 @@ interface AuthRepository {
 
     suspend fun saveUserInfoInLocal(userInfo: ResponseSignInData): Result<String>
 
+    suspend fun getAutoSignIn() : Result<ResponseSignInData>
+
 }
