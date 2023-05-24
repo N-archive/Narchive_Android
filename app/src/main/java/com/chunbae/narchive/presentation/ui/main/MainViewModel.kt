@@ -4,9 +4,16 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.chunbae.narchive.data.data.FeedData
 import com.chunbae.narchive.data.data.TodoData
+import com.chunbae.narchive.domain.usecase.DiaryUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val diaryUseCase: DiaryUseCase): ViewModel() {
 
     private val _isBookOrMovie = MutableLiveData<String>().apply { value = "Book" } //Book / Movie
     val isBookOrMovie: LiveData<String> = _isBookOrMovie
@@ -19,6 +26,9 @@ class MainViewModel : ViewModel() {
 
     private val _isCalClicked = MutableLiveData<Boolean>(false)
     val isCalClicked : LiveData<Boolean> = _isCalClicked
+
+    private val _feedDiaryData = MutableLiveData<MutableList<FeedData>>()
+    val feedDiaryData : LiveData<MutableList<FeedData>> = _feedDiaryData
 
 
 
@@ -46,5 +56,11 @@ class MainViewModel : ViewModel() {
         _isCalClicked.value = true
     }
 
+    fun getFeedData(page : Int) {
+        viewModelScope.launch {
+            diaryUseCase.getMapping(page)
+                .onSuccess { _feedDiaryData.value = it }
+        }
+    }
 
 }

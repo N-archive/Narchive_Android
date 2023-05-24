@@ -1,6 +1,7 @@
 package com.chunbae.narchive.presentation.di.module
 
 import com.chunbae.narchive.data.remote.api.AuthService
+import com.chunbae.narchive.data.remote.api.FeedService
 import com.chunbae.narchive.data.remote.api.KakaoAiService
 import com.chunbae.narchive.data.remote.api.KakaoService
 import com.chunbae.narchive.data.remote.api.NormalDiaryService
@@ -45,5 +46,9 @@ class ServiceModule {
     @Provides
     @Singleton
     fun provideProfileService(@NarchiveRetrofit retrofit : Retrofit) : ProfileService = retrofit.create(ProfileService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideFeedService(@NarchiveRetrofit retrofit: Retrofit) : FeedService = retrofit.create(FeedService::class.java)
 
 }

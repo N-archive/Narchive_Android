@@ -84,7 +84,7 @@
 
                 <ImageView
                     android:id="@+id/detail_diary_iv_user_profile"
-                    Common_Circle_Image="@{diaryData.user.userProfileImage}"
+
                     android:layout_width="@dimen/feed_diary_profile_image_size"
                     android:layout_height="@dimen/feed_diary_profile_image_size"
                     android:layout_margin="@dimen/margin_15"

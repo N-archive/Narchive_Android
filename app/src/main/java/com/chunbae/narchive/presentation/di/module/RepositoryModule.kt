@@ -1,6 +1,7 @@
 package com.chunbae.narchive.presentation.di.module
 
 import com.chunbae.narchive.data.remote.repository.AuthRepositoryImpl
+import com.chunbae.narchive.data.remote.repository.FeedRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.FirebaseRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.KakaoAiDiaryRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.KakaoBookSearchRepositoryImpl
@@ -8,6 +9,7 @@ import com.chunbae.narchive.data.remote.repository.KakaoLocationSearchRepository
 import com.chunbae.narchive.data.remote.repository.NormalDiaryRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.ProfileRepositoryImpl
 import com.chunbae.narchive.domain.repository.AuthRepository
+import com.chunbae.narchive.domain.repository.FeedRepository
 import com.chunbae.narchive.domain.repository.FirebaseRepository
 import com.chunbae.narchive.domain.repository.KakaoAiDiaryRepository
 import com.chunbae.narchive.domain.repository.KakaoBookSearchRepository
@@ -43,4 +45,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindProfileRepository(profileRepositoryImpl: ProfileRepositoryImpl) : ProfileRepository
+
+    @Binds
+    abstract fun bindFeedRepository(feedRepositoryImpl: FeedRepositoryImpl) : FeedRepository
 }

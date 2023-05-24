@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View" />
         <variable
             name="feedData"
             type="com.chunbae.narchive.data.data.FeedData" />
@@ -71,6 +71,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginTop="@dimen/margin_20"
+            android:visibility='@{feedData.imageCount == 0 ? View.GONE : View.VISIBLE}'
             app:layout_constraintStart_toStartOf="@id/item_feed_simple_diary_rv_keywords"
             app:layout_constraintTop_toBottomOf="@id/item_feed_simple_diary_rv_keywords" />
 
@@ -80,8 +81,9 @@
             android:fontFamily="@font/pretendard_medium"
             android:includeFontPadding="false"
             android:text="@{@string/diary_thumbnail_count(feedData.imageCount)}"
-            android:textColor="@color/white"
+            android:textColor="@color/color_a4a4a4"
             android:textSize="20sp"
+            android:visibility='@{feedData.imageCount == 0 ? View.GONE : View.VISIBLE}'
             app:layout_constraintBottom_toBottomOf="@id/item_feed_simple_diary_iv_thumbnail"
             app:layout_constraintEnd_toEndOf="@id/item_feed_simple_diary_iv_thumbnail"
             app:layout_constraintStart_toStartOf="@id/item_feed_simple_diary_iv_thumbnail"
@@ -94,6 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/margin_15"
             android:src="@drawable/ic_common_marker"
+            android:visibility='@{feedData.locationAddress == null ? View.GONE : View.VISIBLE}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/item_feed_simple_diary_iv_thumbnail"
             app:layout_constraintTop_toBottomOf="@id/item_feed_simple_diary_iv_thumbnail" />
@@ -105,6 +108,7 @@
             android:fontFamily="@font/pretendard_medium"
             android:includeFontPadding="false"
             android:text="@{feedData.locationAddress}"
+            android:visibility='@{feedData.locationAddress == null ? View.GONE : View.VISIBLE}'
             android:textColor="@color/color_a4a4a4"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/item_feed_simple_diary_iv_marker"
@@ -122,10 +126,10 @@
             android:text="@{@string/convert_int_to_string(feedData.commentCount)}"
             android:textColor="@color/color_a4a4a4"
             android:textSize="12sp"
-            android:layout_marginEnd="@dimen/margin_15"
-            app:layout_constraintBottom_toBottomOf="@id/item_feed_simple_diary_iv_marker"
+            android:layout_margin="@dimen/margin_15"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/item_feed_simple_diary_iv_marker"
+            app:layout_constraintTop_toBottomOf="@id/item_feed_simple_diary_iv_thumbnail"
             tools:text="3" />
 
         <ImageView

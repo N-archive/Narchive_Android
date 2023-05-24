@@ -19,7 +19,9 @@ import com.chunbae.narchive.presentation.ui.search.book.view.SearchBookActivity
 import com.chunbae.narchive.presentation.ui.search.movie.view.SearchMovieActivity
 import com.chunbae.narchive.presentation.ui.write.diary.normal.view.WriteNormalDiaryActivity
 import com.chunbae.narchive.presentation.ui.write.diary.simple.view.WriteSimpleDiaryActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private val viewModel : MainViewModel by viewModels()
