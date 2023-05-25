@@ -28,6 +28,7 @@ class DetailDiaryActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_diary)
 
         initBinding()
+        initGetDiaryDetail()
         initVP()
         observeDetailData()
     }
@@ -37,8 +38,7 @@ class DetailDiaryActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
     }
 
-    override fun onStart() {
-        super.onStart()
+    private fun initGetDiaryDetail() {
         viewModel.getDiaryDetailData(intent.getIntExtra("position", 0))
     }
 
@@ -64,7 +64,6 @@ class DetailDiaryActivity : AppCompatActivity() {
 
     fun onCommentClick() {
         val intent = Intent(this, DiaryCommentActivity::class.java)
-        //:TODO 수정하기
         intent.putExtra("contentIdx", 0)
         startActivity(intent)
     }
