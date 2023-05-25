@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chunbae.narchive.databinding.ItemDiaryDetailImageviewBinding
 
-class DetailDiaryImageAdapter(private val imageList : List<Int>) : RecyclerView.Adapter<DetailDiaryImageAdapter.DetailDiaryImageViewHolder>(){
-
+class DetailDiaryImageAdapter() : RecyclerView.Adapter<DetailDiaryImageAdapter.DetailDiaryImageViewHolder>(){
+    var imageList = mutableListOf<String>()
     inner class DetailDiaryImageViewHolder(private val binding : ItemDiaryDetailImageviewBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : Int) {
+        fun bind(item : String) {
             binding.imagePath = item
         }
     }
