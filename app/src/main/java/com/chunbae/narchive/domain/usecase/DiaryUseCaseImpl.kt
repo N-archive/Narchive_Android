@@ -1,16 +1,17 @@
 package com.chunbae.narchive.domain.usecase
 
+import com.chunbae.narchive.data.data.DiaryData
 import com.chunbae.narchive.data.data.FeedData
 import com.chunbae.narchive.data.data.LocationData
 import com.chunbae.narchive.data.data.UserData
 import com.chunbae.narchive.data.remote.request.RequestNormalDiaryData
 import com.chunbae.narchive.data.remote.response.ResponseFeedData
+import com.chunbae.narchive.domain.repository.DiaryRepository
 import com.chunbae.narchive.domain.repository.FeedRepository
-import com.chunbae.narchive.domain.repository.NormalDiaryRepository
 import javax.inject.Inject
 
 class DiaryUseCaseImpl @Inject constructor(
-    private val repo: NormalDiaryRepository,
+    private val diaryrepo: DiaryRepository,
     private val feedRepo: FeedRepository
 ) : DiaryUseCase {
 
@@ -19,11 +20,15 @@ class DiaryUseCaseImpl @Inject constructor(
         locationData: LocationData?,
         images: MutableList<String>?
     ): Result<String> {
-        return repo.postNormalDiary(content.mapToRequest(locationData, images))
+        return diaryrepo.postNormalDiary(content.mapToRequest(locationData, images))
     }
 
-    override suspend fun getMapping(page: Int): Result<MutableList<FeedData>> {
+    override suspend fun getFeedMapping(page: Int): Result<MutableList<FeedData>> {
         return feedRepo.getFeedData(page).map { it.mapToFeedData() }
+    }
+
+    override suspend fun getDiaryDetailMapping(diaryIdx: Int): Result<DiaryData> {
+        return diaryrepo.getDiaryDetailData(diaryIdx).map{ it.divideSimpleOrNormal() }
     }
 
 
@@ -60,5 +65,14 @@ class DiaryUseCaseImpl @Inject constructor(
             )
         }
         return returnList
+    }
+
+    private fun DiaryData.divideSimpleOrNormal() : DiaryData {
+        return this.apply {
+            if(isSimple == "T") {
+                keywords = content?.split(",") as MutableList<String>?
+                content = null
+            }
+        }
     }
 }

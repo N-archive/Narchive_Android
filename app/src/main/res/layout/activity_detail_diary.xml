@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
         <variable
             name="activity"
             type="com.chunbae.narchive.presentation.ui.detail.diary.view.DetailDiaryActivity" />
@@ -53,6 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:orientation="horizontal"
+                    android:visibility='@{diaryData.images.empty ? View.GONE : View.VISIBLE}'
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +64,7 @@
                     android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:layout_margin="@dimen/margin_10"
+                    android:visibility='@{diaryData.images.empty ? View.GONE : View.VISIBLE}'
                     android:background="@drawable/bg_detail_image_indicator"
                     app:layout_constraintBottom_toBottomOf="@id/detail_diary_vp_image"
                     app:layout_constraintEnd_toEndOf="@id/detail_diary_vp_image">
@@ -84,7 +87,7 @@
 
                 <ImageView
                     android:id="@+id/detail_diary_iv_user_profile"
-
+                    Common_Circle_Image="@{diaryData.profilePath}"
                     android:layout_width="@dimen/feed_diary_profile_image_size"
                     android:layout_height="@dimen/feed_diary_profile_image_size"
                     android:layout_margin="@dimen/margin_15"
@@ -98,7 +101,7 @@
                     android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/pretendard_medium"
                     android:includeFontPadding="false"
-                    android:text="@{diaryData.user.userNickName}"
+                    android:text="@{diaryData.nickName}"
                     android:textColor="@color/text_black"
                     android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@id/detail_diary_iv_user_profile"
@@ -110,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_medium"
                     android:includeFontPadding="false"
-                    android:text="@{diaryData.uploadTime}"
+                    android:text="@{diaryData.updatedAt}"
                     android:textColor="@color/color_a4a4a4"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@id/detail_diary_iv_user_profile"
@@ -142,6 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_15"
+                    android:visibility='@{diaryData.locationName == null ? View.GONE : View.VISIBLE}'
                     android:src="@drawable/ic_common_marker"
                     app:layout_constraintStart_toStartOf="@id/detail_diary_tv_content"
                     app:layout_constraintTop_toBottomOf="@id/detail_diary_tv_content" />
@@ -152,9 +156,10 @@
                     android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/pretendard_medium"
                     android:includeFontPadding="false"
-                    android:text="@{diaryData.locationAddress}"
+                    android:text="@{diaryData.locationName}"
                     android:textColor="@color/color_a4a4a4"
                     android:textSize="12sp"
+                    android:visibility='@{diaryData.locationName == null ? View.GONE : View.VISIBLE}'
                     app:layout_constraintBottom_toBottomOf="@id/detail_diary_iv_marker"
                     app:layout_constraintStart_toEndOf="@id/detail_diary_iv_marker"
                     app:layout_constraintTop_toTopOf="@id/detail_diary_iv_marker"

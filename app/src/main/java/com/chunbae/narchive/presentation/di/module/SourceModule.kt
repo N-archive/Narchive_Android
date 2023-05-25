@@ -1,20 +1,20 @@
 package com.chunbae.narchive.presentation.di.module
 
 import com.chunbae.narchive.data.remote.source.AuthRemoteSource
+import com.chunbae.narchive.data.remote.source.DiaryRemoteSource
 import com.chunbae.narchive.data.remote.source.FeedRemoteSource
 import com.chunbae.narchive.data.remote.source.FirebaseStorageRemoteSource
 import com.chunbae.narchive.data.remote.source.KakaoAiDiaryRemoteSource
 import com.chunbae.narchive.data.remote.source.KakaoBookSearchRemoteSource
 import com.chunbae.narchive.data.remote.source.KakaoLocationSearchRemoteSource
-import com.chunbae.narchive.data.remote.source.NormalDiaryRemoteSource
 import com.chunbae.narchive.data.remote.source.ProfileRemoteSource
 import com.chunbae.narchive.domain.source.AuthSource
+import com.chunbae.narchive.domain.source.DiarySource
 import com.chunbae.narchive.domain.source.FeedSource
 import com.chunbae.narchive.domain.source.FirebaseStorageSource
 import com.chunbae.narchive.domain.source.KakaoAiDiarySource
 import com.chunbae.narchive.domain.source.KakaoBookSearchSource
 import com.chunbae.narchive.domain.source.KakaoLocationSearchSource
-import com.chunbae.narchive.domain.source.NormalDiarySource
 import com.chunbae.narchive.domain.source.ProfileSource
 import dagger.Binds
 import dagger.Module
@@ -41,7 +41,7 @@ abstract class SourceModule {
     abstract fun bindFirebaseStorageRemoteSource(firebaseStorageRemoteSource: FirebaseStorageRemoteSource) : FirebaseStorageSource
 
     @Binds
-    abstract fun bindNormalDiaryRemoteSource(normalDiaryRemoteSource: NormalDiaryRemoteSource) : NormalDiarySource
+    abstract fun bindNormalDiaryRemoteSource(DiaryRemoteSource: DiaryRemoteSource) : DiarySource
 
     @Binds
     abstract fun bindProfileRemoteSource(profileRemoteSource: ProfileRemoteSource) : ProfileSource

@@ -1,12 +1,10 @@
 package com.chunbae.narchive.presentation.ui.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chunbae.narchive.data.data.FeedData
-import com.chunbae.narchive.data.data.TodoData
 import com.chunbae.narchive.domain.usecase.DiaryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -58,7 +56,7 @@ class MainViewModel @Inject constructor(private val diaryUseCase: DiaryUseCase):
 
     fun getFeedData(page : Int) {
         viewModelScope.launch {
-            diaryUseCase.getMapping(page)
+            diaryUseCase.getFeedMapping(page)
                 .onSuccess { _feedDiaryData.value = it }
         }
     }
