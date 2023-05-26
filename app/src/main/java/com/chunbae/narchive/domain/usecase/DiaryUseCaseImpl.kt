@@ -4,7 +4,7 @@ import com.chunbae.narchive.data.data.DiaryData
 import com.chunbae.narchive.data.data.FeedData
 import com.chunbae.narchive.data.data.LocationData
 import com.chunbae.narchive.data.data.UserData
-import com.chunbae.narchive.data.remote.request.RequestNormalDiaryData
+import com.chunbae.narchive.data.remote.request.RequestDiaryData
 import com.chunbae.narchive.data.remote.response.ResponseFeedData
 import com.chunbae.narchive.domain.repository.DiaryRepository
 import com.chunbae.narchive.domain.repository.FeedRepository
@@ -18,9 +18,10 @@ class DiaryUseCaseImpl @Inject constructor(
     override suspend fun postMapping(
         content: String,
         locationData: LocationData?,
-        images: MutableList<String>?
+        images: MutableList<String>?,
+        isSimple : String
     ): Result<String> {
-        return diaryrepo.postNormalDiary(content.mapToRequest(locationData, images))
+        return diaryrepo.postNormalDiary(content.mapToRequest(locationData, images, isSimple))
     }
 
     override suspend fun getFeedMapping(page: Int): Result<MutableList<FeedData>> {
@@ -34,15 +35,17 @@ class DiaryUseCaseImpl @Inject constructor(
 
     private fun String.mapToRequest(
         locationData: LocationData?,
-        images: MutableList<String>?
-    ): RequestNormalDiaryData {
-        return RequestNormalDiaryData(
+        images: MutableList<String>?,
+        isSimple : String
+    ): RequestDiaryData {
+        return RequestDiaryData(
             this,
             locationData?.place_name,
             locationData?.road_address_name,
             locationData?.x?.toDouble(),
             locationData?.y?.toDouble(),
-            images
+            images,
+            isSimple
         )
     }
 
