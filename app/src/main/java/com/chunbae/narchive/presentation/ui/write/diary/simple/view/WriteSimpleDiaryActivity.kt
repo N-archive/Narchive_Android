@@ -14,7 +14,9 @@ import com.chunbae.narchive.presentation.ui.gallery.view.CustomGalleryActivity
 import com.chunbae.narchive.presentation.ui.search.location.view.SearchLocationActivity
 import com.chunbae.narchive.presentation.ui.write.diary.simple.adapter.WriteSimpleDiaryImageAdapter
 import com.chunbae.narchive.presentation.ui.write.diary.simple.viewmodel.WriteSimpleDiaryViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteSimpleDiaryActivity : AppCompatActivity() {
     private lateinit var binding : ActivityWriteDiarySimpleBinding
     private val viewModel : WriteSimpleDiaryViewModel by viewModels()
@@ -45,6 +47,7 @@ class WriteSimpleDiaryActivity : AppCompatActivity() {
     private fun observe() {
         observeImage()
         observeKeyword()
+        observePostDiary()
     }
 
     private fun observeKeyword() {
@@ -57,6 +60,12 @@ class WriteSimpleDiaryActivity : AppCompatActivity() {
         viewModel.selectedImages.observe(this) {
             imageAdapter.imageList = it
             imageAdapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun observePostDiary() {
+        viewModel.diaryState.observe(this) {
+            finish()
         }
     }
 

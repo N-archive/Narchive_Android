@@ -1,6 +1,6 @@
 package com.chunbae.narchive.data.remote.api
 
-import com.chunbae.narchive.data.remote.request.RequestNormalDiaryData
+import com.chunbae.narchive.data.remote.request.RequestDiaryData
 import com.chunbae.narchive.data.remote.response.ResponseDiaryDetailData
 import com.chunbae.narchive.data.remote.response.ResponseNormalDiary
 import retrofit2.Response
@@ -11,9 +11,9 @@ import retrofit2.http.Path
 
 interface DiaryService {
 
-    @POST("diaries/normal")
+    @POST("diaries")
     suspend fun postNormalDiary(
-        @Body req : RequestNormalDiaryData
+        @Body req : RequestDiaryData
     ) : Response<ResponseNormalDiary>
 
     @GET("diaries/{diaryIdx}")

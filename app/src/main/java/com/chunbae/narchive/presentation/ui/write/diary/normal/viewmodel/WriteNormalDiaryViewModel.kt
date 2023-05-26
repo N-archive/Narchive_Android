@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class WriteNormalDiaryViewModel @Inject constructor(
     private val aiRepo: KakaoAiDiaryRepository,
-    private val normalUseCase: DiaryUseCase,
+    private val diaryUseCase: DiaryUseCase,
     private val firebaseRepo: FirebaseRepository
 ) : ViewModel() {
 
@@ -71,16 +71,17 @@ class WriteNormalDiaryViewModel @Inject constructor(
                 imageDownloadPath.add(firebaseRepo.uploadProfileToFirebase(i.toUri()).toString())
             }
         }
-        postNormalDiary()
+        postSimpleDiary()
     }
 
-    fun postNormalDiary() {
+    fun postSimpleDiary() {
         viewModelScope.launch {
             userInputContent.value?.let {
-                normalUseCase.postMapping(
+                diaryUseCase.postMapping(
                     it,
                     selectedLocation.value,
-                    imageDownloadPath
+                    imageDownloadPath,
+                    "F"
                 )
             }
                 ?.onSuccess { _diaryState.value = it }

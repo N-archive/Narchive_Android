@@ -6,7 +6,7 @@ import com.chunbae.narchive.data.data.LocationData
 
 interface DiaryUseCase {
 
-    suspend fun postMapping(content : String, locationData: LocationData?, images : MutableList<String>?) : Result<String>
+    suspend fun postMapping(content : String, locationData: LocationData?, images : MutableList<String>?, isSimple : String) : Result<String>
 
     suspend fun getFeedMapping(page : Int) : Result<MutableList<FeedData>>
 
