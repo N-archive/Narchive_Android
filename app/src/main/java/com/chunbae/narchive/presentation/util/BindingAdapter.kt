@@ -1,9 +1,13 @@
 package com.chunbae.narchive.presentation.util
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.databinding.BindingAdapter
+import androidx.databinding.BindingMethod
+import androidx.databinding.BindingMethods
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -12,8 +16,9 @@ import com.google.android.material.card.MaterialCardView
 import jp.wasabeef.glide.transformations.BlurTransformation
 
 
+
 @BindingAdapter("Common_Image")
-fun ImageView.setImage(path: Any?) {
+fun ImageView.setImage (path: Any?) {
     Glide.with(this).load(path).into(this)
 }
 

@@ -4,6 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
+import androidx.databinding.BindingMethod
+import androidx.databinding.BindingMethods
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.chunbae.narchive.R
@@ -14,8 +18,8 @@ import com.chunbae.narchive.databinding.ActivityDetailDiaryBinding
 import com.chunbae.narchive.presentation.ui.comment.view.DiaryCommentActivity
 import com.chunbae.narchive.presentation.ui.detail.diary.adapter.DetailDiaryImageAdapter
 import com.chunbae.narchive.presentation.ui.detail.diary.viewmodel.DetailDiaryViewModel
+import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
-
 @AndroidEntryPoint
 class DetailDiaryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailDiaryBinding
@@ -55,8 +59,20 @@ class DetailDiaryActivity : AppCompatActivity() {
     private fun observeDetailData() {
         viewModel.diaryDetailData.observe(this) {
             binding.diaryData = it
+            it.keywords?.let {keywords -> setChips(keywords) }
             it.images?.let { list -> detailAdapter.imageList = list
             detailAdapter.notifyItemRangeInserted(0, list.size)}
+        }
+    }
+
+    private fun setChips(keywords : MutableList<String>) {
+        for (i in keywords) {
+            binding.detailDiaryChipContent.addView(Chip(this).apply {
+                text = i
+                isCloseIconVisible = false
+                chipBackgroundColor = ResourcesCompat.getColorStateList(resources, R.color.color_B2F0F4, null)
+                setTextColor(ResourcesCompat.getColorStateList(resources, R.color.white, null))
+            })
         }
     }
 
