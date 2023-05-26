@@ -6,13 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.chunbae.narchive.R
-import com.chunbae.narchive.data.data.Comment
-import com.chunbae.narchive.data.data.CommentData
-import com.chunbae.narchive.data.data.UserData
-import com.chunbae.narchive.data.data.WriteDialogData
-import com.chunbae.narchive.data.data.returnWriteDialogDataList
 import com.chunbae.narchive.databinding.ActivityDiaryCommentBinding
 import com.chunbae.narchive.presentation.ui.comment.adapter.CommentAdapter
 import com.chunbae.narchive.presentation.ui.comment.viewmodel.DiaryCommentViewModel
@@ -29,20 +23,27 @@ class DiaryCommentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_diary_comment)
-
+        initBinding()
         getDiaryIdx()
         observeCommentData()
         initComment()
     }
 
+    private fun initBinding() {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+    }
+
     private fun getDiaryIdx() {
-        viewModel.getCommentData(intent.getIntExtra("diaryIdx", 0))
+        viewModel.setDiaryIdx(intent.getIntExtra("diaryIdx", 0))
+        viewModel.getCommentData()
     }
 
     private fun observeCommentData() {
         viewModel.commentData.observe(this) {
             binding.commentData = it
-            it.commentList?.let {commentAdapter.comments = it
+            it.comments?.let {
+                commentAdapter.comments = it.reversed()
                 commentAdapter.notifyItemRangeChanged(0, it.size)}
         }
     }

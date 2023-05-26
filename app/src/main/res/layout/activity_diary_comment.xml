@@ -7,6 +7,10 @@
         <variable
             name="commentData"
             type="com.chunbae.narchive.data.data.CommentData" />
+
+        <variable
+            name="viewModel"
+            type="com.chunbae.narchive.presentation.ui.comment.viewmodel.DiaryCommentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -127,25 +131,29 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/detail_diary_add_comment"
+                android:text="@={viewModel.userInputComment}"
                 android:textColorHint="@color/color_a4a4a4"
                 android:textColor="@color/text_black"
                 android:textSize="15sp"
                 android:fontFamily="@font/pretendard_medium"
                 android:includeFontPadding="false"
-                android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginHorizontal="@dimen/margin_20"
                 android:background="@android:color/transparent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/diary_comment_btn_send_comment"/>
 
             <ImageView
+                android:id="@+id/diary_comment_btn_send_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_common_plane"
                 android:layout_marginEnd="@dimen/margin_15"
+                android:onClick="@{() -> viewModel.postCommentData()}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

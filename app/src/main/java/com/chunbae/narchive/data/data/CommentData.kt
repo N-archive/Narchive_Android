@@ -5,5 +5,5 @@ data class CommentData(
     val nickName : String,
     val updatedAt : String,
     val content : String,
-    val commentList : MutableList<Comment>?
+    val comments : MutableList<Comment>?
 )

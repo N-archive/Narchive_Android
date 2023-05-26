@@ -7,7 +7,7 @@ import com.chunbae.narchive.data.data.Comment
 import com.chunbae.narchive.databinding.ItemDiaryCommentFormBinding
 
 class CommentAdapter() : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
-    var comments =  mutableListOf<Comment>()
+    var comments =  listOf<Comment>()
     inner class CommentViewHolder(private val binding : ItemDiaryCommentFormBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : Comment) {
             binding.comment = item
