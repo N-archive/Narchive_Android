@@ -70,7 +70,7 @@ class FeedFragment : Fragment() {
         //:TODO 검색버튼 클릭시 동작 로직 추가하기
     }
 
-    fun onFeedItemClicked(position : Int) {
+    private fun onFeedItemClicked(position : Int) {
         val intent = Intent(requireActivity(), DetailDiaryActivity::class.java)
         intent.putExtra("position", position)
         startActivity(intent)

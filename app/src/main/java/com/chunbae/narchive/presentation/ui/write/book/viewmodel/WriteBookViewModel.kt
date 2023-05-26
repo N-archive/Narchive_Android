@@ -22,6 +22,8 @@ class WriteBookViewModel : ViewModel() {
     private val _userSelectedImage = MutableLiveData<Any>()
     val userSelectedImage : LiveData<Any> = _userSelectedImage
 
+    var userBookRating = MutableLiveData<Float>().apply { value = 0F }
+
     fun setItem() {
         _keywordItems.value = reviewKeywordData()
     }

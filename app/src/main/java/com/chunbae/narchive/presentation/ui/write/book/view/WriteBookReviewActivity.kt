@@ -39,6 +39,10 @@ class WriteBookReviewActivity : AppCompatActivity() {
 
     private fun getBookData() = intent.getSerializableExtra("Book")
 
+    fun ratingLayoutVisibility() {
+        binding.writeBookMovieReviewRatingRating.visibility = if(binding.writeBookMovieReviewRatingRating.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+    }
+
     fun keywordLayoutVisibility() {
        binding.writeBookMovieReviewRvKeywords.visibility = if (binding.writeBookMovieReviewRvKeywords.visibility == View.VISIBLE) View.GONE else View.VISIBLE
     }
