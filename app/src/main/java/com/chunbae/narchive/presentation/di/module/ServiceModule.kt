@@ -1,6 +1,8 @@
 package com.chunbae.narchive.presentation.di.module
 
+import com.chunbae.narchive.data.data.Comment
 import com.chunbae.narchive.data.remote.api.AuthService
+import com.chunbae.narchive.data.remote.api.CommentService
 import com.chunbae.narchive.data.remote.api.DiaryService
 import com.chunbae.narchive.data.remote.api.FeedService
 import com.chunbae.narchive.data.remote.api.KakaoAiService
@@ -16,6 +18,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -49,5 +52,9 @@ class ServiceModule {
     @Provides
     @Singleton
     fun provideFeedService(@NarchiveRetrofit retrofit: Retrofit) : FeedService = retrofit.create(FeedService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideCommentService(@NarchiveRetrofit retrofit: Retrofit) : CommentService = retrofit.create(CommentService::class.java)
 
 }

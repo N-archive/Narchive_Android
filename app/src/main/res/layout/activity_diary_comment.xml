@@ -52,13 +52,13 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_margin="@dimen/margin_15"
-                    Common_Circle_Image="@{commentData.user.userProfileImage}" />
+                    Common_Circle_Image="@{commentData.profilePath}" />
 
                 <TextView
                     android:id="@+id/diary_comment_tv_user_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{commentData.user.userNickName}"
+                    android:text="@{commentData.nickName}"
                     android:textSize="15sp"
                     android:textColor="@color/text_black"
                     android:fontFamily="@font/pretendard_medium"
@@ -71,7 +71,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{commentData.uploadTime}"
+                    android:text="@{commentData.updatedAt}"
                     android:textSize="12sp"
                     android:textColor="@color/color_a4a4a4"
                     android:fontFamily="@font/pretendard_medium"

@@ -136,14 +136,15 @@
 
                     <TextView
                         android:id="@+id/detail_diary_tv_content"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_medium"
                         android:includeFontPadding="false"
                         android:text="@{diaryData.content}"
                         android:textColor="@color/text_black"
                         android:textSize="14sp"
-                        android:visibility='@{diaryData.isSimple == "F" ? View.VISIBLE : View.GONE}'
+                        android:gravity="start"
+                        android:visibility='@{diaryData.isSimple == "T" ? View.GONE : View.VISIBLE}'
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

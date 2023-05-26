@@ -80,7 +80,7 @@ class DetailDiaryActivity : AppCompatActivity() {
 
     fun onCommentClick() {
         val intent = Intent(this, DiaryCommentActivity::class.java)
-        intent.putExtra("contentIdx", 0)
+        intent.putExtra("diaryIdx", viewModel.diaryDetailData.value?.diaryIdx)
         startActivity(intent)
     }
 }
