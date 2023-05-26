@@ -50,20 +50,15 @@
             app:layout_constraintTop_toBottomOf="@id/item_feed_simple_diary_tv_user_nickname"
             tools:text="3일 전" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.google.android.material.chip.ChipGroup
             android:id="@+id/item_feed_simple_diary_rv_keywords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_20"
             android:layout_marginHorizontal="@dimen/margin_15"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            android:orientation="vertical"
-            app:spanCount="5"
             app:layout_constraintTop_toBottomOf="@id/item_feed_simple_diary_iv_user_profile"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:itemCount="10"
-            tools:listitem="@layout/item_feed_simple_diary_rv_keywords"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
             android:id="@+id/item_feed_simple_diary_iv_thumbnail"
