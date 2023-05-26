@@ -1,8 +1,9 @@
 package com.chunbae.narchive.data.data
 
 data class CommentData(
-    val user : UserData,
-    val uploadTime : String,
+    val profilePath : String,
+    val nickName : String,
+    val updatedAt : String,
     val content : String,
-    val commentList : List<Comment>
+    val comments : MutableList<Comment>?
 )

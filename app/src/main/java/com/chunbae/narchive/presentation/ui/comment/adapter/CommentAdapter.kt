@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chunbae.narchive.data.data.Comment
 import com.chunbae.narchive.databinding.ItemDiaryCommentFormBinding
 
-class CommentAdapter(private val comments: List<Comment>) : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
-
+class CommentAdapter() : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
+    var comments =  listOf<Comment>()
     inner class CommentViewHolder(private val binding : ItemDiaryCommentFormBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : Comment) {
             binding.comment = item
