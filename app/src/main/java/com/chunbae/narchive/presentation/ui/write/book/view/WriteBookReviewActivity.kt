@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +18,10 @@ import com.chunbae.narchive.databinding.ActivityWriteBookMovieReviewBinding
 import com.chunbae.narchive.presentation.ui.write.book.adapter.WriteBookReviewKeywordAdapter
 import com.chunbae.narchive.presentation.ui.write.book.viewmodel.WriteBookViewModel
 import com.chunbae.narchive.presentation.ui.write.dialog.GalleryCameraDialog
+import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteBookReviewActivity : AppCompatActivity() {
     private lateinit var binding : ActivityWriteBookMovieReviewBinding
     private val viewModel : WriteBookViewModel by viewModels()
@@ -29,15 +33,16 @@ class WriteBookReviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_write_book_movie_review)
 
-        getBookData()
+        setBookData()
         initBinding()
         initKeyword()
         observe()
         observeBottomSheet()
 
     }
-
-    private fun getBookData() = intent.getSerializableExtra("Book")
+    private fun setBookData() {
+        viewModel.setBookData(intent.getSerializableExtra("Book") as BookData)
+    }
 
     fun ratingLayoutVisibility() {
         binding.writeBookMovieReviewRatingRating.visibility = if(binding.writeBookMovieReviewRatingRating.visibility == View.VISIBLE) View.GONE else View.VISIBLE
@@ -56,7 +61,7 @@ class WriteBookReviewActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.type = "Book"
         binding.writeBookMovieReviewLayoutBookMovie.type = "Book"
-        binding.writeBookMovieReviewLayoutBookMovie.bookData = getBookData() as BookData
+        binding.writeBookMovieReviewLayoutBookMovie.bookData = viewModel.selectedBook.value
     }
 
     private fun initKeyword() {
@@ -71,10 +76,24 @@ class WriteBookReviewActivity : AppCompatActivity() {
         viewModel.keywordItems.observe(this) {
             keywordAdapter.bookKeywordData = it
         }
+
+        viewModel.userState.observe(this) {
+            Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).show()
+            if(it == "성공적으로 저장되었습니다.") {
+                finish()
+            }
+        }
     }
 
     fun onSaveReview() {
-        Log.d("----", "onSaveReview: ${keywordAdapter.bookKeywordData}")
+        val keywords = mutableListOf<String>()
+        for(i in keywordAdapter.bookKeywordData) {
+            i.keywordItems?.find { it.isClicked }?.itemTitle?.let { keywords.add(it) }
+        }
+        val userReview = binding.writeBookMovieReviewEdtReview.text.toString()
+        val userRating = binding.writeBookMovieReviewRatingRating.rating
+        viewModel.postBookReview(keywords, userReview, userRating)
+
     }
 
     private fun observeBottomSheet() {

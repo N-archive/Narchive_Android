@@ -23,4 +23,16 @@ class FirebaseRepositoryImpl @Inject constructor(private val firebaseSource: Fir
     ) {
         firebaseSource.uploadWriteImageToFirebase(imageList, downloadURL)
     }
+
+    override suspend fun uploadBookOrMovieImageUriToFirebase(isBook: String, path: Uri): Uri? {
+        return firebaseSource.uploadBookOrMovieImageUriToFirebase(isBook, path)
+    }
+
+    override suspend fun uploadBookOrMovieImageBitmapToFirebase(
+        isBook: String,
+        path: Bitmap
+    ): Uri? {
+        return firebaseSource.uploadBookOrMovieImageBitmapToFirebase(isBook, path)
+    }
+
 }

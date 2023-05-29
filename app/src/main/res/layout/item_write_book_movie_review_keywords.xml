@@ -25,7 +25,7 @@
             android:fontFamily="@font/pretendard_semibold"
             android:text="@{keywordData.keywordTitle}"
             android:textColor="@color/text_black"
-            android:textSize="14sp"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="이 책에 대한 총평을 선택해주세요." />
@@ -37,49 +37,11 @@
                 android:layout_marginTop="@dimen/margin_5"
                 android:clipToPadding="false"
                 android:paddingHorizontal="@dimen/margin_15"
-                android:visibility="@{keywordData.selectable ? View.VISIBLE : View.GONE}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_write_book_movie_review_keywords_tv_title"
                  />
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_15"
-            android:layout_marginTop="@dimen/margin_10"
-            android:visibility="@{keywordData.selectable ? View.GONE : View.VISIBLE}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_write_book_movie_review_keywords_tv_title">
-
-            <EditText
-                android:id="@+id/item_write_book_movie_review_keywords_edt_input"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="@string/write_review_here"
-                android:textColor="@color/text_black"
-                android:textColorHint="@color/color_a4a4a4"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/margin_7"
-                android:background="@color/color_a4a4a4"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/item_write_book_movie_review_keywords_edt_input"
-                app:layout_constraintStart_toStartOf="@id/item_write_book_movie_review_keywords_edt_input"
-                app:layout_constraintTop_toBottomOf="@id/item_write_book_movie_review_keywords_edt_input" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
