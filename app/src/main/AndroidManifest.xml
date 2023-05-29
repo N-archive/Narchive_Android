@@ -58,7 +58,7 @@
             android:exported="false" />
         <activity android:name=".presentation.ui.search.movie.view.SearchMovieActivity"
             android:exported="false" />
-        <activity android:name=".presentation.ui.detail.book.DetailBookActivity"
+        <activity android:name=".presentation.ui.detail.book.view.DetailBookActivity"
             android:exported="false" />
         <activity android:name=".presentation.ui.detail.movie.DetailMovieActivity"
             android:exported="false" />

@@ -13,11 +13,11 @@
 
         <variable
             name="bookActivity"
-            type="com.chunbae.narchive.presentation.ui.detail.book.DetailBookActivity" />
+            type="com.chunbae.narchive.presentation.ui.detail.book.view.DetailBookActivity" />
 
         <variable
             name="bookData"
-            type="com.chunbae.narchive.data.data.BookData" />
+            type="com.chunbae.narchive.data.remote.response.ResponseBookDetailData.ResponseBookDetailResult" />
 
         <variable
             name="movieActivity"
@@ -48,8 +48,9 @@
 
                 <androidx.constraintlayout.utils.widget.ImageFilterView
                     android:id="@+id/detail_book_movie_iv_blur_background"
-                    Detail_Blur_Background='@{type == "Book" ? bookData.thumbnail : movieData.thumbnail}'
+                    Detail_Blur_Background='@{type == "Book" ? bookData.bookThumbnailPath : movieData.thumbnail}'
                     android:layout_width="match_parent"
+                    android:scaleType="fitXY"
                     android:layout_height="0dp"
                     app:layout_constraintDimensionRatio="1:1.25"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -69,14 +70,14 @@
 
                     <ImageView
                         android:id="@+id/detail_book_movie_iv_thumbnail"
-                        Common_iv_radius_5='@{type == "Book" ? bookData.thumbnail : movieData.thumbnail}'
+                        Common_iv_radius_5='@{type == "Book" ? bookData.bookThumbnailPath : movieData.thumbnail}'
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         tools:background="@tools:sample/backgrounds/scenic" />
 
                     <ImageView
                         android:id="@+id/detail_book_movie_iv_user_image"
-                        Common_iv_radius_5='@{type == "Book" ? bookData.userImage : movieData.userImage}'
+                        Common_iv_radius_5='@{type == "Book" ? bookData.reviewImagePath : movieData.userImage}'
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:visibility="invisible" />
@@ -86,54 +87,59 @@
 
                 <TextView
                     android:id="@+id/detail_book_movie_tv_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_15"
+                    android:ellipsize="end"
                     android:fontFamily="@font/pretendard_bold"
                     android:includeFontPadding="false"
-                    android:text='@{type == "Book" ? bookData.title : movieData.title }'
+                    android:maxLines="1"
+                    android:text='@{type == "Book" ? bookData.bookTitle : movieData.title }'
                     android:textColor="@color/text_black"
                     android:textSize="20sp"
+                    app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/detail_book_movie_rating_rating"
                     app:layout_constraintTop_toBottomOf="@id/detail_book_movie_iv_blur_background"
                     tools:text="GO" />
 
                 <TextView
+                    android:id="@+id/detail_book_movie_tv_published"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_15"
+                    android:layout_marginTop="@dimen/margin_7"
                     android:fontFamily="@font/pretendard_medium"
                     android:includeFontPadding="false"
-                    android:text='@{type == "Book" ? @string/detail_book_published(bookData.publishedAt) : @string/detail_movie_released(movieData.releaseAt)}'
+                    android:text='@{type == "Book" ? @string/detail_book_published(bookData.bookPublishedAt) : @string/detail_movie_released(movieData.releaseAt)}'
                     android:textColor="@color/color_a4a4a4"
                     android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="@id/detail_book_movie_tv_title"
-                    app:layout_constraintStart_toEndOf="@id/detail_book_movie_tv_title"
-                    app:layout_constraintTop_toTopOf="@id/detail_book_movie_tv_title"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/detail_book_movie_tv_title"
+                    app:layout_constraintTop_toBottomOf="@id/detail_book_movie_tv_title"
                     tools:text="2023.01.01 발매" />
 
                 <TextView
                     android:id="@+id/detail_book_movie_tv_author_director"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_3"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:fontFamily="@font/pretendard_medium"
                     android:includeFontPadding="false"
-                    android:text='@{type == "Book" ? @string/book_author(bookData.author) : @string/movie_director(movieData.director)}'
+                    android:text='@{type == "Book" ? @string/book_author(bookData.bookAuthor) : @string/movie_director(movieData.director)}'
                     android:textColor="@color/color_a4a4a4"
                     android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/detail_book_movie_tv_title"
-                    app:layout_constraintTop_toBottomOf="@id/detail_book_movie_tv_title"
+                    app:layout_constraintTop_toBottomOf="@id/detail_book_movie_tv_published"
                     tools:text="저자 : 가네시로 가즈키" />
 
                 <TextView
                     android:id="@+id/detail_book_movie_tv_publisher_actor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_3"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:fontFamily="@font/pretendard_medium"
                     android:includeFontPadding="false"
-                    android:text='@{type == "Book" ? @string/book_publisher(bookData.publisher) : @string/movie_actor(movieData.actors)}'
+                    android:text='@{type == "Book" ? @string/book_publisher(bookData.bookPublisher) : @string/movie_actor(movieData.actors)}'
                     android:textColor="@color/color_a4a4a4"
                     android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/detail_book_movie_tv_author_director"
@@ -141,6 +147,7 @@
                     tools:text="출판 : 북폴리오" />
 
                 <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/detail_book_movie_rating_rating"
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -159,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_15"
                     android:layout_marginTop="@dimen/margin_20"
-                    android:visibility='@{type == "Book" ? (bookData.keywords == null ? View.GONE : View.VISIBLE) : (movieData.keywords == null ? View.GONE : View.VISIBLE)}'
+                    android:visibility='@{type == "Book" ? (bookData.keyword.empty ? View.GONE : View.VISIBLE) : (movieData.keywords == null ? View.GONE : View.VISIBLE)}'
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/detail_book_movie_tv_publisher_actor">
@@ -181,11 +188,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_20"
-                        app:layout_constraintTop_toBottomOf="@id/detail_book_movie_tv_keyword_title"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
-                        tools:listitem="@layout/item_book_movie_detail_keywords"/>
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/detail_book_movie_tv_keyword_title"
+                        tools:listitem="@layout/item_book_movie_detail_keywords" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -195,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_15"
                     android:layout_marginTop="@dimen/margin_20"
-                    android:visibility='@{type == "Book" ? (bookData.review == null ? View.GONE : View.VISIBLE) : (movieData.keywords == null ? View.GONE : View.VISIBLE)}'
+                    android:visibility='@{type == "Book" ? (bookData.content.empty ? View.GONE : View.VISIBLE) : (movieData.keywords == null ? View.GONE : View.VISIBLE)}'
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/detail_book_movie_layout_keywords">
@@ -220,7 +227,7 @@
                         android:fontFamily="@font/pretendard_medium"
                         android:includeFontPadding="false"
                         android:padding="@dimen/margin_10"
-                        android:text='@{type == "Book" ? bookData.review : movieData.review}'
+                        android:text='@{type == "Book" ? bookData.content : movieData.review}'
                         android:textColor="@color/text_black"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
