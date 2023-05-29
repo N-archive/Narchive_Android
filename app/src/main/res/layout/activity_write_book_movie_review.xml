@@ -148,12 +148,64 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
-                    android:id="@+id/write_book_movie_review_view_divider1"
+                    android:id="@+id/write_book_movie_review_view_divider0"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
                     android:layout_marginTop="@dimen/margin_15"
                     android:background="@color/color_f9f9f9"
                     app:layout_constraintTop_toBottomOf="@id/write_book_movie_review_btn_add_image" />
+
+                <TextView
+                    android:id="@+id/write_book_movie_review_tv_add_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_15"
+                    android:fontFamily="@font/pretendard_semibold"
+                    android:includeFontPadding="false"
+                    android:text="@string/write_add_rating"
+                    android:textColor="@color/text_black"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/write_book_movie_review_view_divider0"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_20"
+                    android:onClick='@{() -> type == "Book" ? bookActivity.ratingLayoutVisibility() : bookActivity.ratingLayoutVisibility()}'
+                    android:src="@drawable/ic_common_chervon_down"
+                    app:layout_constraintBottom_toBottomOf="@id/write_book_movie_review_tv_add_rating"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/write_book_movie_review_tv_add_rating" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/write_book_movie_review_layout_rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/write_book_movie_review_tv_add_rating" >
+
+                    <RatingBar
+                        android:id="@+id/write_book_movie_review_rating_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_15"
+                        android:numStars="5"
+                        android:progressTint="@color/color_B2F0F4"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/write_book_movie_review_view_divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:background="@color/color_f9f9f9"
+                    app:layout_constraintTop_toBottomOf="@id/write_book_movie_review_layout_rating" />
 
                 <TextView
                     android:id="@+id/write_book_movie_review_tv_add_keyword"

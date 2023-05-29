@@ -49,6 +49,7 @@
     <string name="detail_book_movie_review">내가 등록한 감상평</string>
 
     <string name="write_add_photo">사진 등록하기 *</string>
+    <string name="write_add_rating">별점 등록하기 *</string>
     <string name="write_add_keyword">키워드 등록하기</string>
     <string name="write_add_review">감상평 등록하기</string>
 

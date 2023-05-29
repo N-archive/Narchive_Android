@@ -17,7 +17,9 @@ class WriteBookReviewKeywordAdapter() :
         fun bind(item: KeywordData) {
             binding.keywordData = item
             binding.itemWriteBookMovieReviewKeywordsChipSelector.hasFixedSize()
-            binding.itemWriteBookMovieReviewKeywordsChipSelector.adapter = item.keywordItems?.let { WriteBookReviewKeywordSelectorAdapter(::notifyClick, adapterPosition, it) }
+
+            binding.itemWriteBookMovieReviewKeywordsChipSelector.adapter =
+                item.keywordItems?.let { WriteBookReviewKeywordSelectorAdapter(::notifyClick, adapterPosition, it) }
         }
     }
 

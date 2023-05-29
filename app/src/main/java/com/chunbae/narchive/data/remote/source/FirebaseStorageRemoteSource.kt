@@ -54,6 +54,28 @@ class FirebaseStorageRemoteSource @Inject constructor(private val sharedPrefSour
         }
     }
 
+    override suspend fun uploadBookOrMovieImageUriToFirebase(isBook: String, path: Uri): Uri? {
+        val storagePath = "${isBook}/${sharedPrefSource.getUserId()}/${path.lastPathSegment}"
+        val ref = storage.child(storagePath)
+        ref.putFile(path)
+        return translateToDownLoadURL(storagePath)
+    }
+
+    override suspend fun uploadBookOrMovieImageBitmapToFirebase(
+        isBook: String,
+        path: Bitmap
+    ): Uri? {
+        val baos = ByteArrayOutputStream()
+        path.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        val storagePath = "${isBook}/${sharedPrefSource.getUserId()}/${path.generationId}"
+        val ref = storage.child(storagePath)
+        ref.putBytes(data)
+        return translateToDownLoadURL(storagePath)
+    }
+
+
     private fun translateToDownLoadURL(uri : String) : Uri {
         return ("https://firebasestorage.googleapis.com/v0/b/narchive-28009.appspot.com/o/" + uri.replace("/", "%2F") + "?alt=media").toUri()
     }

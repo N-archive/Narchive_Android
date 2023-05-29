@@ -1,6 +1,7 @@
 package com.chunbae.narchive.presentation.ui.main.feed.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
@@ -26,13 +27,25 @@ class FeedAdapter (private val onClicked : (Int) -> Unit) : RecyclerView.Adapter
         fun bind(item : FeedData) {
             binding.feedData = item
             item.keywords?.let {
-                for(i in it) {
-                    binding.itemFeedSimpleDiaryRvKeywords.addView(Chip(context).apply {
-                        text = i
-                        isCloseIconVisible = false
-                        chipBackgroundColor = ResourcesCompat.getColorStateList(resources, R.color.color_B2F0F4, null)
-                        setTextColor(ResourcesCompat.getColorStateList(resources, R.color.white, null))
-                    })
+                if (binding.itemFeedSimpleDiaryRvKeywords.childCount == 0) {
+                    for (i in it) {
+                        binding.itemFeedSimpleDiaryRvKeywords.addView(Chip(context).apply {
+                            text = i
+                            isCloseIconVisible = false
+                            chipBackgroundColor = ResourcesCompat.getColorStateList(
+                                resources,
+                                R.color.color_B2F0F4,
+                                null
+                            )
+                            setTextColor(
+                                ResourcesCompat.getColorStateList(
+                                    resources,
+                                    R.color.white,
+                                    null
+                                )
+                            )
+                        })
+                    }
                 }
             }
             binding.root.setOnClickListener { onClicked.invoke(item.feedIdx) }

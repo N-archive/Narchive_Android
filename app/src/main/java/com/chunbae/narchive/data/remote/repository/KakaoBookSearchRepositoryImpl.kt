@@ -13,7 +13,7 @@ class KakaoBookSearchRepositoryImpl @Inject constructor(private val source : Kak
         val mapData = mutableListOf<BookData>()
         this.onSuccess { it.apply {
             for(i in it) {
-                mapData.add(BookData(null, i.thumbnail, null, i.title, i.authors.joinToString(), i.publisher, i.datetime.substring(0, 10), null, null, null))
+                mapData.add(BookData(null, i.thumbnail, null, i.title, i.authors.joinToString(), i.publisher, i.datetime.substring(0, 10), 0F, null, null))
             }
         } }
         return Result.success(mapData)

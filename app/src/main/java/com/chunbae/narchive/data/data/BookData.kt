@@ -10,7 +10,7 @@ data class BookData (
     val author : String,
     val publisher : String,
     val publishedAt : String,
-    val rating : Float?,
+    val rating : Float,
     val keywords : List<String>?,
     val review : String?
 ) : Serializable

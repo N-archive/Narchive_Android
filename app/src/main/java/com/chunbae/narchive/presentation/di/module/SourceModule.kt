@@ -1,6 +1,7 @@
 package com.chunbae.narchive.presentation.di.module
 
 import com.chunbae.narchive.data.remote.source.AuthRemoteSource
+import com.chunbae.narchive.data.remote.source.BookRemoteSource
 import com.chunbae.narchive.data.remote.source.CommentRemoteSource
 import com.chunbae.narchive.data.remote.source.DiaryRemoteSource
 import com.chunbae.narchive.data.remote.source.FeedRemoteSource
@@ -10,6 +11,7 @@ import com.chunbae.narchive.data.remote.source.KakaoBookSearchRemoteSource
 import com.chunbae.narchive.data.remote.source.KakaoLocationSearchRemoteSource
 import com.chunbae.narchive.data.remote.source.ProfileRemoteSource
 import com.chunbae.narchive.domain.source.AuthSource
+import com.chunbae.narchive.domain.source.BookSource
 import com.chunbae.narchive.domain.source.CommentSource
 import com.chunbae.narchive.domain.source.DiarySource
 import com.chunbae.narchive.domain.source.FeedSource
@@ -53,4 +55,7 @@ abstract class SourceModule {
 
     @Binds
     abstract fun bindCommentRemoteSource(commentRemoteSource: CommentRemoteSource) : CommentSource
+
+    @Binds
+    abstract fun bindBookRemoteSource(bookRemoteSource: BookRemoteSource) : BookSource
 }

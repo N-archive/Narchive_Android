@@ -2,6 +2,7 @@ package com.chunbae.narchive.presentation.di.module
 
 import com.chunbae.narchive.data.data.Comment
 import com.chunbae.narchive.data.remote.api.AuthService
+import com.chunbae.narchive.data.remote.api.BookService
 import com.chunbae.narchive.data.remote.api.CommentService
 import com.chunbae.narchive.data.remote.api.DiaryService
 import com.chunbae.narchive.data.remote.api.FeedService
@@ -56,5 +57,9 @@ class ServiceModule {
     @Provides
     @Singleton
     fun provideCommentService(@NarchiveRetrofit retrofit: Retrofit) : CommentService = retrofit.create(CommentService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideBookService(@NarchiveRetrofit retrofit: Retrofit) : BookService = retrofit.create(BookService::class.java)
 
 }
