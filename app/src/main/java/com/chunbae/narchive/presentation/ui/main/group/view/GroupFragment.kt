@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.chunbae.narchive.R
 import com.chunbae.narchive.data.data.BookData
 import com.chunbae.narchive.data.data.MovieData
@@ -18,12 +19,16 @@ import com.chunbae.narchive.presentation.ui.detail.movie.DetailMovieActivity
 import com.chunbae.narchive.presentation.ui.main.MainActivity
 import com.chunbae.narchive.presentation.ui.main.MainViewModel
 import com.chunbae.narchive.presentation.ui.main.group.adapter.BookAdapter
+import com.chunbae.narchive.presentation.ui.main.group.adapter.GroupFragmentAdapter
 import com.chunbae.narchive.presentation.ui.main.group.adapter.MovieAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 
 class GroupFragment : Fragment() {
     private lateinit var binding : FragmentGroupBinding
     private val viewModel : MainViewModel by activityViewModels()
-
+    private val groupFragmentAdapter by lazy {
+        GroupFragmentAdapter(requireActivity())
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +37,7 @@ class GroupFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_group, container, false)
 
         initBinding()
-        initGroup()
+        initTab()
 
         return binding.root
     }
@@ -42,30 +47,20 @@ class GroupFragment : Fragment() {
         binding.viewModel = viewModel
     }
 
-    private fun initGroup() {
-        viewModel.isBookOrMovie.observe(viewLifecycleOwner) {
-            binding.fgGroupTvGroupType.text = when(it) {
-                "Book" -> "책"
-                else -> "영화"
-            }
-
-            binding.fgGroupRvContents.adapter = when(it) {
-                "Book" -> BookAdapter(::onGroupItemClick).also { it.bookData = returnBookData() }
-                else -> MovieAdapter(::onGroupItemClick).also { it.movieData = returnMovieData() }
-            }
+    private fun initTab() {
+        binding.fgGroupVpContents.apply {
+            adapter = groupFragmentAdapter
+            this.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+            TabLayoutMediator(binding.fgGroupTabGroupType, this) { mTab, position ->
+                mTab.text = setTabTitles()[position]
+            }.attach()
+            offscreenPageLimit = 3
         }
     }
 
-    private fun onGroupItemClick(type : String, itemId : Int) {
-        val activity = if(type == "Book") DetailBookActivity::class.java else DetailMovieActivity::class.java
-
-        val intent = Intent(requireContext(), activity)
-        intent.putExtra("itemId", itemId)
-        startActivity(intent)
-
-    }
-
     /** Dummy */
+
+    private fun setTabTitles() : List<String> = listOf("책", "영화", "장소")
 
     private fun returnBookData() : MutableList<BookData> =
         mutableListOf<BookData>().apply {
