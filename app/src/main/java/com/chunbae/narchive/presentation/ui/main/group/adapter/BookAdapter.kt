@@ -14,7 +14,7 @@ class BookAdapter(private val onClick : (String, Int) -> Unit) : RecyclerView.Ad
         fun bind(item : ResponseBookGroupData.ResponseBookGroupDataResult) {
             binding.type = "Book"
             binding.bookData = item
-            binding.root.setOnClickListener { onClick.invoke("Book", item.bookIdx!!) }
+            binding.root.setOnClickListener { onClick.invoke("Book", item.userReviewIdx!!) }
         }
     }
 

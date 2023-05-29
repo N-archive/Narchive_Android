@@ -1,8 +1,6 @@
 package com.chunbae.narchive.presentation.ui.main.group.view
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,13 +12,8 @@ import com.chunbae.narchive.R
 import com.chunbae.narchive.data.data.BookData
 import com.chunbae.narchive.data.data.MovieData
 import com.chunbae.narchive.databinding.FragmentGroupBinding
-import com.chunbae.narchive.presentation.ui.detail.book.DetailBookActivity
-import com.chunbae.narchive.presentation.ui.detail.movie.DetailMovieActivity
-import com.chunbae.narchive.presentation.ui.main.MainActivity
 import com.chunbae.narchive.presentation.ui.main.MainViewModel
-import com.chunbae.narchive.presentation.ui.main.group.adapter.BookAdapter
 import com.chunbae.narchive.presentation.ui.main.group.adapter.GroupFragmentAdapter
-import com.chunbae.narchive.presentation.ui.main.group.adapter.MovieAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class GroupFragment : Fragment() {

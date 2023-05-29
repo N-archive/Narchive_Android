@@ -6,7 +6,7 @@ data class ResponseBookGroupData (
     val result : List<ResponseBookGroupDataResult>
 ) : BaseResponse() {
     data class ResponseBookGroupDataResult (
-        val bookIdx : Int,
+        val userReviewIdx : Int,
         val bookThumbnailPath : String,
         val bookTitle : String
             )

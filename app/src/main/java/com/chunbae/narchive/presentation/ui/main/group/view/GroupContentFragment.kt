@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.chunbae.narchive.databinding.FragmentGroupContentBinding
-import com.chunbae.narchive.presentation.ui.detail.book.DetailBookActivity
+import com.chunbae.narchive.presentation.ui.detail.book.view.DetailBookActivity
 import com.chunbae.narchive.presentation.ui.detail.movie.DetailMovieActivity
 import com.chunbae.narchive.presentation.ui.main.MainViewModel
 import com.chunbae.narchive.presentation.ui.main.group.adapter.BookAdapter
