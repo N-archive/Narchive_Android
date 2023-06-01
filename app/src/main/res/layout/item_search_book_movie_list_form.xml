@@ -15,7 +15,7 @@
 
         <variable
             name="movieData"
-            type="com.chunbae.narchive.data.data.MovieData" />
+            type="com.chunbae.narchive.data.remote.response.ResponseMovieData.ResultSearchMovie" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,7 @@
 
         <ImageView
             android:id="@+id/item_search_thumbnail"
-            Common_Fill_Image='@{type == "Book" ? bookData.thumbnail : movieData.thumbnail}'
+            Common_Fill_Image='@{type == "Book" ? bookData.thumbnail : movieData.movieCd}'
             android:layout_width="85dp"
             android:layout_height="120dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +44,7 @@
             android:fontFamily="@font/pretendard_bold"
             android:includeFontPadding="false"
             android:maxLines="1"
-            android:text='@{type == "Book" ? bookData.title : movieData.title}'
+            android:text='@{type == "Book" ? bookData.title : movieData.movieNm}'
             android:textColor="@color/text_black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/item_search_thumbnail"
@@ -62,7 +62,7 @@
             android:fontFamily="@font/pretendard_medium"
             android:includeFontPadding="false"
             android:maxLines="1"
-            android:text='@{type == "Book" ? @string/book_author(bookData.author) : @string/movie_director(movieData.director)}'
+            android:text='@{type == "Book" ? @string/book_author(bookData.author) : @string/movie_director(movieData.directors[0].peopleNm)}'
             android:textColor="@color/text_black"
             android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@id/item_search_publisher_actor"
@@ -80,7 +80,7 @@
             android:fontFamily="@font/pretendard_medium"
             android:includeFontPadding="false"
             android:maxLines="1"
-            android:text='@{type == "Book" ? @string/book_publisher(bookData.publisher) : @string/movie_actor(movieData.actors)}'
+            android:text='@{type == "Book" ? @string/book_publisher(bookData.publisher) : @string/movie_actor(movieData.genreAlt)}'
             android:textColor="@color/text_black"
             android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@id/item_search_published_release"
@@ -98,7 +98,7 @@
             android:fontFamily="@font/pretendard_medium"
             android:includeFontPadding="false"
             android:maxLines="1"
-            android:text='@{type == "Book" ? @string/book_publishedAt(bookData.publishedAt) : @string/movie_release(movieData.releaseAt)}'
+            android:text='@{type == "Book" ? @string/book_publishedAt(bookData.publishedAt) : @string/movie_release(movieData.openDt)}'
             android:textColor="@color/text_black"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="@id/item_search_thumbnail"

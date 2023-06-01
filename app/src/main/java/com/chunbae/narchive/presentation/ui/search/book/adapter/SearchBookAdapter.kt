@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chunbae.narchive.data.data.BookData
 import com.chunbae.narchive.databinding.ItemSearchBookMovieListFormBinding
+import com.chunbae.narchive.presentation.ui.search.movie.adapter.SearchMovieAdapter
 
 class SearchBookAdapter(private val onItemClick : (BookData) -> Unit) : RecyclerView.Adapter<SearchBookAdapter.SearchBookViewHolder>() {
     var bookItems = mutableListOf<BookData>()

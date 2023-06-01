@@ -9,6 +9,7 @@ import com.chunbae.narchive.data.remote.repository.FirebaseRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.KakaoAiDiaryRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.KakaoBookSearchRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.KakaoLocationSearchRepositoryImpl
+import com.chunbae.narchive.data.remote.repository.MovieSearchRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.ProfileRepositoryImpl
 import com.chunbae.narchive.domain.repository.AuthRepository
 import com.chunbae.narchive.domain.repository.BookRepository
@@ -19,6 +20,7 @@ import com.chunbae.narchive.domain.repository.FirebaseRepository
 import com.chunbae.narchive.domain.repository.KakaoAiDiaryRepository
 import com.chunbae.narchive.domain.repository.KakaoBookSearchRepository
 import com.chunbae.narchive.domain.repository.KakaoLocationSearchRepository
+import com.chunbae.narchive.domain.repository.MovieSearchRepository
 import com.chunbae.narchive.domain.repository.ProfileRepository
 import dagger.Binds
 import dagger.Module
@@ -58,4 +60,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindBookRepository(bookRepositoryImpl: BookRepositoryImpl) : BookRepository
+
+    @Binds
+    abstract fun bindMovieSearchRepository(movieSearchRepositoryImpl: MovieSearchRepositoryImpl) : MovieSearchRepository
 }

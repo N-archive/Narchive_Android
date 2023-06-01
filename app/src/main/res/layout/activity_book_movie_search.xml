@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_15"
-                android:onClick='@{() -> type == "Book" ? bookActivity.searchBook() : movieActivity.click()}'
+                android:onClick='@{() -> type == "Book" ? bookActivity.searchBook() : movieActivity.searchMovie()}'
                 android:src="@drawable/ic_common_search"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

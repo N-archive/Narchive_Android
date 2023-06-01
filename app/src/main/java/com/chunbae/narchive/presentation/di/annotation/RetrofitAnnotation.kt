@@ -20,7 +20,7 @@ annotation class KakaoAIRetrofit
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class TmdbRetrofit
+annotation class MovieRetrofit
 
 
 
