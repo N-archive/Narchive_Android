@@ -50,7 +50,11 @@ class WriteTodoGroupDialog : BottomSheetDialogFragment() {
     }
 
     private fun onClick(position : Int) {
-        viewModel.setGroupSelect(position)
+        if(position == groupAdapter.itemCount - 1) {
+            AddTodoGroupDialog().show(requireActivity().supportFragmentManager, "ADD_GROUP")
+        } else {
+            viewModel.setGroupSelect(position)
+        }
         dismiss()
     }
 

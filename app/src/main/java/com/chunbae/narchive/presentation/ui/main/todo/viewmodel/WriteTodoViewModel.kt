@@ -1,17 +1,26 @@
 package com.chunbae.narchive.presentation.ui.main.todo.viewmodel
 
 import android.icu.text.SimpleDateFormat
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.chunbae.narchive.data.data.GroupData
+import com.chunbae.narchive.domain.repository.TodoGroupRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.Date
 import java.util.Locale
+import javax.inject.Inject
 
-class WriteTodoViewModel : ViewModel() {
-
+@HiltViewModel
+class WriteTodoViewModel @Inject constructor(private val todoGroupRepository: TodoGroupRepository): ViewModel() {
+    init {
+        getGroupList()
+    }
     private val _startDate = MutableLiveData<String>().apply {
         value = SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA).format(
             Date(System.currentTimeMillis())
@@ -51,14 +60,27 @@ class WriteTodoViewModel : ViewModel() {
     private val _isGroupDialogOpened = MutableLiveData<Boolean>().apply { value = false }
     val isGroupDialogOpened: LiveData<Boolean> = _isGroupDialogOpened
 
-    private val _userGroupList = MutableLiveData<MutableList<GroupData>>().apply { value = userGroupDummy() }
+    private val _userGroupList = MutableLiveData<MutableList<GroupData>>()
     val userGroupList: LiveData<MutableList<GroupData>> = _userGroupList
 
-    private val _selectedGroup = MutableLiveData<GroupData>().apply { value = GroupData("기본", "PINK") }
+    private val _selectedGroup = MutableLiveData<GroupData>().apply { value = GroupData(0, "기본", "PINK", "N") }
     val selectedGroup : LiveData<GroupData> = _selectedGroup
+
+    var newGroupTitle = MutableLiveData<String>().apply { value = "" }
+    private val _newGroupColor = MutableLiveData<String>()
+    val newGroupColor : LiveData<String> = _newGroupColor
 
     fun manageCalendarState(state: Int) { // 0:all gone / 1 : start Cal / 2 : end Cal / 3 : start Time / 4 : end Time
         _isStartDay.value = state
+    }
+
+    fun getGroupList() {
+        viewModelScope.launch {
+            todoGroupRepository.getTodoGroupListData()
+                .onSuccess { _userGroupList.value = it.apply {
+                    (this as MutableList).add(GroupData(0, "일정 그룹 관리하기", "Null", "N"))
+                } as MutableList }
+        }
     }
 
     fun setDate(date: LocalDate) {
@@ -101,14 +123,18 @@ class WriteTodoViewModel : ViewModel() {
         _selectedGroup.value = userGroupList.value!![position]
     }
 
-    /** Dummy */
-    private fun userGroupDummy(): MutableList<GroupData> = mutableListOf(
-        GroupData("1번", "RED"),
-        GroupData("2번", "ORANGE"),
-        GroupData("3번", "YELLOW"),
-        GroupData("4번", "GREEN"),
-        GroupData("5번", "BLUE"),
-        GroupData("6번", "NAVY"),
-        GroupData("7번", "PURPLE")
-    )
+    fun setNewAddColor(color : String) {
+        _newGroupColor.value = color
+    }
+
+    fun addNewGroup() {
+        if(newGroupTitle.value != null && _newGroupColor.value != null) {
+
+        }
+    }
+
+    fun initAddNew() {
+        newGroupTitle.value = null
+        _newGroupColor.value = null
+    }
 }

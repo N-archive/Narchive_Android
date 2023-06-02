@@ -77,6 +77,8 @@
             android:exported="false" />
         <activity android:name=".presentation.ui.profile.view.ProfileActivity"
             android:exported="false" />
+        <activity android:name=".presentation.ui.todogroup.TodoGroupManageActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

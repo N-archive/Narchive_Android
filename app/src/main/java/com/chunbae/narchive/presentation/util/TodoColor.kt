@@ -12,7 +12,8 @@ enum class TodoColor(var res : Int) {
     PURPLE(R.color.color_673AB7),
     BLACK(R.color.color_000000),
     PINK(R.color.color_E91E63),
-    GRAY(R.color.color_888888)
+    GRAY(R.color.color_888888),
+    Null(com.google.android.material.R.color.mtrl_btn_transparent_bg_color)
 }
 fun ReturnColorCode(target : String) : Int {
     return TodoColor.valueOf(target).res

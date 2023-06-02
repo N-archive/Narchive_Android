@@ -11,6 +11,7 @@ import com.chunbae.narchive.data.remote.repository.KakaoBookSearchRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.KakaoLocationSearchRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.MovieSearchRepositoryImpl
 import com.chunbae.narchive.data.remote.repository.ProfileRepositoryImpl
+import com.chunbae.narchive.data.remote.repository.TodoGroupRepositoryImpl
 import com.chunbae.narchive.domain.repository.AuthRepository
 import com.chunbae.narchive.domain.repository.BookRepository
 import com.chunbae.narchive.domain.repository.CommentRepository
@@ -22,6 +23,7 @@ import com.chunbae.narchive.domain.repository.KakaoBookSearchRepository
 import com.chunbae.narchive.domain.repository.KakaoLocationSearchRepository
 import com.chunbae.narchive.domain.repository.MovieSearchRepository
 import com.chunbae.narchive.domain.repository.ProfileRepository
+import com.chunbae.narchive.domain.repository.TodoGroupRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -63,4 +65,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindMovieSearchRepository(movieSearchRepositoryImpl: MovieSearchRepositoryImpl) : MovieSearchRepository
+
+    @Binds
+    abstract fun bindTodoGroupRepository(todoGroupRepositoryImpl: TodoGroupRepositoryImpl) : TodoGroupRepository
 }

@@ -9,6 +9,7 @@ import com.chunbae.narchive.data.remote.api.KakaoAiService
 import com.chunbae.narchive.data.remote.api.KakaoService
 import com.chunbae.narchive.data.remote.api.ProfileService
 import com.chunbae.narchive.data.remote.api.SearchMovieService
+import com.chunbae.narchive.data.remote.api.TodoService
 import com.chunbae.narchive.presentation.di.annotation.KakaoAIRetrofit
 import com.chunbae.narchive.presentation.di.annotation.KakaoRetrofit
 import com.chunbae.narchive.presentation.di.annotation.MovieRetrofit
@@ -60,4 +61,7 @@ class ServiceModule {
     @Singleton
     fun provideBookService(@NarchiveRetrofit retrofit: Retrofit) : BookService = retrofit.create(BookService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideTodoService(@NarchiveRetrofit retrofit: Retrofit) : TodoService = retrofit.create(TodoService::class.java)
 }

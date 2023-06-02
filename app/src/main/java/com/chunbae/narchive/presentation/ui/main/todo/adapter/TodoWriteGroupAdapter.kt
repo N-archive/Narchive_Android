@@ -1,6 +1,7 @@
 package com.chunbae.narchive.presentation.ui.main.todo.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chunbae.narchive.data.data.GroupData
@@ -14,7 +15,7 @@ class TodoWriteGroupAdapter (private val onClicked : (Int) -> Unit): RecyclerVie
     inner class TodoWriteGroupViewHolder(private val binding : ItemDialogWriteTodoGroupFormBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : GroupData) {
             binding.groupData = item
-            //:TODO 추후 todo index로 변경해야함
+            binding.fgWriteTodoCardGroupColor.visibility = if (item.todoGroupIdx == 0) View.GONE else View.VISIBLE
             binding.root.setOnClickListener { onClicked.invoke(absoluteAdapterPosition) }
         }
     }

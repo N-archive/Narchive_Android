@@ -11,6 +11,7 @@ import com.chunbae.narchive.data.remote.source.KakaoBookSearchRemoteSource
 import com.chunbae.narchive.data.remote.source.KakaoLocationSearchRemoteSource
 import com.chunbae.narchive.data.remote.source.MovieSearchRemoteSource
 import com.chunbae.narchive.data.remote.source.ProfileRemoteSource
+import com.chunbae.narchive.data.remote.source.TodoGroupRemoteSource
 import com.chunbae.narchive.domain.source.AuthSource
 import com.chunbae.narchive.domain.source.BookSource
 import com.chunbae.narchive.domain.source.CommentSource
@@ -22,6 +23,7 @@ import com.chunbae.narchive.domain.source.KakaoBookSearchSource
 import com.chunbae.narchive.domain.source.KakaoLocationSearchSource
 import com.chunbae.narchive.domain.source.MovieSearchSource
 import com.chunbae.narchive.domain.source.ProfileSource
+import com.chunbae.narchive.domain.source.TodoGroupSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -63,4 +65,7 @@ abstract class SourceModule {
 
     @Binds
     abstract fun bindMovieSearchRemoteSource(movieSearchRemoteSource: MovieSearchRemoteSource) : MovieSearchSource
+
+    @Binds
+    abstract fun bindTodoGroupSource (todoGroupRemoteSource: TodoGroupRemoteSource) : TodoGroupSource
 }
