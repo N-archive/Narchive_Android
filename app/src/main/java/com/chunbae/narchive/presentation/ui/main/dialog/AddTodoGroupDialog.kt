@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Point
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import com.chunbae.narchive.presentation.ui.main.todo.viewmodel.WriteTodoViewMod
 class AddTodoGroupDialog : DialogFragment() {
     private lateinit var binding : DialogAddTodoGroupBinding
     private val viewModel : WriteTodoViewModel by activityViewModels()
+    private lateinit var TAG : String
     private val colorAdapter by lazy {
         AddTodoGroupColorAdapter(::selectColor, colorList)
     }
@@ -32,9 +34,15 @@ class AddTodoGroupDialog : DialogFragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_add_todo_group, container, false)
 
         initBinding()
+        checkTag()
         setColorRV()
 
         return binding.root
+    }
+
+    private fun checkTag() {
+        TAG = this.tag!!
+        Log.d("----", "checkTag: ${TAG}")
     }
 
     override fun onResume() {

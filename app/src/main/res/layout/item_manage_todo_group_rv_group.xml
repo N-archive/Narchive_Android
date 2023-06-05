@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/test3"
+            android:id="@+id/item_manage_todo_group_rv_group_layout_swipe"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:translationZ="0.1dp"
@@ -40,6 +40,7 @@
                 android:layout_height="30dp"
                 app:cardCornerRadius="10000dp"
                 app:cardElevation="0dp"
+                android:layout_marginEnd="@dimen/margin_15"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -54,23 +55,46 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/test1"
+            android:id="@+id/item_manage_todo_group_rv_group_btn_edit"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginStart="@dimen/margin_10"
             android:background="@color/color_a4a4a4"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/test2"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/item_manage_todo_group_rv_group_btn_delete"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit_todo_group"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"  />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/test2"
+            android:id="@+id/item_manage_todo_group_rv_group_btn_delete"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:background="@color/color_B2F0F4"
+            android:background="@color/color_FF0000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_close"
+                app:tint="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

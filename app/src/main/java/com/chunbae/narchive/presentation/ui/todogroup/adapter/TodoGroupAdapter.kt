@@ -1,5 +1,6 @@
 package com.chunbae.narchive.presentation.ui.todogroup.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,11 @@ class TodoGroupAdapter : RecyclerView.Adapter<TodoGroupAdapter.TodoGroupViewHold
     inner class TodoGroupViewHolder(private val binding : ItemManageTodoGroupRvGroupBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : GroupData) {
             binding.groupData = item
+            binding.itemManageTodoGroupRvGroupLayoutSwipe.setOnClickListener {
+                binding.itemManageTodoGroupRvGroupLayoutSwipe.translationX = 0f
+            }
+            binding.itemManageTodoGroupRvGroupBtnEdit.setOnClickListener { Log.d("----", "bind: EDT") }
+            binding.itemManageTodoGroupRvGroupBtnDelete.setOnClickListener { Log.d("----", "bind: DEL") }
         }
     }
 

@@ -116,7 +116,7 @@ class SwipeHelperCallback : ItemTouchHelper.Callback() {
 
     // swipe_view 반환 -> swipe_view만 이동할 수 있게 해줌
     private fun getView(viewHolder: RecyclerView.ViewHolder): View =
-        viewHolder.itemView.findViewById(R.id.test3)
+        viewHolder.itemView.findViewById(R.id.item_manage_todo_group_rv_group_layout_swipe)
 
     // swipe_view 를 swipe 했을 때 <삭제> 화면이 보이도록 고정
     private fun clampViewPositionHorizontal(

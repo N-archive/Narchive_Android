@@ -1,26 +1,51 @@
 package com.chunbae.narchive.presentation.ui.todogroup
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.chunbae.narchive.R
 import com.chunbae.narchive.data.data.GroupData
 import com.chunbae.narchive.databinding.ActivityManageTodoGroupBinding
+import com.chunbae.narchive.presentation.ui.main.dialog.AddTodoGroupDialog
+import com.chunbae.narchive.presentation.ui.main.dialog.WriteTodoGroupDialog
 import com.chunbae.narchive.presentation.ui.todogroup.adapter.TodoGroupAdapter
 import com.chunbae.narchive.presentation.ui.todogroup.adapter.util.ItemTouchHelperCallback
 import com.chunbae.narchive.presentation.ui.todogroup.adapter.util.ItemTouchHelperListener
+import com.chunbae.narchive.presentation.ui.todogroup.viewmodel.TodoGroupManageViewModel
 import com.chunbae.narchive.presentation.util.ConvertUtil
 import com.jcorp.rc_challenge_4.SwipeHelperCallback
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TodoGroupManageActivity : AppCompatActivity() {
     private lateinit var binding : ActivityManageTodoGroupBinding
-
+    private val viewModel : TodoGroupManageViewModel by viewModels()
+    private val todoGroupAdapter by lazy {
+        TodoGroupAdapter()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_manage_todo_group)
 
-        binding.manageTodoGroupRvGroups.adapter = TodoGroupAdapter().also { it.groupList = test as MutableList }
+        initBinding()
+        setSwipeRV()
+        todoObserve()
+    }
+
+    private fun initBinding() {
+        binding.lifecycleOwner = this
+        binding.activity = this
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getTodoGroupData()
+    }
+
+    private fun setSwipeRV() {
+        binding.manageTodoGroupRvGroups.adapter = todoGroupAdapter
         val swipeHelperCallback = SwipeHelperCallback().apply {
             setClamp(ConvertUtil.dpToPx(this@TodoGroupManageActivity, 100F))
         }
@@ -31,6 +56,17 @@ class TodoGroupManageActivity : AppCompatActivity() {
                 false
             }
         }
+    }
+
+    private fun todoObserve() {
+        viewModel.todoGroupData.observe(this) {
+            todoGroupAdapter.groupList = it
+            todoGroupAdapter.notifyItemRangeChanged(0, it.size)
+        }
+    }
+
+    fun openCreateOrEditDialog(tag : String) {
+        AddTodoGroupDialog().show(supportFragmentManager, tag)
     }
 
     /*TEST */
