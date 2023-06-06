@@ -42,7 +42,6 @@ class AddTodoGroupDialog : DialogFragment() {
 
     private fun checkTag() {
         TAG = this.tag!!
-        Log.d("----", "checkTag: ${TAG}")
     }
 
     override fun onResume() {
@@ -73,7 +72,7 @@ class AddTodoGroupDialog : DialogFragment() {
     }
 
     fun onSaveGroup() {
-        viewModel.addNewGroup()
+        viewModel.addNewGroup(TAG)
         dismissDialog()
     }
 
