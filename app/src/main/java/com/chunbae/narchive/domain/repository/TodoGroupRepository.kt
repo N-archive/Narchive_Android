@@ -8,4 +8,6 @@ interface TodoGroupRepository {
     suspend fun getTodoGroupListData() : Result<List<GroupData>>
 
     suspend fun postTodoGroupData(body : RequestTodoGroupData) : Result<String>
+
+    suspend fun patchTodoGroupData(todoGroupPK : Int) : Result<String>
 }

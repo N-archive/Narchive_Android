@@ -131,10 +131,10 @@ class WriteTodoViewModel @Inject constructor(private val todoGroupRepository: To
     fun addNewGroup(tag : String) {
         if(newGroupTitle.value != null && _newGroupColor.value != null) {
             viewModelScope.launch {
-                if(tag == "ADD")
-                todoGroupRepository.postTodoGroupData(RequestTodoGroupData(newGroupTitle.value!!, newGroupColor.value!!))
+                if (tag == "ADD") {
+                    todoGroupRepository.postTodoGroupData(RequestTodoGroupData(newGroupTitle.value!!, newGroupColor.value!!))
+                }
             }
-
         }
     }
 

@@ -23,7 +23,7 @@ class TodoGroupManageActivity : AppCompatActivity() {
     private lateinit var binding : ActivityManageTodoGroupBinding
     private val viewModel : TodoGroupManageViewModel by viewModels()
     private val todoGroupAdapter by lazy {
-        TodoGroupAdapter()
+        TodoGroupAdapter(::deleteTodoGroup)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +63,10 @@ class TodoGroupManageActivity : AppCompatActivity() {
             todoGroupAdapter.groupList = it
             todoGroupAdapter.notifyItemRangeChanged(0, it.size)
         }
+    }
+
+    private fun deleteTodoGroup(todoGroupIdx : Int) {
+        viewModel.deleteTodoGroup(todoGroupIdx)
     }
 
     fun openCreateOrEditDialog(tag : String) {

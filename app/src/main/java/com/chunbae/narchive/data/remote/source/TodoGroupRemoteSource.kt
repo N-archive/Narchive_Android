@@ -22,4 +22,12 @@ class TodoGroupRemoteSource @Inject constructor(private val todoService : TodoSe
         }
         return Result.failure(IllegalArgumentException(res.message()))
     }
+
+    override suspend fun patchTodoGroupData(todoGroupPK: Int): Result<String> {
+        val res = todoService.patchTodoGroup(todoGroupPK)
+        if(res.isSuccessful) {
+            return Result.success(res.body()!!.result)
+        }
+        return Result.failure(IllegalArgumentException(res.message()))
+    }
 }

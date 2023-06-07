@@ -14,4 +14,8 @@ class TodoGroupRepositoryImpl @Inject constructor(private val todoGroupSource: T
     override suspend fun postTodoGroupData(body: RequestTodoGroupData): Result<String> {
         return todoGroupSource.postTodoGroupData(body)
     }
+
+    override suspend fun patchTodoGroupData(todoGroupPK: Int): Result<String> {
+        return todoGroupSource.patchTodoGroupData(todoGroupPK)
+    }
 }

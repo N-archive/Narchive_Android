@@ -21,4 +21,10 @@ class TodoGroupManageViewModel @Inject constructor(private val todoGroupReposito
                 .onSuccess { _todoGroupData.value = it as MutableList }
         }
     }
+
+    fun deleteTodoGroup(todoGroupPK : Int) {
+        viewModelScope.launch {
+            todoGroupRepository.patchTodoGroupData(todoGroupPK)
+        }
+    }
 }
