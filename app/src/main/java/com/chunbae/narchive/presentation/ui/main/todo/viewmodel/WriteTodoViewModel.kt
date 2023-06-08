@@ -67,9 +67,7 @@ class WriteTodoViewModel @Inject constructor(private val todoGroupRepository: To
     private val _selectedGroup = MutableLiveData<GroupData>().apply { value = GroupData(0, "기본", "PINK", "N") }
     val selectedGroup : LiveData<GroupData> = _selectedGroup
 
-    var newGroupTitle = MutableLiveData<String>().apply { value = "" }
-    private val _newGroupColor = MutableLiveData<String?>()
-    val newGroupColor : LiveData<String?> = _newGroupColor
+
 
     fun manageCalendarState(state: Int) { // 0:all gone / 1 : start Cal / 2 : end Cal / 3 : start Time / 4 : end Time
         _isStartDay.value = state
@@ -124,22 +122,5 @@ class WriteTodoViewModel @Inject constructor(private val todoGroupRepository: To
         _selectedGroup.value = userGroupList.value!![position]
     }
 
-    fun setNewAddColor(color : String) {
-        _newGroupColor.value = color
-    }
 
-    fun addNewGroup(tag : String) {
-        if(newGroupTitle.value != null && _newGroupColor.value != null) {
-            viewModelScope.launch {
-                if (tag == "ADD") {
-                    todoGroupRepository.postTodoGroupData(RequestTodoGroupData(newGroupTitle.value!!, newGroupColor.value!!))
-                }
-            }
-        }
-    }
-
-    fun initAddNew() {
-        newGroupTitle.value = null
-        _newGroupColor.value = null
-    }
 }

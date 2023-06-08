@@ -18,10 +18,11 @@ import com.chunbae.narchive.data.data.GroupColorData
 import com.chunbae.narchive.databinding.DialogAddTodoGroupBinding
 import com.chunbae.narchive.presentation.ui.main.dialog.adapter.AddTodoGroupColorAdapter
 import com.chunbae.narchive.presentation.ui.main.todo.viewmodel.WriteTodoViewModel
+import com.chunbae.narchive.presentation.ui.todogroup.viewmodel.TodoGroupManageViewModel
 
 class AddTodoGroupDialog : DialogFragment() {
     private lateinit var binding : DialogAddTodoGroupBinding
-    private val viewModel : WriteTodoViewModel by activityViewModels()
+    private val viewModel : TodoGroupManageViewModel by activityViewModels()
     private lateinit var TAG : String
     private val colorAdapter by lazy {
         AddTodoGroupColorAdapter(::selectColor, colorList)
@@ -77,6 +78,7 @@ class AddTodoGroupDialog : DialogFragment() {
     }
 
     fun dismissDialog() {
+        viewModel.triggerToObserveDialogResult()
         dismiss()
     }
     override fun onDismiss(dialog: DialogInterface) {

@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.chunbae.narchive.presentation.ui.main.todo.viewmodel.WriteTodoViewModel" />
+            type="com.chunbae.narchive.presentation.ui.todogroup.viewmodel.TodoGroupManageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

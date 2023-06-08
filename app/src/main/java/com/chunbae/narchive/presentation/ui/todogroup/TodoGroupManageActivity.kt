@@ -1,6 +1,7 @@
 package com.chunbae.narchive.presentation.ui.todogroup
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -39,11 +40,6 @@ class TodoGroupManageActivity : AppCompatActivity() {
         binding.activity = this
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getTodoGroupData()
-    }
-
     private fun setSwipeRV() {
         binding.manageTodoGroupRvGroups.adapter = todoGroupAdapter
         val swipeHelperCallback = SwipeHelperCallback().apply {
@@ -60,8 +56,13 @@ class TodoGroupManageActivity : AppCompatActivity() {
 
     private fun todoObserve() {
         viewModel.todoGroupData.observe(this) {
+            Log.d("----", "todoObserve: CHANGE  / $it")
             todoGroupAdapter.groupList = it
             todoGroupAdapter.notifyItemRangeChanged(0, it.size)
+        }
+
+        viewModel.dialogObserveState.observe(this) {
+            viewModel.getTodoGroupData()
         }
     }
 
@@ -72,7 +73,4 @@ class TodoGroupManageActivity : AppCompatActivity() {
     fun openCreateOrEditDialog(tag : String) {
         AddTodoGroupDialog().show(supportFragmentManager, tag)
     }
-
-    /*TEST */
-    var test = listOf<GroupData>(GroupData(0, "1", "RED", "Y"),GroupData(0, "1", "RED", "Y"),GroupData(0, "1", "RED", "Y"),GroupData(0, "1", "RED", "Y"),GroupData(0, "1", "RED", "Y"))
 }

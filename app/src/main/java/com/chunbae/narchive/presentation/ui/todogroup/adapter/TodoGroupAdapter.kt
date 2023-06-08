@@ -17,7 +17,11 @@ class TodoGroupAdapter(private val onDelete : (Int) -> Unit): RecyclerView.Adapt
                 binding.itemManageTodoGroupRvGroupLayoutSwipe.translationX = 0f
             }
             binding.itemManageTodoGroupRvGroupBtnEdit.setOnClickListener { Log.d("----", "bind: EDT") }
-            binding.itemManageTodoGroupRvGroupBtnDelete.setOnClickListener { item.todoGroupIdx?.let { it1 -> onDelete.invoke(it1) } }
+            binding.itemManageTodoGroupRvGroupBtnDelete.setOnClickListener {
+                item.todoGroupIdx?.let { it1 -> onDelete.invoke(it1) }
+                groupList.remove(item)
+                notifyItemRemoved(absoluteAdapterPosition)
+            }
         }
     }
 
