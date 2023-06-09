@@ -8,20 +8,11 @@ import com.chunbae.narchive.data.data.GroupData
 import com.chunbae.narchive.databinding.ItemManageTodoGroupRvGroupBinding
 import com.chunbae.narchive.presentation.ui.todogroup.adapter.util.ItemTouchHelperListener
 
-class TodoGroupAdapter(private val onDelete : (Int) -> Unit): RecyclerView.Adapter<TodoGroupAdapter.TodoGroupViewHolder>(), ItemTouchHelperListener {
+class TodoGroupAdapter(private val onDelete : (Int, Int) -> Unit): RecyclerView.Adapter<TodoGroupAdapter.TodoGroupViewHolder>(), ItemTouchHelperListener {
     var groupList = mutableListOf<GroupData>()
     inner class TodoGroupViewHolder(private val binding : ItemManageTodoGroupRvGroupBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : GroupData) {
             binding.groupData = item
-            binding.itemManageTodoGroupRvGroupLayoutSwipe.setOnClickListener {
-                binding.itemManageTodoGroupRvGroupLayoutSwipe.translationX = 0f
-            }
-            binding.itemManageTodoGroupRvGroupBtnEdit.setOnClickListener { Log.d("----", "bind: EDT") }
-            binding.itemManageTodoGroupRvGroupBtnDelete.setOnClickListener {
-                item.todoGroupIdx?.let { it1 -> onDelete.invoke(it1) }
-                groupList.remove(item)
-                notifyItemRemoved(absoluteAdapterPosition)
-            }
         }
     }
 
@@ -37,6 +28,6 @@ class TodoGroupAdapter(private val onDelete : (Int) -> Unit): RecyclerView.Adapt
 
 
     override fun onItemSwipe(position: Int) {
-
+        groupList[position].todoGroupIdx?.let { onDelete.invoke(it, position) }
     }
 }

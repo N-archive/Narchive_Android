@@ -1,5 +1,6 @@
 package com.chunbae.narchive.data.remote.source
 
+import androidx.constraintlayout.widget.Group
 import com.chunbae.narchive.data.data.GroupData
 import com.chunbae.narchive.data.remote.api.TodoService
 import com.chunbae.narchive.data.remote.request.RequestTodoGroupData
@@ -15,7 +16,7 @@ class TodoGroupRemoteSource @Inject constructor(private val todoService : TodoSe
         return Result.failure(IllegalArgumentException(res.message()))
     }
 
-    override suspend fun postTodoGroupData(body: RequestTodoGroupData): Result<String> {
+    override suspend fun postTodoGroupData(body: RequestTodoGroupData): Result<GroupData> {
         val res = todoService.postTodoGroup(body)
         if(res.isSuccessful) {
             return Result.success(res.body()!!.result)

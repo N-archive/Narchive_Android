@@ -13,6 +13,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
 class TodoGroupManageViewModel @Inject constructor(private val todoGroupRepository: TodoGroupRepository) : ViewModel(){
+
+    init {
+        getTodoGroupData()
+    }
+
     private val _todoGroupData = MutableLiveData<MutableList<GroupData>>()
     val todoGroupData : LiveData<MutableList<GroupData>> = _todoGroupData
 
@@ -21,25 +26,18 @@ class TodoGroupManageViewModel @Inject constructor(private val todoGroupReposito
     private val _newGroupColor = MutableLiveData<String?>()
     val newGroupColor : LiveData<String?> = _newGroupColor
 
-    val dialogObserveState = MutableLiveData<Boolean>().apply { value = false }
-
-
-    fun getTodoGroupData() {
+    private fun getTodoGroupData() {
         viewModelScope.launch {
             todoGroupRepository.getTodoGroupListData()
-                .onSuccess { _todoGroupData.value = it as MutableList
-                    Log.d("----", "getTodoGroupData: $it")}
+                .onSuccess { _todoGroupData.value = it as MutableList }
         }
     }
 
-    fun deleteTodoGroup(todoGroupPK : Int) {
+    fun deleteTodoGroup(todoGroupPK : Int, position : Int) {
         viewModelScope.launch {
             todoGroupRepository.patchTodoGroupData(todoGroupPK)
+                .onSuccess { _todoGroupData.value!!.removeAt(position) }
         }
-    }
-
-    fun triggerToObserveDialogResult() {
-        dialogObserveState.value = dialogObserveState.value!!.not()
     }
 
     fun setNewAddColor(color : String) {
@@ -51,6 +49,7 @@ class TodoGroupManageViewModel @Inject constructor(private val todoGroupReposito
             viewModelScope.launch {
                 if (tag == "ADD") {
                     todoGroupRepository.postTodoGroupData(RequestTodoGroupData(newGroupTitle.value!!, newGroupColor.value!!))
+                        .onSuccess { _todoGroupData.value!!.add(_todoGroupData.value!!.size, it) }
                 }
             }
         }

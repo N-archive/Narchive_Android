@@ -78,7 +78,6 @@ class AddTodoGroupDialog : DialogFragment() {
     }
 
     fun dismissDialog() {
-        viewModel.triggerToObserveDialogResult()
         dismiss()
     }
     override fun onDismiss(dialog: DialogInterface) {

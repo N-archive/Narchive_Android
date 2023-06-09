@@ -7,7 +7,7 @@ interface TodoGroupSource {
 
     suspend fun getTodoGroupListData() : Result<List<GroupData>>
 
-    suspend fun postTodoGroupData(body : RequestTodoGroupData) : Result<String>
+    suspend fun postTodoGroupData(body : RequestTodoGroupData) : Result<GroupData>
 
     suspend fun patchTodoGroupData(todoGroupPK : Int) : Result<String>
 }

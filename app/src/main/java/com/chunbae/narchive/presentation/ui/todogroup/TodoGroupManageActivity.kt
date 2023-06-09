@@ -42,32 +42,19 @@ class TodoGroupManageActivity : AppCompatActivity() {
 
     private fun setSwipeRV() {
         binding.manageTodoGroupRvGroups.adapter = todoGroupAdapter
-        val swipeHelperCallback = SwipeHelperCallback().apply {
-            setClamp(ConvertUtil.dpToPx(this@TodoGroupManageActivity, 100F))
-        }
-        ItemTouchHelper(swipeHelperCallback).attachToRecyclerView(binding.manageTodoGroupRvGroups)
-        binding.manageTodoGroupRvGroups.apply {
-            setOnTouchListener { _, _ ->
-                swipeHelperCallback.removePreviousClamp(this)
-                false
-            }
-        }
+        val itemTouchHelper = ItemTouchHelperCallback(todoGroupAdapter)
+        ItemTouchHelper(itemTouchHelper).attachToRecyclerView(binding.manageTodoGroupRvGroups)
     }
 
     private fun todoObserve() {
         viewModel.todoGroupData.observe(this) {
-            Log.d("----", "todoObserve: CHANGE  / $it")
             todoGroupAdapter.groupList = it
             todoGroupAdapter.notifyItemRangeChanged(0, it.size)
         }
-
-        viewModel.dialogObserveState.observe(this) {
-            viewModel.getTodoGroupData()
-        }
     }
 
-    private fun deleteTodoGroup(todoGroupIdx : Int) {
-        viewModel.deleteTodoGroup(todoGroupIdx)
+    private fun deleteTodoGroup(todoGroupIdx : Int, position : Int) {
+        viewModel.deleteTodoGroup(todoGroupIdx, position)
     }
 
     fun openCreateOrEditDialog(tag : String) {
