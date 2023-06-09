@@ -2,6 +2,7 @@ package com.chunbae.narchive.data.remote.repository
 
 import androidx.constraintlayout.widget.Group
 import com.chunbae.narchive.data.data.GroupData
+import com.chunbae.narchive.data.remote.request.RequestModifyTodoGroupData
 import com.chunbae.narchive.data.remote.request.RequestTodoGroupData
 import com.chunbae.narchive.domain.repository.TodoGroupRepository
 import com.chunbae.narchive.domain.source.TodoGroupSource
@@ -18,5 +19,9 @@ class TodoGroupRepositoryImpl @Inject constructor(private val todoGroupSource: T
 
     override suspend fun patchTodoGroupData(todoGroupPK: Int): Result<String> {
         return todoGroupSource.patchTodoGroupData(todoGroupPK)
+    }
+
+    override suspend fun putTodoGroupData(body: RequestModifyTodoGroupData): Result<GroupData> {
+        return todoGroupSource.putTodoGroupData(body)
     }
 }

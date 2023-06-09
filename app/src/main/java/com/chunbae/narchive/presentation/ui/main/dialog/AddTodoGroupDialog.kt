@@ -43,6 +43,10 @@ class AddTodoGroupDialog : DialogFragment() {
 
     private fun checkTag() {
         TAG = this.tag!!
+
+        if(TAG == "EDIT") {
+            setEdit()
+        }
     }
 
     override fun onResume() {
@@ -61,6 +65,13 @@ class AddTodoGroupDialog : DialogFragment() {
     private fun initBinding() {
         binding.viewModel = viewModel
         binding.dialog = this
+    }
+
+    private fun setEdit() {
+        viewModel.editGroup.observe(viewLifecycleOwner) {
+            viewModel.newGroupTitle.value = it?.groupTitle
+            colorList.find { list -> list.color == it?.groupColor }?.isSelect = true
+        }
     }
 
     private fun setColorRV() {

@@ -24,7 +24,7 @@ class TodoGroupManageActivity : AppCompatActivity() {
     private lateinit var binding : ActivityManageTodoGroupBinding
     private val viewModel : TodoGroupManageViewModel by viewModels()
     private val todoGroupAdapter by lazy {
-        TodoGroupAdapter(::deleteTodoGroup)
+        TodoGroupAdapter(::deleteTodoGroup, ::openCreateOrEditDialog, ::setEditGroup)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,12 +49,16 @@ class TodoGroupManageActivity : AppCompatActivity() {
     private fun todoObserve() {
         viewModel.todoGroupData.observe(this) {
             todoGroupAdapter.groupList = it
-            todoGroupAdapter.notifyItemRangeChanged(0, it.size)
+            todoGroupAdapter.notifyDataSetChanged()
         }
     }
 
-    private fun deleteTodoGroup(todoGroupIdx : Int, position : Int) {
-        viewModel.deleteTodoGroup(todoGroupIdx, position)
+    private fun setEditGroup(todoGroup : GroupData) {
+        viewModel.setEditGroup(todoGroup)
+    }
+
+    private fun deleteTodoGroup(todoGroupIdx : Int) {
+        viewModel.deleteTodoGroup(todoGroupIdx)
     }
 
     fun openCreateOrEditDialog(tag : String) {
