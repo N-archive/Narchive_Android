@@ -17,6 +17,7 @@
     <string name="toolbar_simple_diary">간단일기 등록하기</string>
     <string name="toolbar_add_location">장소 추가하기</string>
     <string name="toolbar_add_todo">일정 등록하기</string>
+    <string name="toolbar_manage_todo_group">일정 그룹 관리하기</string>
 
     <string name="diary_thumbnail_count">+%d</string>
 
@@ -39,7 +40,7 @@
     <string name="book_publishedAt">발매   :   %s</string>
 
     <string name="movie_director">감독   :   %s</string>
-    <string name="movie_actor">출연   :   %s</string>
+    <string name="movie_actor">장르   :   %s</string>
     <string name="movie_release">개봉   :   %s</string>
 
     <string name="detail_book_published">%s 발매</string>
@@ -103,5 +104,7 @@
     <string name="set_profile_nickname_notion">* 띄어쓰기 없이 1~13자 이내로 입력해주세요.</string>
 
     <string name="convert_int_to_string">%d</string>
+
+    <string name="input_new_group_name">일정명을 입력해주세요. (최대 10자)</string>
 
 </resources>

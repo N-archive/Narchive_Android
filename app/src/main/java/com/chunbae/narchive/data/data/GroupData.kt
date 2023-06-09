@@ -1,6 +1,8 @@
 package com.chunbae.narchive.data.data
 
 data class GroupData(
-    val groupTitle : String,
-    val groupColor : String
+    val todoGroupIdx : Int?,
+    var groupTitle : String,
+    var groupColor : String,
+    val isDefault : String
 )

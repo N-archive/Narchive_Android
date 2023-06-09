@@ -1,6 +1,8 @@
 package com.chunbae.narchive.presentation.ui.main.dialog
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +12,12 @@ import com.chunbae.narchive.R
 import com.chunbae.narchive.databinding.DialogWriteTodoGroupBinding
 import com.chunbae.narchive.presentation.ui.main.todo.adapter.TodoWriteGroupAdapter
 import com.chunbae.narchive.presentation.ui.main.todo.viewmodel.WriteTodoViewModel
+import com.chunbae.narchive.presentation.ui.todogroup.TodoGroupManageActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class WriteTodoGroupDialog : BottomSheetDialogFragment() {
     private lateinit var binding : DialogWriteTodoGroupBinding
     private val viewModel : WriteTodoViewModel by activityViewModels()
-
     private val groupAdapter by lazy {
         TodoWriteGroupAdapter(::onClick)
     }
@@ -37,6 +39,8 @@ class WriteTodoGroupDialog : BottomSheetDialogFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
     }
 
+
+
     private fun initRV() {
         binding.dialogContentWriteRvSelector.adapter = groupAdapter
 
@@ -50,7 +54,11 @@ class WriteTodoGroupDialog : BottomSheetDialogFragment() {
     }
 
     private fun onClick(position : Int) {
-        viewModel.setGroupSelect(position)
+        if(position == groupAdapter.itemCount - 1) {
+            startActivity(Intent(requireContext(), TodoGroupManageActivity::class.java))
+        } else {
+            viewModel.setGroupSelect(position)
+        }
         dismiss()
     }
 

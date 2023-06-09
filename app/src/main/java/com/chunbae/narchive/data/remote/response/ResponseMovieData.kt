@@ -1,12 +1,20 @@
 package com.chunbae.narchive.data.remote.response
 
 data class ResponseMovieData(
-    val page : Int,
-    val results : List<ResultSearchMovie>
+    val movieListResult : Sub
 ) {
-    data class ResultSearchMovie(
-        val title : String,
-        val release_date : String,
-
+    data class Sub(
+        val totCnt : Int,
+        val movieList : List<ResultSearchMovie>
     )
+    data class ResultSearchMovie(
+        val movieCd : String,
+        val movieNm : String,
+        var openDt : String,
+        val genreAlt : String,
+        val directors : List<Director>
+    )
+    data class Director (
+        val peopleNm : String
+            )
 }

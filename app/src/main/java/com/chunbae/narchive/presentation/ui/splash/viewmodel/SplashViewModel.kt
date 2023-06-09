@@ -25,6 +25,7 @@ class SplashViewModel @Inject constructor(private val authRepo : AuthRepository)
                     _autoSignInResult.value = it.isNew
                     authRepo.saveUserInfoInLocal(it)
                 }
+                .onFailure { _autoSignInResult.value = "F" }
         }
     }
 }
