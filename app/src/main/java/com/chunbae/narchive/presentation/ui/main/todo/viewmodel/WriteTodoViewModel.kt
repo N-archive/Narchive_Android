@@ -19,9 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WriteTodoViewModel @Inject constructor(private val todoGroupRepository: TodoGroupRepository): ViewModel() {
-    init {
-        getGroupList()
-    }
+
     private val _startDate = MutableLiveData<String>().apply {
         value = SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA).format(
             Date(System.currentTimeMillis())

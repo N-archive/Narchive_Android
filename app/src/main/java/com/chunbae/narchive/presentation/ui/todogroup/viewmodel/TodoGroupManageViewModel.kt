@@ -1,5 +1,6 @@
 package com.chunbae.narchive.presentation.ui.todogroup.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -47,6 +48,7 @@ class TodoGroupManageViewModel @Inject constructor(private val todoGroupReposito
     }
 
     fun addNewGroup(tag : String) {
+        Log.d("----", "addNewGroup: ${newGroupTitle.value} / ${newGroupColor.value}")
         if(newGroupTitle.value != null && _newGroupColor.value != null) {
             viewModelScope.launch {
                 if (tag == "ADD") {

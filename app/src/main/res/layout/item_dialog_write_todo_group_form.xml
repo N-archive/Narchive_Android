@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="@{groupData.groupTitle}"
             android:textColor="@color/text_black"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:fontFamily="@font/pretendard_semibold"
             android:includeFontPadding="false"
             app:layout_constraintTop_toTopOf="parent"
@@ -30,9 +30,10 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/fg_write_todo_card_group_color"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             app:cardCornerRadius="10000dp"
+            app:cardElevation="0dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

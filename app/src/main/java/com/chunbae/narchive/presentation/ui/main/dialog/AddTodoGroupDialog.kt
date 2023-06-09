@@ -70,6 +70,7 @@ class AddTodoGroupDialog : DialogFragment() {
     private fun setEdit() {
         viewModel.editGroup.observe(viewLifecycleOwner) {
             viewModel.newGroupTitle.value = it?.groupTitle
+            it?.groupColor?.let { it1 -> viewModel.setNewAddColor(it1) }
             colorList.find { list -> list.color == it?.groupColor }?.isSelect = true
         }
     }

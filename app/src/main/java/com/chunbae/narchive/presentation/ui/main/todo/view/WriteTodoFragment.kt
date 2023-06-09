@@ -45,14 +45,15 @@ class WriteTodoFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        todoViewModel.getGroupList()
+    }
+
     private fun initBinding() {
         binding.fragment = this
         binding.todoViewModel = todoViewModel
         binding.lifecycleOwner = viewLifecycleOwner
-
-        todoViewModel.selectedGroup.observe(viewLifecycleOwner) {
-            Snackbar.make(binding.root, it.toString(), Snackbar.LENGTH_SHORT).show()
-        }
     }
 
     private fun initCalendar() {
@@ -215,7 +216,7 @@ class WriteTodoFragment : Fragment() {
         }.toTypedArray()
     }
 
-    fun openGroupSelectDialog() {
+    private fun openGroupSelectDialog() {
         todoViewModel.isGroupDialogOpened.observe(viewLifecycleOwner) {
             if(it) WriteTodoGroupDialog().show(requireActivity().supportFragmentManager, "GROUP")
         }
