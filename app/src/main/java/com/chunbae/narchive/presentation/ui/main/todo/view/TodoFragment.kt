@@ -16,7 +16,9 @@ import com.chunbae.narchive.presentation.ui.main.MainViewModel
 import com.chunbae.narchive.presentation.ui.main.todo.adapter.TodoListAdapter
 import com.chunbae.narchive.presentation.ui.main.todo.viewmodel.TodoViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TodoFragment : Fragment() {
     private lateinit var binding : FragmentTodoBinding
     private val viewModel : MainViewModel by activityViewModels()
@@ -41,6 +43,7 @@ class TodoFragment : Fragment() {
     private fun initBinding() {
         binding.fragment = this
         binding.isTargetDate = viewModel.isCalClicked.value
+
         binding.todoData = todoData()
         binding.lifecycleOwner = viewLifecycleOwner
     }
@@ -52,6 +55,7 @@ class TodoFragment : Fragment() {
     private fun observe() {
         todoViewModel.todoList.observe(viewLifecycleOwner) {
             todoListAdapter.submitList(it)
+            todoListAdapter.notifyItemRangeChanged(0, it.size)
         }
     }
 

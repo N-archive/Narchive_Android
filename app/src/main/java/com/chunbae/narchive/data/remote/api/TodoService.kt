@@ -5,6 +5,7 @@ import com.chunbae.narchive.data.remote.request.RequestTodoGroupData
 import com.chunbae.narchive.data.remote.response.ResponseCommonWithString
 import com.chunbae.narchive.data.remote.response.ResponseTodoGroupData
 import com.chunbae.narchive.data.remote.response.ResponseTodoGroupListData
+import com.chunbae.narchive.data.remote.response.ResponseTodoListData
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -32,4 +33,9 @@ interface TodoService {
     suspend fun putTodoGroup(
         @Body body : RequestModifyTodoGroupData
     ) : Response<ResponseTodoGroupData>
+
+    @GET("/todo")
+    suspend fun getTodos(
+        @Query("date") date : String?
+    ) : Response<ResponseTodoListData>
 }
