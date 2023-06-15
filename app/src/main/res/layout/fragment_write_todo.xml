@@ -44,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_20"
+                android:onClick="@{() -> todoViewModel.saveTodo()}"
                 android:src="@drawable/ic_common_plane"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,6 +74,7 @@
             android:layout_marginTop="@dimen/margin_12"
             android:background="@android:color/transparent"
             android:hint="@string/write_review_here"
+            android:text="@={todoViewModel.todoTitle}"
             android:textColor="@color/text_black"
             android:textColorHint="@color/color_a4a4a4"
             android:textSize="15sp"
@@ -282,7 +284,7 @@
             android:layout_marginStart="@dimen/margin_5"
             android:layout_marginTop="@dimen/margin_10"
             android:buttonTint="@color/text_black"
-            android:checked="@{todoViewModel.isAllday()}"
+            android:onClick="@{() -> todoViewModel.setIsAllDayClicked()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fg_wrtie_todo_layout_end_calendar_shell" />
 

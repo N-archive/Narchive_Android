@@ -21,7 +21,7 @@ import javax.inject.Singleton
 class RetrofitModule {
 
     companion object {
-        val BASE_URL = "http://narchive.shop/"
+        val BASE_URL = "http://3.37.9.175/"
         val KAKAO_URL = "https://dapi.kakao.com/"
         val KAKAO_AUTH_URL = "https://kapi.kakao.com/"
         val KAKAO_AI_URL = "https://api.kakaobrain.com/"

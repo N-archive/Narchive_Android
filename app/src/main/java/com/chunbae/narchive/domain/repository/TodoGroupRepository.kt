@@ -16,4 +16,6 @@ interface TodoGroupRepository {
     suspend fun putTodoGroupData(body : RequestModifyTodoGroupData) : Result<GroupData>
 
     suspend fun getTodoListData(date : String?) : Result<List<TodoData.TodoList>>
+
+    suspend fun patchDefaultTodoGroup(past : Int, cur : Int) : Result<String>
 }

@@ -16,6 +16,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/dialog_add_todo_group_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{dialog.tag == "EDIT" ? "일정 그룹 수정하기" : "새 일정 그룹 추가하기"}'
+            android:textSize="18sp"
+            android:textColor="@color/text_black"
+            android:fontFamily="@font/pretendard_semibold"
+            android:includeFontPadding="false"
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginStart="@dimen/margin_15"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
         <EditText
             android:id="@+id/dialog_add_todo_group_edt_title"
             android:layout_width="match_parent"
@@ -33,7 +47,7 @@
             android:text="@={viewModel.newGroupTitle}"
             android:textColor="@color/text_black"
             android:textSize="15sp"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/dialog_add_todo_group_tv_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dialog_add_todo_group_rv_colors"
@@ -62,7 +76,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/margin_7"
+                android:layout_marginVertical="@dimen/margin_10"
                 android:fontFamily="@font/pretendard_semibold"
                 android:includeFontPadding="false"
                 android:text="@string/common_correct"
@@ -90,7 +104,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/margin_7"
+                android:layout_marginVertical="@dimen/margin_10"
                 android:fontFamily="@font/pretendard_semibold"
                 android:includeFontPadding="false"
                 android:text="@string/common_dismiss"

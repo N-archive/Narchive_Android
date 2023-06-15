@@ -1,5 +1,6 @@
 package com.chunbae.narchive.data.remote.source
 
+import android.util.Log
 import androidx.constraintlayout.widget.Group
 import com.chunbae.narchive.data.data.GroupData
 import com.chunbae.narchive.data.data.TodoData
@@ -48,5 +49,15 @@ class TodoGroupRemoteSource @Inject constructor(private val todoService : TodoSe
             return Result.success(res.body()!!.result)
         }
         return Result.failure(IllegalArgumentException())
+    }
+
+    override suspend fun patchDefaultTodoGroup(past: Int, cur: Int): Result<String> {
+        val res = todoService.setDefaultTodoGroup(past, cur)
+        if(res.isSuccessful) {
+            Log.d("----", "patchDefaultTodoGroup: SUCCESS")
+            return Result.success(res.body()!!.result)
+        }
+        Log.d("----", "patchDefaultTodoGroup: ${res.message()}")
+        return Result.failure(IllegalArgumentException(res.message()))
     }
 }

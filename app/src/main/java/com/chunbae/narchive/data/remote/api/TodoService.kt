@@ -38,4 +38,10 @@ interface TodoService {
     suspend fun getTodos(
         @Query("date") date : String?
     ) : Response<ResponseTodoListData>
+
+    @PATCH("/todo/default")
+    suspend fun setDefaultTodoGroup(
+        @Query("pastGroupIdx") pastGroupIdx : Int,
+        @Query("curGroupIdx") curGroupIdx : Int
+    ) : Response<ResponseCommonWithString>
 }

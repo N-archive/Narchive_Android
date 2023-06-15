@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="groupData"
             type="com.chunbae.narchive.data.data.GroupData" />
@@ -29,6 +31,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:src="@drawable/ic_cloud"
+            android:visibility='@{groupData.isDefault().contains("Y") ? View.VISIBLE : View.GONE }'
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/fg_write_todo_card_group_color"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/color_B2F0F4" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/fg_write_todo_card_group_color"

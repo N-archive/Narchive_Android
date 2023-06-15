@@ -63,6 +63,12 @@ class TodoGroupManageViewModel @Inject constructor(private val todoGroupReposito
         }
     }
 
+    fun changeDefaultGroup(past : Int, cur : Int) {
+        viewModelScope.launch {
+            todoGroupRepository.patchDefaultTodoGroup(past, cur)
+        }
+    }
+
     fun setEditGroup(groupData: GroupData) {
         _editGroup.value = groupData
     }

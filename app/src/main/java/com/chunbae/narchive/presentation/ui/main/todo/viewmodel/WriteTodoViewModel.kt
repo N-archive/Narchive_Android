@@ -20,6 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class WriteTodoViewModel @Inject constructor(private val todoGroupRepository: TodoGroupRepository): ViewModel() {
 
+    var todoTitle = MutableLiveData<String>().apply { value = "" }
+
     private val _startDate = MutableLiveData<String>().apply {
         value = SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA).format(
             Date(System.currentTimeMillis())
@@ -120,5 +122,12 @@ class WriteTodoViewModel @Inject constructor(private val todoGroupRepository: To
         _selectedGroup.value = userGroupList.value!![position]
     }
 
+    fun setIsAllDayClicked() {
+        _isAllday.value = _isAllday.value!!.not()
+    }
+
+    fun saveTodo() {
+        Log.d("----", "saveTOdo: ${todoTitle.value} / ${startDate.value}-${startTime.value} / ${endDate.value}-${endTime.value} / ${isAllday.value} / ${_selectedGroup.value}")
+    }
 
 }

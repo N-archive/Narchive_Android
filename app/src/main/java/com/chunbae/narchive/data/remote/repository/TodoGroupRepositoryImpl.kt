@@ -29,4 +29,8 @@ class TodoGroupRepositoryImpl @Inject constructor(private val todoGroupSource: T
     override suspend fun getTodoListData(date: String?): Result<List<TodoData.TodoList>> {
         return todoGroupSource.getTodoListData(date)
     }
+
+    override suspend fun patchDefaultTodoGroup(past: Int, cur: Int): Result<String> {
+        return todoGroupSource.patchDefaultTodoGroup(past, cur)
+    }
 }

@@ -57,7 +57,7 @@ class AddTodoGroupDialog : DialogFragment() {
         display.getSize(size)
         val params: ViewGroup.LayoutParams? = dialog?.window?.attributes
         val deviceWidth = size.x
-        params?.width = (deviceWidth * 0.9).toInt()
+        params?.width = (deviceWidth * 0.95).toInt()
         params?.height = WindowManager.LayoutParams.WRAP_CONTENT
         dialog?.window?.attributes = params as WindowManager.LayoutParams
     }
