@@ -29,6 +29,9 @@ class MainViewModel @Inject constructor(private val diaryUseCase: DiaryUseCase, 
     private val _isCalClicked = MutableLiveData<Boolean>(false)
     val isCalClicked : LiveData<Boolean> = _isCalClicked
 
+    private val _clickedCalDate = MutableLiveData<String>()
+    val clickedCalDate : LiveData<String> = _clickedCalDate
+
     private val _feedDiaryData = MutableLiveData<MutableList<FeedData>>()
     val feedDiaryData : LiveData<MutableList<FeedData>> = _feedDiaryData
 
@@ -55,8 +58,9 @@ class MainViewModel @Inject constructor(private val diaryUseCase: DiaryUseCase, 
         _isCalClicked.value = false
     }
 
-    fun setCalClickedTrue() {
+    fun setCalClickedTrue(date : String) {
         _isCalClicked.value = true
+        _clickedCalDate.value = date
     }
 
     fun getFeedData(page : Int) {

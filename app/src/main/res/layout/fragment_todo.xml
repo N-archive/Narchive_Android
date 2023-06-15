@@ -13,8 +13,8 @@
             type="Boolean" />
 
         <variable
-            name="todoData"
-            type="com.chunbae.narchive.data.data.TodoData" />
+            name="curDate"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,7 +46,7 @@
             android:id="@+id/fg_todo_tv_month_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{isTargetDate ? @string/todo_month_date(todoData.date) : @string/todo_current_day}'
+            android:text='@{isTargetDate ? @string/todo_month_date(curDate) : @string/todo_current_day}'
             android:textColor="@color/text_black"
             android:textSize="17sp"
             android:fontFamily="@font/pretendard_semibold"

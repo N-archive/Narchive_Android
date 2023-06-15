@@ -17,13 +17,9 @@ class TodoViewModel @Inject constructor(private val todoRepo : TodoGroupReposito
     private val _todoList = MutableLiveData<MutableList<TodoData.TodoList>>()
     val todoList : LiveData<MutableList<TodoData.TodoList>> = _todoList
 
-    init {
-        getTodo()
-    }
-
-    private fun getTodo() {
+    fun getTodo(date : String?) {
         viewModelScope.launch {
-            todoRepo.getTodoListData("")
+            todoRepo.getTodoListData(date)
                 .onSuccess {
                     _todoList.value = it as MutableList
                 }
