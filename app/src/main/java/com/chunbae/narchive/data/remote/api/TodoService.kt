@@ -1,6 +1,7 @@
 package com.chunbae.narchive.data.remote.api
 
 import com.chunbae.narchive.data.remote.request.RequestModifyTodoGroupData
+import com.chunbae.narchive.data.remote.request.RequestTodoData
 import com.chunbae.narchive.data.remote.request.RequestTodoGroupData
 import com.chunbae.narchive.data.remote.response.ResponseCommonWithString
 import com.chunbae.narchive.data.remote.response.ResponseTodoGroupData
@@ -48,4 +49,9 @@ interface TodoService {
     @GET("/todo/default")
     suspend fun getDefaultTodoGroup()
     : Response<ResponseTodoGroupData>
+
+    @POST("/todo")
+    suspend fun postTodo(
+        @Body body : RequestTodoData
+    ) : Response<ResponseCommonWithString>
 }

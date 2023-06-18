@@ -277,49 +277,25 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <CheckBox
-            android:id="@+id/fg_wrtie_todo_check_is_all_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_5"
-            android:layout_marginTop="@dimen/margin_10"
-            android:buttonTint="@color/text_black"
-            android:onClick="@{() -> todoViewModel.setIsAllDayClicked()}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fg_wrtie_todo_layout_end_calendar_shell" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendard_semibold"
-            android:includeFontPadding="false"
-            android:text="@string/write_todo_todo_tv_all_day"
-            android:textColor="@color/text_black"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/fg_wrtie_todo_check_is_all_day"
-            app:layout_constraintStart_toEndOf="@id/fg_wrtie_todo_check_is_all_day"
-            app:layout_constraintTop_toTopOf="@id/fg_wrtie_todo_check_is_all_day" />
-
         <TextView
             android:id="@+id/fg_write_todo_tv_todo_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_5"
+            android:layout_marginTop="@dimen/margin_20"
             android:fontFamily="@font/pretendard_semibold"
             android:includeFontPadding="false"
             android:text="@string/write_todo_todo_group"
             android:textColor="@color/text_black"
             android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@id/fg_write_todo_tv_todo_time"
-            app:layout_constraintTop_toBottomOf="@id/fg_wrtie_todo_check_is_all_day" />
+            app:layout_constraintStart_toStartOf="@id/fg_write_todo_tv_todo_end"
+            app:layout_constraintTop_toBottomOf="@id/fg_write_todo_tv_todo_end" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_20"
             android:onClick="@{() -> todoViewModel.groupDialogOpen()}"
             app:layout_constraintBottom_toBottomOf="@+id/fg_write_todo_tv_todo_group"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fg_write_todo_btn_end_time"
             app:layout_constraintTop_toTopOf="@+id/fg_write_todo_tv_todo_group">
 
             <com.google.android.material.card.MaterialCardView

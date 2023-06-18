@@ -45,6 +45,7 @@ class WriteTodoFragment : Fragment() {
         initPicker()
         observeCalendarState()
         openGroupSelectDialog()
+        observeTodoUploaded()
 
         return binding.root
     }
@@ -230,6 +231,13 @@ class WriteTodoFragment : Fragment() {
     private fun openGroupSelectDialog() {
         todoViewModel.isGroupDialogOpened.observe(viewLifecycleOwner) {
             if(it) WriteTodoGroupDialog().show(requireActivity().supportFragmentManager, "GROUP")
+        }
+    }
+
+    private fun observeTodoUploaded() {
+        todoViewModel.updateFinished.observe(viewLifecycleOwner) {
+            requireActivity().supportFragmentManager.popBackStack()
+            requireActivity().supportFragmentManager.beginTransaction().commit()
         }
     }
 }

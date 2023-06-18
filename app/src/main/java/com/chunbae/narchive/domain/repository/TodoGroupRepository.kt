@@ -3,6 +3,7 @@ package com.chunbae.narchive.domain.repository
 import com.chunbae.narchive.data.data.GroupData
 import com.chunbae.narchive.data.data.TodoData
 import com.chunbae.narchive.data.remote.request.RequestModifyTodoGroupData
+import com.chunbae.narchive.data.remote.request.RequestTodoData
 import com.chunbae.narchive.data.remote.request.RequestTodoGroupData
 
 interface TodoGroupRepository {
@@ -20,4 +21,6 @@ interface TodoGroupRepository {
     suspend fun patchDefaultTodoGroup(past : Int, cur : Int) : Result<String>
 
     suspend fun getDefaultTodoGroup() : Result<GroupData>
+
+    suspend fun postTodo(body : RequestTodoData) : Result<String>
 }
