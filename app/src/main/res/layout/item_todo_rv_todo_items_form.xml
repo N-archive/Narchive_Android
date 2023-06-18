@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:buttonTint="@color/text_black"
             android:layout_marginVertical="@dimen/margin_5"
-            android:checked="@{todoData.finished}"
+            android:checked="@{todoData.clear}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

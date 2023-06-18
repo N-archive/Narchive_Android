@@ -16,13 +16,19 @@ import com.chunbae.narchive.presentation.ui.main.MainViewModel
 import com.chunbae.narchive.presentation.ui.main.todo.adapter.TodoListAdapter
 import com.chunbae.narchive.presentation.ui.main.todo.viewmodel.TodoViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TodoFragment : Fragment() {
     private lateinit var binding : FragmentTodoBinding
     private val viewModel : MainViewModel by activityViewModels()
     private val todoViewModel : TodoViewModel by viewModels()
     private val todoListAdapter by lazy {
         TodoListAdapter(::onTodoChecked, ::onTodoLongClicked)
+    }
+
+    private val TAG by lazy {
+        viewModel.isCalClicked.value
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +38,7 @@ class TodoFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_todo, container, false)
 
         initBinding()
+        loadTodoData()
         initRV()
         observe()
 
@@ -40,9 +47,18 @@ class TodoFragment : Fragment() {
 
     private fun initBinding() {
         binding.fragment = this
-        binding.isTargetDate = viewModel.isCalClicked.value
-        binding.todoData = todoData()
+        binding.isTargetDate = TAG
+
         binding.lifecycleOwner = viewLifecycleOwner
+    }
+
+    private fun loadTodoData() {
+        if(TAG == true) {
+            todoViewModel.getTodo(viewModel.clickedCalDate.value)
+            binding.curDate = viewModel.clickedCalDate.value!!.substring(5).replace("-","월 ").plus("일")
+        } else {
+            todoViewModel.getTodo(null)
+        }
     }
 
     private fun initRV() {
@@ -52,6 +68,7 @@ class TodoFragment : Fragment() {
     private fun observe() {
         todoViewModel.todoList.observe(viewLifecycleOwner) {
             todoListAdapter.submitList(it)
+            todoListAdapter.notifyItemRangeChanged(0, it.size)
         }
     }
 
@@ -74,9 +91,4 @@ class TodoFragment : Fragment() {
     fun openAddTodo() {
         requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null).replace(R.id.main_layout_container, WriteTodoFragment()).commit()
     }
-
-    /** Dummy */
-    fun todoData() : TodoData = TodoData("05월 01일", todoList())
-
-    fun todoList() : List<TodoData.TodoList> = listOf(TodoData.TodoList(0, "13:00", "14:00", "일기 쓰기", "기본", "RED", false))
 }

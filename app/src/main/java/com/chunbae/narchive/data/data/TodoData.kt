@@ -11,6 +11,6 @@ data class TodoData(
         val todoTitle : String,
         val groupTitle : String,
         val groupColor : String,
-        var isFinished : Boolean
+        var isClear : Boolean
         )
 }

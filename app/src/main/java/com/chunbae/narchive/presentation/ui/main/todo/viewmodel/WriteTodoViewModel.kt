@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chunbae.narchive.data.data.GroupData
+import com.chunbae.narchive.data.remote.request.RequestTodoData
 import com.chunbae.narchive.data.remote.request.RequestTodoGroupData
 import com.chunbae.narchive.domain.repository.TodoGroupRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +20,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WriteTodoViewModel @Inject constructor(private val todoGroupRepository: TodoGroupRepository): ViewModel() {
+
+    var todoTitle = MutableLiveData<String>().apply { value = "" }
 
     private val _startDate = MutableLiveData<String>().apply {
         value = SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA).format(
@@ -50,9 +53,6 @@ class WriteTodoViewModel @Inject constructor(private val todoGroupRepository: To
     private val _endMin = MutableLiveData<String>().apply { value = endHour.value }
     val endMin: LiveData<String> = _endMin
 
-    private val _isAllday = MutableLiveData<Boolean>().apply { value = false }
-    val isAllday: LiveData<Boolean> = _isAllday
-
     private var _isStartDay = MutableLiveData<Int>()
     val isStartDay: LiveData<Int> = _isStartDay
 
@@ -64,6 +64,9 @@ class WriteTodoViewModel @Inject constructor(private val todoGroupRepository: To
 
     private val _selectedGroup = MutableLiveData<GroupData>().apply { value = GroupData(0, "기본", "PINK", "N") }
     val selectedGroup : LiveData<GroupData> = _selectedGroup
+
+    private val _updateFinished = MutableLiveData<Boolean>()
+    val updateFinished : LiveData<Boolean> = _updateFinished
 
 
 
@@ -120,5 +123,36 @@ class WriteTodoViewModel @Inject constructor(private val todoGroupRepository: To
         _selectedGroup.value = userGroupList.value!![position]
     }
 
+    fun getDefaultTodoGroup() {
+        viewModelScope.launch {
+            todoGroupRepository.getDefaultTodoGroup()
+                .onSuccess { _selectedGroup.value = it }
+        }
+    }
 
+    fun saveTodo() {
+        viewModelScope.launch {
+            todoGroupRepository.postTodo(mapToRequest())
+                .onSuccess { _updateFinished.value = true }
+        }
+    }
+
+    private fun String.convertDate() : String {
+        return this.replace("년", "-").replace("월", "-").substring(0, this.length - 1).replace(" ", "")
+    }
+
+    private fun String.convertTime() : String {
+        return this.replace(" ", "")
+    }
+
+    private fun mapToRequest() : RequestTodoData {
+        return RequestTodoData(
+            selectedGroup.value!!.todoGroupIdx!!,
+            todoTitle.value!!,
+            startDate.value!!.convertDate(),
+            startTime.value!!.convertTime(),
+            endDate.value!!.convertDate(),
+            endTime.value!!.convertTime()
+        )
+    }
 }

@@ -1,6 +1,7 @@
 package com.chunbae.narchive.presentation.ui.main.calendar.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,7 +64,7 @@ class CalendarFragment : Fragment() {
         val textView = ItemCalendarDayBinding.bind(view).itemCalendarDayTvDate
 
         init {
-            view.setOnClickListener { moveToTodo() }
+            //view.setOnClickListener { moveToTodo() }
         }
     }
 
@@ -91,6 +92,8 @@ class CalendarFragment : Fragment() {
                 calBinding?.let {
                     bindDate(data.date, it, data.position == DayPosition.MonthDate)
                     bindCalendarData(data.date, it)
+
+                    it.root.setOnClickListener { moveToTodo(data.date.toString()) }
                 }
             }
         }
@@ -125,7 +128,7 @@ class CalendarFragment : Fragment() {
 
     private fun bindCalendarData(date: LocalDate, calBinding: ItemCalendarDayBinding) {
         calBinding.calendarData = calendarDummy().find { it.date.convertStringToDate() == date }
-        calBinding.itemCalendarDayRvTodo.adapter = CalendarTodoAdapter(::moveToTodo).also {
+        calBinding.itemCalendarDayRvTodo.adapter = CalendarTodoAdapter().also {
             calendarDummy().find { it.date.convertStringToDate() == date }?.todoList.let { it2 ->
                 if (it2 != null) {
                     it.todoItems = it2.todoList.toMutableList()
@@ -137,8 +140,9 @@ class CalendarFragment : Fragment() {
     private fun String.convertStringToDate(): LocalDate =
         LocalDate.parse(this, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
-    private fun moveToTodo() {
-        viewModel.setCalClickedTrue()
+    private fun moveToTodo(date : String) {
+        viewModel.setCalClickedTrue(date)
+
     }
 
     /** Dummy */

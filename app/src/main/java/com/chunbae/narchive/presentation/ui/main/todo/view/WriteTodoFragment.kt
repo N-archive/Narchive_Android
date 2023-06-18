@@ -1,6 +1,8 @@
 package com.chunbae.narchive.presentation.ui.main.todo.view
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +25,8 @@ import com.kizitonwose.calendar.view.ViewContainer
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
+import java.util.Date
+import java.util.Locale
 
 class WriteTodoFragment : Fragment() {
     private lateinit var binding: FragmentWriteTodoBinding
@@ -41,6 +45,7 @@ class WriteTodoFragment : Fragment() {
         initPicker()
         observeCalendarState()
         openGroupSelectDialog()
+        observeTodoUploaded()
 
         return binding.root
     }
@@ -48,6 +53,11 @@ class WriteTodoFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         todoViewModel.getGroupList()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        todoViewModel.getDefaultTodoGroup()
     }
 
     private fun initBinding() {
@@ -94,6 +104,8 @@ class WriteTodoFragment : Fragment() {
                 setOnValueChangedListener { _, _, cur -> todoViewModel.setTime(getMinArray()[cur], false)}
             }
         }
+
+        binding.root.setOnClickListener { todoViewModel.manageCalendarState(5) }
     }
 
     private fun observeCalendarState() {
@@ -219,6 +231,13 @@ class WriteTodoFragment : Fragment() {
     private fun openGroupSelectDialog() {
         todoViewModel.isGroupDialogOpened.observe(viewLifecycleOwner) {
             if(it) WriteTodoGroupDialog().show(requireActivity().supportFragmentManager, "GROUP")
+        }
+    }
+
+    private fun observeTodoUploaded() {
+        todoViewModel.updateFinished.observe(viewLifecycleOwner) {
+            requireActivity().supportFragmentManager.popBackStack()
+            requireActivity().supportFragmentManager.beginTransaction().commit()
         }
     }
 }
