@@ -54,10 +54,16 @@ class TodoGroupRemoteSource @Inject constructor(private val todoService : TodoSe
     override suspend fun patchDefaultTodoGroup(past: Int, cur: Int): Result<String> {
         val res = todoService.setDefaultTodoGroup(past, cur)
         if(res.isSuccessful) {
-            Log.d("----", "patchDefaultTodoGroup: SUCCESS")
             return Result.success(res.body()!!.result)
         }
-        Log.d("----", "patchDefaultTodoGroup: ${res.message()}")
+        return Result.failure(IllegalArgumentException(res.message()))
+    }
+
+    override suspend fun getDefaultTodoGroup(): Result<GroupData> {
+        val res = todoService.getDefaultTodoGroup()
+        if(res.isSuccessful) {
+            return Result.success(res.body()!!.result)
+        }
         return Result.failure(IllegalArgumentException(res.message()))
     }
 }

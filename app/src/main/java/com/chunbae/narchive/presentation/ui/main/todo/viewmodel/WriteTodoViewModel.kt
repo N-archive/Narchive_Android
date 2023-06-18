@@ -126,6 +126,13 @@ class WriteTodoViewModel @Inject constructor(private val todoGroupRepository: To
         _isAllday.value = _isAllday.value!!.not()
     }
 
+    fun getDefaultTodoGroup() {
+        viewModelScope.launch {
+            todoGroupRepository.getDefaultTodoGroup()
+                .onSuccess { _selectedGroup.value = it }
+        }
+    }
+
     fun saveTodo() {
         Log.d("----", "saveTOdo: ${todoTitle.value} / ${startDate.value}-${startTime.value} / ${endDate.value}-${endTime.value} / ${isAllday.value} / ${_selectedGroup.value}")
     }

@@ -44,4 +44,8 @@ interface TodoService {
         @Query("pastGroupIdx") pastGroupIdx : Int,
         @Query("curGroupIdx") curGroupIdx : Int
     ) : Response<ResponseCommonWithString>
+
+    @GET("/todo/default")
+    suspend fun getDefaultTodoGroup()
+    : Response<ResponseTodoGroupData>
 }

@@ -2,6 +2,7 @@ package com.chunbae.narchive.presentation.ui.main.todo.view
 
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,6 +52,11 @@ class WriteTodoFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         todoViewModel.getGroupList()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        todoViewModel.getDefaultTodoGroup()
     }
 
     private fun initBinding() {
